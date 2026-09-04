@@ -6,28 +6,7 @@
  */
 
 export const PRODUCTS = [
-  {
-    id: "rio-01",
-    title: "Rio",
-    location: "Rio de Janeiro, Brasil",
-    year: "2025",
-    film: "Kodak Gold 200",
-    camera: "Olympus µ[mju:] I",
-    orientation: "horizontal",
-    category: "coastal",
-    story: "Tomada durante una tarde dorada caminando hacia los acantilados de Uluwatu. El mar rompía abajo con fuerza y la luz filtrada por la mítica lente fija f/3.5 de la Olympus mju I le dio esa calidez analógica auténtica.",
-    image: "/images/Rio.jpeg",
-  
 
-    sizes: [
-      { id: "30x45", label: "30 x 45 cm", priceCLP: 45000, priceUSD: 48 },
-      { id: "50x75", label: "50 x 75 cm", priceCLP: 65000, priceUSD: 70 },
-      { id: "70x100", label: "70 x 100 cm", priceCLP: 89000, priceUSD: 95 }
-    ],
-    price: 45000,
-    priceUSD: 48,
-    purchaseUrl: "https://mpago.la/link-uluwatu"
-  },
   {
     id: "arraialdocabo-02",
     title: "Playa",
@@ -38,7 +17,7 @@ export const PRODUCTS = [
     orientation: "vertical",
     category: "street",
     story: "Capturada de noche bajo los neones de Shinjuku justo después de una lluvia ligera con mi Olympus mju I compacta. La emulsión de CineStill 800T creó ese halo cinematográfico inolvidable.",
-    image: "images/ArraialDoCabo.jpeg",
+    image: "/images/ArraialDoCabo.jpeg",
 
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 52000, priceUSD: 55 },
@@ -91,27 +70,7 @@ export const PRODUCTS = [
     priceUSD: 45,
     purchaseUrl: "https://mpago.la/link-lisbon"
   },
-  {
-    id: "lapeña-05",
-    title: "La Peña",
-    location: "Valparaíso, Chile",
-    year: "2023",
-    film: "Ilford HP5 Plus 400",
-    camera: "Olympus µ[mju:] I",
-    orientation: "vertical",
-    category: "street",
-    story: "Un café matutino bajo la lluvia en Saint-Germain-des-Prés. Blanco y negro analógico en estado puro capturado con la Olympus mju I en grano Ilford HP5.",
-    image: "LaPeña.jpeg",
 
-    sizes: [
-      { id: "30x45", label: "30 x 45 cm", priceCLP: 46000, priceUSD: 49 },
-      { id: "50x75", label: "50 x 75 cm", priceCLP: 66000, priceUSD: 71 },
-      { id: "70x100", label: "70 x 100 cm", priceCLP: 90000, priceUSD: 96 }
-    ],
-    price: 46000,
-    priceUSD: 49,
-    purchaseUrl: "https://mpago.la/link-paris"
-  },
   {
     id: "pandeazucar-06",
     title: "Pan De Azucar",
@@ -133,48 +92,8 @@ export const PRODUCTS = [
     priceUSD: 59,
     purchaseUrl: "https://mpago.la/link-positano"
   },
-  {
-    id: "atacama-07",
-    title: "Dunas del Valle de la Luna",
-    location: "Atacama, Chile",
-    year: "2024",
-    film: "Kodak Portra 160",
-    camera: "Olympus µ[mju:] I",
-    orientation: "horizontal",
-    category: "nature",
-    story: "El desierto de Atacama al atardecer. La textura fina de la arena y los degradados violeta sobre el volcán Licancabur capturados con la Olympus mju I en Kodak Portra 160.",
-    image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1200&auto=format&fit=crop",
-
-    sizes: [
-      { id: "30x45", label: "30 x 45 cm", priceCLP: 49000, priceUSD: 52 },
-      { id: "50x75", label: "50 x 75 cm", priceCLP: 69000, priceUSD: 74 },
-      { id: "70x100", label: "70 x 100 cm", priceCLP: 94000, priceUSD: 100 }
-    ],
-    price: 49000,
-    priceUSD: 52,
-    purchaseUrl: "https://mpago.la/link-atacama"
-  },
-  {
-    id: "kyoto-08",
-    title: "Arashiyama Bamboo",
-    location: "Kioto, Japón",
-    year: "2023",
-    film: "Fujifilm Velvia 50",
-    camera: "Olympus µ[mju:] I",
-    orientation: "vertical",
-    category: "nature",
-    story: "Caminando al amanecer en el bosque de bambú de Arashiyama. La luz filtrada dio tonos esmeralda saturados gracias a la mítica película Fujifilm Velvia 50 y el lente sharp de la Olympus mju I.",
-    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=1200&auto=format&fit=crop",
-
-    sizes: [
-      { id: "30x45", label: "30 x 45 cm", priceCLP: 51000, priceUSD: 54 },
-      { id: "50x75", label: "50 x 75 cm", priceCLP: 71000, priceUSD: 76 },
-      { id: "70x100", label: "70 x 100 cm", priceCLP: 96000, priceUSD: 103 }
-    ],
-    price: 51000,
-    priceUSD: 54,
-    purchaseUrl: "https://mpago.la/link-kyoto"
-  }
+  
+ 
 ];
 
 export const FRAME_OPTIONS = [
