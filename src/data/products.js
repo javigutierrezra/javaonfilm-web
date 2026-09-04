@@ -7,22 +7,18 @@
 
 export const PRODUCTS = [
   {
-    id: "bali-01",
-    title: "Uluwatu Cliffs",
-    location: "Bali, Indonesia",
-    year: "2023",
+    id: "rio-01",
+    title: "Rio",
+    location: "Rio de Janeiro, Brasil",
+    year: "2025",
     film: "Kodak Gold 200",
     camera: "Olympus µ[mju:] I",
     orientation: "horizontal",
     category: "coastal",
     story: "Tomada durante una tarde dorada caminando hacia los acantilados de Uluwatu. El mar rompía abajo con fuerza y la luz filtrada por la mítica lente fija f/3.5 de la Olympus mju I le dio esa calidez analógica auténtica.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "/images/Rio.jpeg",
+  
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 45000, priceUSD: 48 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 65000, priceUSD: 70 },
@@ -33,22 +29,17 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-uluwatu"
   },
   {
-    id: "tokyo-02",
-    title: "Shinjuku Rain",
-    location: "Tokio, Japón",
-    year: "2023",
+    id: "arraialdocabo-02",
+    title: "Playa",
+    location: "Arraial Do Cabo, Brasil",
+    year: "2025",
     film: "CineStill 800T",
     camera: "Olympus µ[mju:] I",
     orientation: "vertical",
     category: "street",
     story: "Capturada de noche bajo los neones de Shinjuku justo después de una lluvia ligera con mi Olympus mju I compacta. La emulsión de CineStill 800T creó ese halo cinematográfico inolvidable.",
-    image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "images/ArraialDoCabo.jpeg",
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 52000, priceUSD: 55 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 72000, priceUSD: 78 },
@@ -59,22 +50,17 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-shinjuku"
   },
   {
-    id: "oaxaca-03",
+    id: "ilhagrande-03",
     title: "Callejón de la Cal",
-    location: "Oaxaca, México",
-    year: "2024",
+    location: "Rio de Janeiro, Brasil",
+    year: "2025",
     film: "Kodak Portra 400",
     camera: "Olympus µ[mju:] I",
     orientation: "vertical",
     category: "street",
     story: "Persiguiendo la luz de mediodía filtrándose por los muros amarillos del centro histórico de Oaxaca. La agilidad del diseño cápsula de la Olympus mju I permitió congelar el segundo exacto.",
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "/images/IlhaGrande.jpeg",
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 48000, priceUSD: 51 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 68000, priceUSD: 73 },
@@ -85,22 +71,17 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-oaxaca"
   },
   {
-    id: "lisbon-04",
+    id: "huentelauquen-04",
     title: "Alfama Morning",
-    location: "Lisboa, Portugal",
-    year: "2023",
+    location: "Coquimbo, Chile",
+    year: "2024",
     film: "Fujifilm Pro 400H",
     camera: "Olympus µ[mju:] I",
     orientation: "horizontal",
     category: "city",
     story: "La luz suave de las 7:00 AM bañando los azulejos de Alfama. Grabado en mi Olympus mju I con película Fujifilm para conservar los tonos pastel tan distintivos de Portugal.",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "/images/Huentelauquen.jpeg",
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 42000, priceUSD: 45 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 62000, priceUSD: 66 },
@@ -111,22 +92,17 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-lisbon"
   },
   {
-    id: "paris-05",
+    id: "lapeña-05",
     title: "Saint-Germain",
-    location: "París, Francia",
+    location: "Valparaíso, Chile",
     year: "2023",
     film: "Ilford HP5 Plus 400",
     camera: "Olympus µ[mju:] I",
     orientation: "vertical",
     category: "street",
     story: "Un café matutino bajo la lluvia en Saint-Germain-des-Prés. Blanco y negro analógico en estado puro capturado con la Olympus mju I en grano Ilford HP5.",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "LaPeña.jpeg",
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 46000, priceUSD: 49 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 66000, priceUSD: 71 },
@@ -137,22 +113,17 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-paris"
   },
   {
-    id: "positano-06",
+    id: "pandeazucar-06",
     title: "Positano Horizon",
-    location: "Costa Amalfitana, Italia",
+    location: "Pan de Azucar, Brasil",
     year: "2024",
     film: "Kodak Ektachrome E100",
     camera: "Olympus µ[mju:] I",
     orientation: "horizontal",
     category: "coastal",
     story: "Mirando hacia el Mar Tirreno tras recorrer el Sendero de los Dioses. La nitidez de la lente 35mm f/3.5 de Olympus resalta la inmensidad del horizonte mediterráneo.",
-    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+    image: "/images/PandeAzucar.jpeg",
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 56000, priceUSD: 59 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 78000, priceUSD: 83 },
@@ -173,12 +144,7 @@ export const PRODUCTS = [
     category: "nature",
     story: "El desierto de Atacama al atardecer. La textura fina de la arena y los degradados violeta sobre el volcán Licancabur capturados con la Olympus mju I en Kodak Portra 160.",
     image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 49000, priceUSD: 52 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 69000, priceUSD: 74 },
@@ -199,12 +165,7 @@ export const PRODUCTS = [
     category: "nature",
     story: "Caminando al amanecer en el bosque de bambú de Arashiyama. La luz filtrada dio tonos esmeralda saturados gracias a la mítica película Fujifilm Velvia 50 y el lente sharp de la Olympus mju I.",
     image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=1200&auto=format&fit=crop",
-    mockups: {
-      living: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-      dining: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
-      bedroom: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-      minimal: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop"
-    },
+
     sizes: [
       { id: "30x45", label: "30 x 45 cm", priceCLP: 51000, priceUSD: 54 },
       { id: "50x75", label: "50 x 75 cm", priceCLP: 71000, priceUSD: 76 },
