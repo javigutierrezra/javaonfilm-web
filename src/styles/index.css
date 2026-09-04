@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-blue: #4967D7;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #FAF8F5;
+  color: #0F172A;
+}
+
+/* Custom Fine Art Framing Styles */
+.frame-container {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frame-mockup {
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  transition: all 0.35s ease;
+}
+
+.frame-border-black {
+  border: 18px solid #111827;
+  outline: 1px solid #374151;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 20px 30px -10px rgba(0,0,0,0.3);
+  background: #FFFFFF;
+  padding: 20px;
+}
+
+.frame-border-wood {
+  border: 20px solid #8B5A2B;
+  outline: 1px solid #5C3818;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 20px 30px -10px rgba(0,0,0,0.3);
+  background: #FAFAFA;
+  padding: 20px;
+}
+
+.frame-border-walnut {
+  border: 20px solid #3A2012;
+  outline: 1px solid #20120A;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 20px 30px -10px rgba(0,0,0,0.4);
+  background: #FAF9F6;
+  padding: 20px;
+}
+
+.frame-border-white {
+  border: 18px solid #F3F4F6;
+  outline: 1px solid #E5E7EB;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.06), 0 20px 30px -10px rgba(0,0,0,0.15);
+  background: #FFFFFF;
+  padding: 20px;
+}
+
+.frame-border-none {
+  border: 0px solid transparent;
+  padding: 0px;
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.2);
+}
+
+.passepartout {
+  background-color: #FAFAFA;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
+}
