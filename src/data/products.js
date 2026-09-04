@@ -51,7 +51,7 @@ export const PRODUCTS = [
   },
   {
     id: "ilhagrande-03",
-    title: "Callejón de la Cal",
+    title: "Isla Grande",
     location: "Rio de Janeiro, Brasil",
     year: "2025",
     film: "Kodak Portra 400",
@@ -72,7 +72,7 @@ export const PRODUCTS = [
   },
   {
     id: "huentelauquen-04",
-    title: "Alfama Morning",
+    title: "Huentelauquen",
     location: "Coquimbo, Chile",
     year: "2024",
     film: "Fujifilm Pro 400H",
@@ -93,7 +93,7 @@ export const PRODUCTS = [
   },
   {
     id: "lapeña-05",
-    title: "Saint-Germain",
+    title: "La Peña",
     location: "Valparaíso, Chile",
     year: "2023",
     film: "Ilford HP5 Plus 400",
@@ -114,7 +114,7 @@ export const PRODUCTS = [
   },
   {
     id: "pandeazucar-06",
-    title: "Positano Horizon",
+    title: "Pan De Azucar",
     location: "Pan de Azucar, Brasil",
     year: "2024",
     film: "Kodak Ektachrome E100",

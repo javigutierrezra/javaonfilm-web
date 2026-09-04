@@ -156,8 +156,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider">Correo Directo</span>
-                  <a href="mailto:hola@javaonfilm.com" className="text-base font-bold text-slate-900 hover:text-brand">
-                    hola@javaonfilm.com
+                  <a href="mailto:javaonfilm@gmail.com" className="text-base font-bold text-slate-900 hover:text-brand">
+                    javaonfilm@gmail.com
                   </a>
                 </div>
               </div>

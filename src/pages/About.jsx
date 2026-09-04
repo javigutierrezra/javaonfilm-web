@@ -57,7 +57,7 @@ export default function About() {
               </div>
               <div>
                 <span className="font-bold text-slate-900 text-sm block">Cámara Signature</span>
-                <span className="text-slate-500">Olympus µ[mju:] I</span>
+                <span className="text-slate-500">Olympus [mju:] I</span>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function About() {
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
           <span className="text-xs font-extrabold text-brand uppercase tracking-widest block">La Cámara</span>
-          <h2 className="text-3xl font-serif font-bold text-slate-900">Olympus µ[mju:] I</h2>
+          <h2 className="text-3xl font-serif font-bold text-slate-900">Olympus [mju:] I</h2>
           <p className="text-sm text-slate-600 max-w-xl mx-auto">
             La legendaria point-and-shoot de 35mm lanzada en 1991 que acompaña cada uno de mis viajes.
           </p>
@@ -79,10 +79,9 @@ export default function About() {
           
           <div className="flex items-center gap-4 border-b border-slate-100 pb-6">
             <div className="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center font-mono font-bold text-lg shadow-md shrink-0">
-              µ
             </div>
             <div>
-              <h3 className="font-serif font-bold text-xl text-slate-900">Olympus µ[mju:] I (35mm f/3.5)</h3>
+              <h3 className="font-serif font-bold text-xl text-slate-900">Olympus [mju:] I (35mm f/3.5)</h3>
               <p className="text-xs text-brand font-semibold">Diseño Cápsula Ultracompacto · Japón 1991</p>
             </div>
           </div>
