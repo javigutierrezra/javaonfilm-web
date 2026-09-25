@@ -25,8 +25,8 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold text-slate-900">Cuadro no encontrado</h2>
-        <Link to="/prints" className="mt-4 inline-block text-brand font-bold">Volver al catálogo</Link>
+        <h2 className="text-2xl font-serif font-bold text-[#2A1E17]">Cuadro no encontrado en el archivo</h2>
+        <Link to="/prints" className="mt-4 inline-block text-[#C85A32] font-mono text-sm font-bold">Volver al catálogo</Link>
       </div>
     );
   }
@@ -65,13 +65,13 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const getFrameCssClass = () => {
     switch (selectedFrame.id) {
       case 'black':
-        return 'border-[14px] sm:border-[18px] border-slate-900 shadow-2xl';
+        return 'border-[14px] sm:border-[18px] border-[#181411] shadow-2xl';
       case 'oak':
-        return 'border-[14px] sm:border-[18px] border-[#8B5A2B] shadow-2xl';
+        return 'border-[14px] sm:border-[18px] border-[#8C6246] shadow-2xl';
       case 'walnut':
-        return 'border-[14px] sm:border-[18px] border-[#3A2012] shadow-2xl';
+        return 'border-[14px] sm:border-[18px] border-[#362317] shadow-2xl';
       case 'white':
-        return 'border-[14px] sm:border-[18px] border-[#F1F3F5] shadow-2xl';
+        return 'border-[14px] sm:border-[18px] border-[#EFE8DC] shadow-2xl';
       default:
         return 'border-0 shadow-xl';
     }
@@ -84,10 +84,10 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <Link
           to="/prints"
-          className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#736B63] hover:text-[#C85A32] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Volver a la colección</span>
+          <span>Volver al archivo de cuadros</span>
         </Link>
       </div>
 
@@ -97,17 +97,17 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
           {/* LEFT COLUMN: FINE ART PRINT DISPLAY WITH DYNAMIC FRAME */}
           <div className="lg:col-span-7 space-y-6">
             
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden">
+            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden">
               
               <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
                 
                 {/* Frame container */}
                 <div className={`transition-all duration-300 rounded-sm overflow-hidden ${getFrameCssClass()}`}>
-                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FDFBF7] p-6 sm:p-10 transition-all shadow-inner' : 'p-0'}>
+                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-6 sm:p-10 transition-all shadow-inner' : 'p-0'}>
                     <img
                       src={product.image}
                       alt={product.title}
-                      className={`w-full ${product.orientation === 'vertical' ? 'h-[460px] sm:h-[520px]' : 'h-[360px] sm:h-[420px]'} object-cover shadow-sm transition-transform duration-500`}
+                      className={`w-full ${product.orientation === 'vertical' ? 'h-[440px] sm:h-[500px]' : 'h-[340px] sm:h-[400px]'} object-cover shadow-sm transition-transform duration-500`}
                     />
                   </div>
                 </div>
@@ -115,54 +115,54 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 {/* Full HD Zoom Action Button */}
                 <button
                   onClick={() => onOpenZoom(product)}
-                  className="absolute top-8 right-4 p-3 bg-slate-900/80 hover:bg-slate-900 text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
-                  title="Ver Fotografía Completa HD en pantalla completa"
+                  className="absolute top-8 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
+                  title="Ver Fotografía Completa HD"
                 >
                   <Maximize2 className="w-5 h-5" />
                 </button>
 
-                <p className="text-center text-xs text-slate-400 font-mono mt-5">
-                  Vista previa de cuadro: <span className="font-bold text-slate-700">{selectedFrame.name}</span> {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú Blanco Galería)' : '(Sin Paspartú)'}
+                <p className="text-center text-xs text-[#736B63] font-mono mt-5">
+                  Vista previa de cuadro: <span className="font-bold text-[#2A1E17]">{selectedFrame.name}</span> {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú Blanco Galería)' : '(Sin Paspartú)'}
                 </p>
               </div>
 
             </div>
 
             {/* AUTHENTIC TRAVEL STORY BOX */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-wider">
+            <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
+              <div className="flex items-center gap-2 text-[#C85A32] font-mono font-bold text-xs uppercase tracking-wider">
                 <Camera className="w-4 h-4" />
                 <span>La Historia detrás de esta Fotografía</span>
               </div>
 
-              <h3 className="text-xl font-serif font-bold text-slate-900 leading-snug">
+              <blockquote className="text-lg font-serif font-bold text-[#2A1E17] leading-relaxed italic">
                 “{product.story}”
-              </h3>
+              </blockquote>
 
               {/* Film & Technical Metadata Tags */}
-              <div className="pt-4 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div className="pt-4 border-t border-[#E4DCD0] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">Ubicación</span>
-                  <span className="font-bold text-slate-800 flex items-center gap-1 mt-0.5">
-                    <MapPin className="w-3.5 h-3.5 text-brand" />
+                  <span className="text-[#736B63] block text-[9px] uppercase font-bold">Ubicación</span>
+                  <span className="font-bold text-[#2A1E17] flex items-center gap-1 mt-0.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#C85A32]" />
                     {product.location}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">Película (35mm)</span>
-                  <span className="font-bold text-slate-800 flex items-center gap-1 mt-0.5">
-                    <Film className="w-3.5 h-3.5 text-brand" />
+                  <span className="text-[#736B63] block text-[9px] uppercase font-bold">Película (35mm)</span>
+                  <span className="font-bold text-[#2A1E17] flex items-center gap-1 mt-0.5">
+                    <Film className="w-3.5 h-3.5 text-[#C85A32]" />
                     {product.film}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">Cámara</span>
-                  <span className="font-bold text-slate-800 mt-0.5 block">{product.camera}</span>
+                  <span className="text-[#736B63] block text-[9px] uppercase font-bold">Cámara</span>
+                  <span className="font-bold text-[#2A1E17] mt-0.5 block">{product.camera}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">Año</span>
-                  <span className="font-bold text-slate-800 flex items-center gap-1 mt-0.5">
-                    <Calendar className="w-3.5 h-3.5 text-brand" />
+                  <span className="text-[#736B63] block text-[9px] uppercase font-bold">Año</span>
+                  <span className="font-bold text-[#2A1E17] flex items-center gap-1 mt-0.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#C85A32]" />
                     {product.year}
                   </span>
                 </div>
@@ -173,56 +173,56 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
           </div>
 
           {/* RIGHT COLUMN: SELECTION & PURCHASING PANEL */}
-          <div className="lg:col-span-5 space-y-8 sticky top-24">
+          <div className="lg:col-span-5 space-y-6 sticky top-24">
             
             {/* Title & Price Header */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-6">
+            <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-6">
               
               <div>
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold">
-                  {product.location} · {product.year}
+                <span className="text-xs font-mono text-[#C85A32] uppercase tracking-widest block font-bold">
+                  {product.archiveCode || "PHOTO"} · {product.location}
                 </span>
-                <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">
+                <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#2A1E17] mt-1">
                   {product.title}
                 </h1>
-                <p className="text-xs text-brand font-semibold mt-1">
-                  Fotografía Análoga 35mm Fine Art
+                <p className="text-xs font-mono text-[#736B63] mt-1">
+                  35mm Fine Art Analog Print
                 </p>
               </div>
 
               {/* Price computation display */}
-              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 flex items-center justify-between">
+              <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Precio Total</span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                    ${totalCLP.toLocaleString('es-CL')} <span className="text-xs font-bold text-brand">CLP</span>
+                  <span className="text-[10px] font-mono text-[#736B63] uppercase tracking-wider block">Precio Total</span>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#2A1E17]">
+                    ${totalCLP.toLocaleString('es-CL')} <span className="text-xs font-bold text-[#C85A32]">CLP</span>
                   </div>
-                  <span className="text-xs text-slate-500 block">(~${totalUSD} USD)</span>
+                  <span className="text-xs font-mono text-[#736B63] block">(~${totalUSD} USD)</span>
                 </div>
 
-                <div className="text-right text-[11px] text-emerald-600 font-semibold bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/60">
-                  Envíos a todo Chile y global
+                <div className="text-right text-[11px] font-mono text-[#6E4B37] bg-[#EFE5D5] px-3 py-1.5 rounded-lg border border-[#E4DCD0]">
+                  Envío a todo Chile & Global
                 </div>
               </div>
 
               {/* SIZE SELECTION */}
               <div className="space-y-3">
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-900 block">
-                  1. Selecciona la Medida del Cuadro
+                <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
+                  1. Medida del Cuadro
                 </label>
                 <div className="grid grid-cols-3 gap-2.5">
                   {product.sizes.map((sz) => (
                     <button
                       key={sz.id}
                       onClick={() => setSelectedSize(sz)}
-                      className={`p-3 rounded-xl text-center border transition-all ${
+                      className={`p-3 rounded-lg text-center border transition-all ${
                         selectedSize.id === sz.id
-                          ? 'border-brand bg-indigo-50/60 text-brand ring-2 ring-brand'
-                          : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
+                          ? 'border-[#C85A32] bg-[#F6EAE1] text-[#C85A32] font-bold ring-2 ring-[#C85A32]'
+                          : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
                       }`}
                     >
-                      <span className="block text-xs font-bold text-slate-900">{sz.label}</span>
-                      <span className="block text-[10px] text-slate-500 mt-0.5">${sz.priceCLP.toLocaleString('es-CL')}</span>
+                      <span className="block text-xs font-bold text-[#2A1E17]">{sz.label}</span>
+                      <span className="block text-[10px] text-[#736B63] mt-0.5">${sz.priceCLP.toLocaleString('es-CL')}</span>
                     </button>
                   ))}
                 </div>
@@ -230,28 +230,28 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
               {/* FRAME COLOR SELECTION */}
               <div className="space-y-3 pt-2">
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-900 block">
-                  2. Selecciona el Color de Marco
+                <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
+                  2. Color de Marco
                 </label>
                 <div className="space-y-2">
                   {FRAME_OPTIONS.map((frame) => (
                     <button
                       key={frame.id}
                       onClick={() => setSelectedFrame(frame)}
-                      className={`w-full p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                      className={`w-full p-3 rounded-lg border flex items-center justify-between text-xs transition-all ${
                         selectedFrame.id === frame.id
-                          ? 'border-brand bg-indigo-50/60 ring-2 ring-brand font-bold text-slate-900'
-                          : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
+                          ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
+                          : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span
-                          className="w-5 h-5 rounded-full border border-slate-300 shadow-sm shrink-0"
+                          className="w-5 h-5 rounded-full border border-[#D5C9B8] shadow-sm shrink-0"
                           style={{ backgroundColor: frame.colorHex }}
                         />
                         <span>{frame.name}</span>
                       </div>
-                      <span className="text-[11px] font-semibold text-slate-500">
+                      <span className="text-[11px] font-mono text-[#736B63]">
                         {frame.priceAddCLP > 0 ? `+$${frame.priceAddCLP.toLocaleString('es-CL')} CLP` : 'Incluido'}
                       </span>
                     </button>
@@ -262,15 +262,15 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               {/* PASSEPARTOUT TOGGLE */}
               {selectedFrame.id !== 'none' && (
                 <div className="pt-2">
-                  <label className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:bg-slate-100/80 transition-colors">
-                    <span className="text-xs font-bold text-slate-800">
+                  <label className="flex items-center justify-between p-3.5 rounded-lg border border-[#E4DCD0] bg-[#FDFBF7] cursor-pointer hover:bg-[#EFE5D5]/50 transition-colors">
+                    <span className="text-xs font-semibold text-[#2A1E17]">
                       Incluir Paspartú Blanco Galería (Borde Blanco)
                     </span>
                     <input
                       type="checkbox"
                       checked={hasPassepartout}
                       onChange={(e) => setHasPassepartout(e.target.checked)}
-                      className="w-4 h-4 text-brand rounded focus:ring-brand"
+                      className="w-4 h-4 text-[#C85A32] rounded focus:ring-[#C85A32]"
                     />
                   </label>
                 </div>
@@ -280,7 +280,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               <div className="pt-4 space-y-3">
                 <button
                   onClick={handleAddToCart}
-                  className="w-full py-4 bg-brand hover:bg-brand-hover text-white text-sm font-bold rounded-xl shadow-lg shadow-brand/20 transition flex items-center justify-center gap-2 group"
+                  className="w-full py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white text-sm font-semibold rounded-lg shadow-md transition flex items-center justify-center gap-2 group"
                 >
                   <ShoppingBag className="w-5 h-5" />
                   <span>Añadir Cuadro al Carrito</span>
@@ -288,7 +288,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
                 <button
                   onClick={handleDirectBuy}
-                  className="w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-[#2A1E17] hover:bg-[#1F150F] text-white text-xs font-mono font-semibold rounded-lg transition flex items-center justify-center gap-2"
                 >
                   <span>Comprar Directo (Mercado Pago / Shopify)</span>
                   <ExternalLink className="w-4 h-4" />
@@ -296,8 +296,8 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               </div>
 
               <div className="text-center pt-2">
-                <p className="text-[11px] text-slate-400 font-medium">
-                  Impresión fine art pigmentada de larga duración · Envíos seguros en caja de madera protectora.
+                <p className="text-[11px] font-mono text-[#736B63]">
+                  Impresión fine art de algodón · Empaque seguro en caja protectora de madera.
                 </p>
               </div>
 

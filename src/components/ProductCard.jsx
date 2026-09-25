@@ -6,70 +6,76 @@ export default function ProductCard({ product, onOpenZoom }) {
   const navigate = useNavigate();
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200/70 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative">
+    <div className="group bg-[#FAF6EE] rounded-xl border border-[#E4DCD0] p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col relative">
       
-      {/* Photo Container */}
+      {/* Top Archival Metadata Stamp */}
+      <div className="flex items-center justify-between text-[10px] font-mono text-[#736B63] mb-2 px-1 tracking-wider uppercase">
+        <span className="font-bold text-[#C85A32]">
+          {product.archiveCode || `PHOTO ${product.id}`}
+        </span>
+        <span className="truncate max-w-[150px]" title={product.location}>
+          {product.location}
+        </span>
+      </div>
+
+      {/* Photo Container with Fine Art Mat Backing */}
       <div 
-        className="relative overflow-hidden bg-slate-100 aspect-[4/5] cursor-pointer"
+        className="relative overflow-hidden bg-[#FDFBF7] p-2.5 rounded-lg border border-[#EBE3D5] shadow-inner cursor-pointer"
         onClick={() => navigate(`/prints/${product.id}`)}
       >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
-        
-        {/* Badges */}
-        <div className="absolute top-3.5 left-3.5 flex gap-2">
-          <span className="px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase bg-slate-900/80 backdrop-blur-md text-white rounded-full shadow-sm">
-            {product.location}
-          </span>
+        <div className="relative overflow-hidden aspect-[4/5] bg-[#EFE8DC]">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          
+          {/* Fullscreen Zoom Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenZoom(product);
+            }}
+            className="absolute top-2.5 right-2.5 p-2 bg-[#2A1E17]/75 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md transition-all shadow-md hover:scale-110"
+            title="Ver Fotografía Completa HD"
+          >
+            <Maximize2 className="w-3.5 h-3.5" />
+          </button>
         </div>
 
-        {/* Fullscreen Zoom Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpenZoom(product);
-          }}
-          className="absolute top-3.5 right-3.5 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-all shadow-md hover:scale-110"
-          title="Ver Fotografía Completa HD"
-        >
-          <Maximize2 className="w-4 h-4" />
-        </button>
-
-        {/* 35mm film tag badge */}
-        <div className="absolute bottom-3.5 left-3.5 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm text-[11px] font-mono text-slate-700 font-semibold">
-          {product.film} · {product.year}
+        {/* Bottom Film Roll Metadata Notation */}
+        <div className="mt-2.5 pt-1.5 border-t border-[#EBE3D5] flex items-center justify-between text-[10px] font-mono text-[#736B63]">
+          <span>35MM / {product.film}</span>
+          <span>{product.year}</span>
         </div>
       </div>
       
-      {/* Content */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      {/* Card Content & Pricing */}
+      <div className="mt-4 flex-1 flex flex-col justify-between px-1">
         <div>
-          <Link to={`/prints/${product.id}`} className="block group-hover:text-brand transition-colors">
-            <h3 className="text-xl font-bold font-serif text-slate-900 mt-0.5">
+          <Link to={`/prints/${product.id}`} className="block group-hover:text-[#C85A32] transition-colors">
+            <h3 className="text-lg font-serif font-bold text-[#2A1E17] leading-snug">
               {product.title}
             </h3>
-            <p className="text-xs text-slate-500 font-medium mt-1">
+            <p className="text-xs text-[#6E4B37] font-medium mt-0.5">
               {product.location}
             </p>
           </Link>
         </div>
         
-        <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+        <div className="mt-5 pt-3 border-t border-[#E4DCD0] flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block font-bold">Desde</span>
-            <span className="text-lg font-extrabold text-slate-900">
-              ${product.price.toLocaleString('es-CL')} <span className="text-xs font-bold text-brand">CLP</span>
+            <span className="text-[9px] font-mono text-[#736B63] uppercase tracking-wider block">Desde</span>
+            <span className="text-base font-extrabold text-[#2A1E17]">
+              ${product.price.toLocaleString('es-CL')} <span className="text-[10px] font-bold text-[#C85A32]">CLP</span>
             </span>
-            <span className="text-[11px] text-slate-400 block font-normal">(~${product.priceUSD} USD)</span>
+            <span className="text-[10px] text-[#736B63] block font-normal">(~${product.priceUSD} USD)</span>
           </div>
 
           <Link
             to={`/prints/${product.id}`}
-            className="px-4 py-2.5 bg-brand hover:bg-brand-hover text-white text-xs font-bold rounded-xl shadow-md transition flex items-center gap-1.5"
+            className="px-3.5 py-2 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5"
           >
             <span>Ver Cuadro</span>
             <ArrowRight className="w-3.5 h-3.5" />

@@ -3,13 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --brand-blue: #4967D7;
+  --brand-terracotta: #C85A32;
+  --coffee-dark: #2A1E17;
+  --cream-bg: #F6F1E7;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #FAF8F5;
-  color: #0F172A;
+  background-color: #F6F1E7;
+  color: #181411;
+  background-image: radial-gradient(#2A1E17 0.45px, transparent 0.45px);
+  background-size: 28px 28px;
+  background-color: #F6F1E7;
+}
+
+/* Texture overlay for printed paper / subtle film grain feel */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Custom Fine Art Framing Styles */
@@ -18,38 +37,38 @@ body {
 }
 
 .frame-mockup {
-  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(42, 30, 23, 0.28);
   transition: all 0.35s ease;
 }
 
 .frame-border-black {
-  border: 18px solid #111827;
-  outline: 1px solid #374151;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 20px 30px -10px rgba(0,0,0,0.3);
-  background: #FFFFFF;
+  border: 18px solid #181411;
+  outline: 1px solid #362920;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 20px 30px -10px rgba(42, 30, 23, 0.3);
+  background: #FAF7F0;
   padding: 20px;
 }
 
 .frame-border-wood {
-  border: 20px solid #8B5A2B;
-  outline: 1px solid #5C3818;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 20px 30px -10px rgba(0,0,0,0.3);
-  background: #FAFAFA;
+  border: 20px solid #8C6246;
+  outline: 1px solid #5C3D28;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 20px 30px -10px rgba(42, 30, 23, 0.3);
+  background: #FDFBF7;
   padding: 20px;
 }
 
 .frame-border-walnut {
-  border: 20px solid #3A2012;
-  outline: 1px solid #20120A;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 20px 30px -10px rgba(0,0,0,0.4);
-  background: #FAF9F6;
+  border: 20px solid #362317;
+  outline: 1px solid #1F130B;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 20px 30px -10px rgba(31, 19, 11, 0.4);
+  background: #FDFBF7;
   padding: 20px;
 }
 
 .frame-border-white {
-  border: 18px solid #F3F4F6;
-  outline: 1px solid #E5E7EB;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.06), 0 20px 30px -10px rgba(0,0,0,0.15);
+  border: 18px solid #EFE8DC;
+  outline: 1px solid #DFD6C6;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.06), 0 20px 30px -10px rgba(42, 30, 23, 0.15);
   background: #FFFFFF;
   padding: 20px;
 }
@@ -57,10 +76,25 @@ body {
 .frame-border-none {
   border: 0px solid transparent;
   padding: 0px;
-  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 28px -6px rgba(42, 30, 23, 0.2);
 }
 
 .passepartout {
-  background-color: #FAFAFA;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
+  background-color: #FAF6EE;
+  box-shadow: inset 0 0 8px rgba(42, 30, 23, 0.08);
+}
+
+/* Archival Metadata Stamp */
+.archive-stamp {
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #736B63;
+}
+
+/* Subtle double line divider reminiscent of vintage photography publications */
+.editorial-divider {
+  border-top: 1px solid #E4DCD0;
+  border-bottom: 1px solid #E4DCD0;
+  height: 4px;
 }

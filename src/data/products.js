@@ -6,9 +6,9 @@
  */
 
 export const PRODUCTS = [
-
   {
     id: "arraialdocabo-02",
+    archiveCode: "PHOTO 001",
     title: "Playa",
     location: "Arraial Do Cabo, Brasil",
     year: "2025",
@@ -30,6 +30,7 @@ export const PRODUCTS = [
   },
   {
     id: "ilhagrande-03",
+    archiveCode: "PHOTO 002",
     title: "Isla Grande",
     location: "Rio de Janeiro, Brasil",
     year: "2025",
@@ -51,6 +52,7 @@ export const PRODUCTS = [
   },
   {
     id: "huentelauquen-04",
+    archiveCode: "PHOTO 003",
     title: "Huentelauquen",
     location: "Coquimbo, Chile",
     year: "2024",
@@ -73,6 +75,7 @@ export const PRODUCTS = [
 
   {
     id: "pandeazucar-06",
+    archiveCode: "PHOTO 004",
     title: "Pan De Azucar",
     location: "Pan de Azucar, Brasil",
     year: "2024",
@@ -91,9 +94,7 @@ export const PRODUCTS = [
     price: 56000,
     priceUSD: 59,
     purchaseUrl: "https://mpago.la/link-positano"
-  },
-  
- 
+  }
 ];
 
 export const FRAME_OPTIONS = [
