@@ -29,28 +29,6 @@ export const PRODUCTS = [
     purchaseUrl: "https://mpago.la/link-shinjuku"
   },
   {
-    id: "ilhagrande-03",
-    archiveCode: "PHOTO 002",
-    title: "Isla Grande",
-    location: "Rio de Janeiro, Brasil",
-    year: "2025",
-    film: "Kodak Portra 400",
-    camera: "Olympus µ[mju:] I",
-    orientation: "vertical",
-    category: "street",
-    story: "Persiguiendo la luz de mediodía filtrándose por los muros amarillos del centro histórico de Oaxaca. La agilidad del diseño cápsula de la Olympus mju I permitió congelar el segundo exacto.",
-    image: "/images/IlhaGrande.jpeg",
-
-    sizes: [
-      { id: "30x45", label: "30 x 45 cm", priceCLP: 48000, priceUSD: 51 },
-      { id: "50x75", label: "50 x 75 cm", priceCLP: 68000, priceUSD: 73 },
-      { id: "70x100", label: "70 x 100 cm", priceCLP: 92000, priceUSD: 99 }
-    ],
-    price: 48000,
-    priceUSD: 51,
-    purchaseUrl: "https://mpago.la/link-oaxaca"
-  },
-  {
     id: "huentelauquen-04",
     archiveCode: "PHOTO 003",
     title: "Huentelauquen",
