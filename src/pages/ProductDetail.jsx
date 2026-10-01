@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { PRODUCTS, FRAME_OPTIONS } from '../data/products';
-import { Maximize2, ShoppingBag, ArrowLeft, Camera, Film, MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { PRODUCTS, FRAME_OPTIONS, STORE_CONFIG } from '../data/products';
+import { Maximize2, ShoppingBag, ArrowLeft, Camera, Film, MapPin, Calendar, MessageCircle } from 'lucide-react';
 
 export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const { id } = useParams();
@@ -53,12 +53,27 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     onAddToCart(cartItem);
   };
 
-  const handleDirectBuy = () => {
-    if (product.purchaseUrl) {
-      window.open(product.purchaseUrl, '_blank');
-    } else {
-      handleAddToCart();
-    }
+  const handleWhatsAppQuote = () => {
+    const fullImageUrl = window.location.origin + product.image;
+    const pageUrl = window.location.href;
+    const paspartuText = hasPassepartout && selectedFrame.id !== 'none' ? 'Con Paspartú Blanco Galería' : 'Sin Paspartú';
+    
+    let text = `📸 *COTIZACIÓN DE CUADRO — JavaOnFilm*%0A`;
+    text += `----------------------------------------%0A`;
+    text += `🖼️ *Cuadro:* ${product.title} (${product.archiveCode || 'PHOTO'})%0A`;
+    text += `📍 *Ubicación:* ${product.location} (${product.year})%0A`;
+    text += `🎞️ *Película/Cámara:* 35mm ${product.film} · ${product.camera}%0A%0A`;
+    text += `📐 *Especificaciones Seleccionadas:*%0A`;
+    text += `• *Medida:* ${selectedSize.label}%0A`;
+    text += `• *Marco:* ${selectedFrame.name}%0A`;
+    text += `• *Paspartú:* ${paspartuText}%0A%0A`;
+    text += `💰 *Valor Estimado:* $${totalCLP.toLocaleString('es-CL')} CLP (~$${totalUSD} USD)%0A%0A`;
+    text += `🖼️ *Foto del Cuadro:* ${fullImageUrl}%0A`;
+    text += `🔗 *Enlace:* ${pageUrl}%0A%0A`;
+    text += `¡Hola! Quisiera cotizar este cuadro y coordinar el despacho.`;
+
+    const phone = STORE_CONFIG.whatsAppNumber || "56912345678";
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
   // Get frame border CSS class for live photo display
@@ -193,7 +208,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               {/* Price computation display */}
               <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-[#736B63] uppercase tracking-wider block">Precio Total</span>
+                  <span className="text-[10px] font-mono text-[#736B63] uppercase tracking-wider block">Precio Total Estimado</span>
                   <div className="text-2xl sm:text-3xl font-extrabold text-[#2A1E17]">
                     ${totalCLP.toLocaleString('es-CL')} <span className="text-xs font-bold text-[#C85A32]">CLP</span>
                   </div>
@@ -276,28 +291,28 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </div>
               )}
 
-              {/* ACTION BUTTONS */}
+              {/* ACTION BUTTONS: WHATSAPP QUOTE & ADD TO MULTI-QUOTE */}
               <div className="pt-4 space-y-3">
                 <button
-                  onClick={handleAddToCart}
-                  className="w-full py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white text-sm font-semibold rounded-lg shadow-md transition flex items-center justify-center gap-2 group"
+                  onClick={handleWhatsAppQuote}
+                  className="w-full py-4 bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-bold text-sm rounded-lg shadow-md transition flex items-center justify-center gap-2.5 group"
                 >
-                  <ShoppingBag className="w-5 h-5" />
-                  <span>Añadir Cuadro al Carrito</span>
+                  <MessageCircle className="w-5 h-5 fill-slate-950 stroke-none" />
+                  <span>Cotizar este Cuadro por WhatsApp</span>
                 </button>
 
                 <button
-                  onClick={handleDirectBuy}
-                  className="w-full py-3.5 bg-[#2A1E17] hover:bg-[#1F150F] text-white text-xs font-mono font-semibold rounded-lg transition flex items-center justify-center gap-2"
+                  onClick={handleAddToCart}
+                  className="w-full py-3 bg-[#FAF6EE] hover:bg-[#EFE5D5] text-[#2A1E17] border border-[#E4DCD0] text-xs font-mono font-semibold rounded-lg transition flex items-center justify-center gap-2"
                 >
-                  <span>Comprar Directo (Mercado Pago / Shopify)</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <ShoppingBag className="w-4 h-4 text-[#C85A32]" />
+                  <span>Añadir a mi Cotización Múltiple</span>
                 </button>
               </div>
 
               <div className="text-center pt-2">
                 <p className="text-[11px] font-mono text-[#736B63]">
-                  Impresión fine art de algodón · Empaque seguro en caja protectora de madera.
+                  Cotización directa por WhatsApp con envío de foto y detalles · Respuesta rápida.
                 </p>
               </div>
 

@@ -75,6 +75,16 @@ export const PRODUCTS = [
   }
 ];
 
+/**
+ * CONFIGURACIÓN DE LA TIENDA & WHATSAPP
+ */
+export const STORE_CONFIG = {
+  storeName: "JavaOnFilm",
+  whatsAppNumber: "56912345678", // Cambia este número por tu WhatsApp con código de país (ej. 56912345678)
+  instagramUrl: "https://instagram.com/javaonfilm",
+  email: "javaonfilm@gmail.com"
+};
+
 export const FRAME_OPTIONS = [
   { id: "black", name: "Marco Negro Mate", colorHex: "#111827", borderCss: "border-[16px] border-slate-900 shadow-2xl", priceAddCLP: 15000, priceAddUSD: 16 },
   { id: "oak", name: "Madera Natural Roble", colorHex: "#8B5A2B", borderCss: "border-[16px] border-[#8B5A2B] shadow-2xl", priceAddCLP: 18000, priceAddUSD: 19 },

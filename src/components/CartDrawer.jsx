@@ -1,5 +1,6 @@
 import React from 'react';
-import { X, ShoppingBag, Trash2, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, ShoppingBag, Trash2, ArrowRight, CheckCircle2, MessageCircle } from 'lucide-react';
+import { STORE_CONFIG } from '../data/products';
 
 export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) {
   if (!isOpen) return null;
@@ -10,19 +11,28 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
   const handleCheckout = () => {
     if (cart.length === 0) return;
     
-    const firstWithUrl = cart.find(item => item.purchaseUrl && item.purchaseUrl.trim() !== "");
-    if (firstWithUrl && cart.length === 1) {
-      window.open(firstWithUrl.purchaseUrl, '_blank');
-      return;
-    }
+    let text = `📸 *COTIZACIÓN DE CUADROS — JavaOnFilm*%0A`;
+    text += `----------------------------------------%0A`;
+    text += `¡Hola! Quisiera cotizar los siguientes cuadros del archivo:%0A%0A`;
 
-    let summary = `Hola! Quisiera comprar los siguientes cuadros en JavaOnFilm:%0A%0A`;
     cart.forEach((item, index) => {
-      summary += `${index + 1}. *${item.title}* (${item.location})%0A   - Medida: ${item.size}%0A   - Marco: ${item.frame}%0A   - Cantidad: ${item.quantity}%0A   - Valor: $${(item.price * item.quantity).toLocaleString('es-CL')} CLP%0A%0A`;
+      const fullImgUrl = window.location.origin + item.image;
+      const paspartuInfo = item.hasPassepartout && item.frame !== 'Lámina Solo (Sin Marco)' ? ' (Con Paspartú)' : '';
+      
+      text += `*${index + 1}. ${item.title}*%0A`;
+      text += `   • Ubicación: ${item.location}%0A`;
+      text += `   • Medida: ${item.size}%0A`;
+      text += `   • Marco: ${item.frame}${paspartuInfo}%0A`;
+      text += `   • Cantidad: ${item.quantity}%0A`;
+      text += `   • Valor: $${(item.price * item.quantity).toLocaleString('es-CL')} CLP%0A`;
+      text += `   • Foto: ${fullImgUrl}%0A%0A`;
     });
-    summary += `*TOTAL ESTIMADO: $${totalCLP.toLocaleString('es-CL')} CLP (~$${totalUSD} USD)*%0A%0A¿Me confirmas disponibilidad y forma de despacho?`;
 
-    window.open(`https://wa.me/56912345678?text=${summary}`, '_blank');
+    text += `💰 *TOTAL ESTIMADO:* $${totalCLP.toLocaleString('es-CL')} CLP (~$${totalUSD} USD)%0A%0A`;
+    text += `¿Me confirmas disponibilidad y opciones de despacho?`;
+
+    const phone = STORE_CONFIG.whatsAppNumber || "56912345678";
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
   return (
@@ -40,7 +50,7 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
           <div className="p-6 border-b border-[#E4DCD0] flex items-center justify-between bg-[#FDFBF7]">
             <div className="flex items-center gap-2 text-[#2A1E17] font-serif font-bold text-lg">
               <ShoppingBag className="w-5 h-5 text-[#C85A32]" />
-              <span>Tu Carrito de Cuadros</span>
+              <span>Tu Cotización de Cuadros</span>
             </div>
             <button
               onClick={onClose}
@@ -55,7 +65,7 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
             {cart.length === 0 ? (
               <div className="text-center py-16 text-[#736B63]">
                 <ShoppingBag className="w-12 h-12 mx-auto mb-3 opacity-30 text-[#C85A32]" />
-                <p className="font-serif font-bold text-[#2A1E17] text-base mb-1">Tu carrito está vacío</p>
+                <p className="font-serif font-bold text-[#2A1E17] text-base mb-1">Tu lista de cotización está vacía</p>
                 <p className="text-xs font-mono text-[#736B63]">Explora el archivo para añadir tus cuadros análogos favoritos.</p>
               </div>
             ) : (
@@ -78,7 +88,7 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
                     <button
                       onClick={() => onRemoveItem(index)}
                       className="text-[#736B63] hover:text-[#C85A32] transition-colors"
-                      title="Eliminar del carrito"
+                      title="Eliminar de la cotización"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -117,10 +127,10 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
 
               <button
                 onClick={handleCheckout}
-                className="w-full py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white text-sm font-semibold rounded-lg shadow-md transition flex items-center justify-center gap-2"
+                className="w-full py-4 bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-bold text-sm rounded-lg shadow-md transition flex items-center justify-center gap-2 group"
               >
-                <span>Pagar / Enviar Pedido</span>
-                <ArrowRight className="w-4 h-4" />
+                <MessageCircle className="w-5 h-5 fill-slate-950 stroke-none" />
+                <span>Enviar Cotización por WhatsApp</span>
               </button>
             </div>
           )}
