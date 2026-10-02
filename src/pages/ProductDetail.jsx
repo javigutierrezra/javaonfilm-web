@@ -74,10 +74,12 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     if (!selectedFormat.requiresFrame) return 'border-0 shadow-lg';
     switch (selectedFrame.id) {
       case 'black':
-        return 'border-[14px] sm:border-[18px] border-[#181411] shadow-2xl';
+        return 'border-[14px] sm:border-[20px] border-[#181411] shadow-2xl';
+      case 'white':
+        return 'border-[14px] sm:border-[20px] border-[#FDFBF7] shadow-2xl ring-1 ring-[#D5C9B8]';
       case 'natural-wood':
       default:
-        return 'border-[14px] sm:border-[18px] border-[#8C6246] shadow-2xl';
+        return 'border-[14px] sm:border-[20px] border-[#8C6246] shadow-2xl';
     }
   };
 
@@ -206,22 +208,24 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                   <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
                     2. Selección de Marco
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
                     {FRAME_OPTIONS.map((frame) => (
                       <button
                         key={frame.id}
                         onClick={() => setSelectedFrame(frame)}
-                        className={`p-3 rounded-lg border flex items-center gap-3 text-xs transition-all ${
+                        className={`p-2.5 sm:p-3 rounded-lg border flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 transition-all ${
                           selectedFrame.id === frame.id
                             ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
                             : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
                         }`}
                       >
                         <span
-                          className="w-4 h-4 rounded-full border border-[#D5C9B8] shadow-sm shrink-0"
+                          className="w-5 h-5 rounded-full border border-[#D5C9B8] shadow-sm shrink-0"
                           style={{ backgroundColor: frame.colorHex }}
                         />
-                        <span>{frame.name}</span>
+                        <span className="text-[11px] sm:text-xs text-center sm:text-left leading-tight font-medium">
+                          {frame.name}
+                        </span>
                       </button>
                     ))}
                   </div>

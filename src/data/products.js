@@ -14,7 +14,8 @@ export const FORMAT_OPTIONS = [
 
 export const FRAME_OPTIONS = [
   { id: "black", name: "Negro", colorHex: "#111827" },
-  { id: "natural-wood", name: "Madera natural", colorHex: "#8B5A2B" }
+  { id: "natural-wood", name: "Madera natural", colorHex: "#8B5A2B" },
+  { id: "white", name: "Blanco", colorHex: "#FFFFFF" }
 ];
 
 export const PRODUCTS = [
