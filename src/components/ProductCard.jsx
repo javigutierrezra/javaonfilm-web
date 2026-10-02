@@ -62,7 +62,7 @@ export default function ProductCard({ product, onOpenZoom }) {
               {product.title}
             </h3>
             <p className="text-xs text-[#6E4B37] font-medium mt-0.5">
-              {placeName}, {countryName}
+              {product.city || placeName}, {countryName} · {product.year}
             </p>
           </Link>
         </div>
