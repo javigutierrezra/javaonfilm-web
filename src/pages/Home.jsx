@@ -67,50 +67,51 @@ export default function Home({ onOpenZoom }) {
 
             </div>
 
-            {/* Hero Featured Travel Print with Archival Mat & Wood Frame */}
+            {/* Hero Featured Travel Print with Real Hardwood Frame */}
             <div className="lg:col-span-6 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Archival Folder Card */}
                 <div 
-                  className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#E4DCD0] group cursor-pointer relative"
-                  onClick={() => navigate(`/prints/${heroProduct.id}`)}
+                  className="bg-[#FAF6EE] p-5 sm:p-7 rounded-2xl shadow-xl border border-[#E4DCD0] group cursor-pointer relative transition hover:border-[#C85A32]/40"
+                  onClick={() => navigate('/prints')}
                 >
-                  {/* Photo Frame Container */}
-                  <div className="border-[14px] border-[#362317] shadow-2xl bg-[#FDFBF7] p-4 sm:p-6 outline outline-1 outline-[#1F130B]">
-                    <div className="relative overflow-hidden aspect-[4/5] bg-[#FAF6EE] flex items-center justify-center p-1.5 border border-[#E4DCD0]/40">
-                      <img
-                        src={heroProduct.image}
-                        alt={heroProduct.title}
-                        className="w-full h-full object-contain shadow-sm group-hover:scale-105 transition-transform duration-700"
-                      />
+                  {/* Photo Display Container */}
+                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-[#EFE5D5] border border-[#E4DCD0] shadow-md">
+                    <img
+                      src="/images/hero-framed-print.jpg"
+                      alt="Cuadro análogo real enmarcado JavaOnFilm"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#2A1E17]/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-mono tracking-wider">
+                      MUESTRA REAL ENMARCADO
                     </div>
                   </div>
                   
                   {/* Photo Archival Metadata Stamp */}
-                  <div className="mt-5 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="mt-4 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#C85A32] font-bold uppercase tracking-wider">
-                        <span>{heroProduct.archiveCode || "PHOTO 001"}</span>
+                        <span>FINE ART PRINT</span>
                         <span>·</span>
-                        <span>{heroProduct.location}</span>
+                        <span>MARCO DE MADERA</span>
                       </div>
-                      <h3 className="font-serif font-bold text-xl text-[#2A1E17] mt-0.5">
-                        {heroProduct.title}
+                      <h3 className="font-serif font-bold text-lg text-[#2A1E17] mt-0.5">
+                        Enmarcado & Calidad de Galería
                       </h3>
                       <p className="text-xs font-mono text-[#736B63] mt-0.5">
-                        {heroProduct.camera} · {heroProduct.film} ({heroProduct.year})
+                        Fotografía 35mm · Paspartú Passe-Partout · Listo para colgar
                       </p>
                     </div>
 
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate(`/prints/${heroProduct.id}`);
+                        navigate('/prints');
                       }}
                       className="px-4 py-2.5 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 shrink-0"
                     >
-                      <span>Ver Cuadro</span>
+                      <span>Ver Galería</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -149,26 +150,40 @@ export default function Home({ onOpenZoom }) {
         </div>
       </section>
 
-      {/* ABOUT BRIEF SECTION - DIARIO DE VIAJE */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-[#FAF6EE] p-8 sm:p-12 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-6 relative overflow-hidden">
-          
-          <div className="w-12 h-12 bg-[#EFE5D5] text-[#C85A32] rounded-xl flex items-center justify-center mx-auto shadow-inner border border-[#E4DCD0]">
-            <Compass className="w-6 h-6" />
+      {/* ABOUT BRIEF SECTION - DIARIO DE VIAJE CON FOTO DEL FOTÓGRAFO */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#FAF6EE] p-6 sm:p-10 rounded-2xl border border-[#E4DCD0] shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="md:col-span-5 relative">
+            <div className="border-4 border-white shadow-lg rounded-xl overflow-hidden aspect-[4/5] bg-[#EFE5D5]">
+              <img
+                src="/images/photographer-analog.jpg"
+                alt="Fotógrafo JavaOnFilm 35mm"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-3 -right-3 bg-[#2A1E17] text-[#FAF6EE] text-[10px] font-mono px-3 py-1 rounded-full shadow-md tracking-wider">
+              35MM ANALOG
+            </div>
           </div>
           
-          <blockquote className="text-xl sm:text-2xl font-serif font-bold text-[#2A1E17] leading-relaxed max-w-2xl mx-auto">
-            “JavaOnFilm nace de fotografías análogas tomadas durante viajes, momentos y lugares que quise conservar más allá del rollo. Algunas de ellas ahora pueden vivir también en tus espacios.”
-          </blockquote>
+          <div className="md:col-span-7 space-y-5 text-center md:text-left">
+            <div className="w-10 h-10 bg-[#EFE5D5] text-[#C85A32] rounded-xl flex items-center justify-center mx-auto md:mx-0 shadow-inner border border-[#E4DCD0]">
+              <Compass className="w-5 h-5" />
+            </div>
+            
+            <blockquote className="text-lg sm:text-xl font-serif font-bold text-[#2A1E17] leading-relaxed">
+              “JavaOnFilm nace de fotografías análogas tomadas durante viajes, momentos y lugares que quise conservar más allá del rollo. Algunas de ellas ahora pueden vivir también en tus espacios.”
+            </blockquote>
 
-          <div className="pt-2">
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A32] hover:text-[#B24B25]"
-            >
-              <span>Conoce la historia detrás de la marca</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="pt-2">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A32] hover:text-[#B24B25]"
+              >
+                <span>Conoce la historia detrás de la marca</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
