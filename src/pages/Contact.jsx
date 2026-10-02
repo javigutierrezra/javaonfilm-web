@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Instagram, Send, CheckCircle2, HelpCircle } from 'lucide-react';
+import { Mail, Instagram, Send, CheckCircle2, HelpCircle, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -144,6 +144,27 @@ export default function Contact() {
                     @javaonfilm
                   </span>
                   <p className="text-xs text-[#5A4C40] mt-0.5">Nuevos rollos, bitácoras de viajes y fotos inéditas.</p>
+                </div>
+              </div>
+            </a>
+
+            {/* WhatsApp Direct Card */}
+            <a
+              href="https://wa.me/56968449779?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20tus%20cuadros%20an%C3%A1logos."
+              target="_blank"
+              rel="noreferrer"
+              className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm block group hover:border-[#25D366] transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-[#25D366] text-slate-950 rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                  <MessageCircle className="w-6 h-6 fill-slate-950 stroke-none" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">WhatsApp Oficial</span>
+                  <span className="text-xl font-serif font-bold text-[#2A1E17] group-hover:text-[#25D366] transition-colors">
+                    +56 9 6844 9779
+                  </span>
+                  <p className="text-xs text-[#5A4C40] mt-0.5">Cotizaciones inmediatas y atención personalizada.</p>
                 </div>
               </div>
             </a>

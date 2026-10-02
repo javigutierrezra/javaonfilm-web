@@ -80,7 +80,7 @@ export const PRODUCTS = [
  */
 export const STORE_CONFIG = {
   storeName: "JavaOnFilm",
-  whatsAppNumber: "56912345678", // Cambia este número por tu WhatsApp con código de país (ej. 56912345678)
+  whatsAppNumber: "56968449779", // Número oficial de WhatsApp de JavaOnFilm (+56 9 6844 9779)
   instagramUrl: "https://instagram.com/javaonfilm",
   email: "javaonfilm@gmail.com"
 };
