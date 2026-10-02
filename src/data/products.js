@@ -12,11 +12,11 @@ export const PRODUCTS = [
     title: "Playa",
     location: "Arraial Do Cabo, Brasil",
     year: "2025",
-    film: "CineStill 800T",
-    camera: "Olympus µ[mju:] I",
+    film: "Kodak Gold 200",
+    camera: "Olympus mju",
     orientation: "vertical",
     category: "street",
-    story: "Capturada de noche bajo los neones de Shinjuku justo después de una lluvia ligera con mi Olympus mju I compacta. La emulsión de CineStill 800T creó ese halo cinematográfico inolvidable.",
+    story: "Capturada bajo la luz natural con mi cámara Olympus mju compacta y película Kodak Gold 200 de 35mm. La emulsión de Kodak Gold 200 entregó tonos cálidos e inolvidables.",
     image: "/images/ArraialDoCabo.jpeg",
 
     sizes: [
@@ -34,11 +34,11 @@ export const PRODUCTS = [
     title: "Huentelauquen",
     location: "Coquimbo, Chile",
     year: "2024",
-    film: "Fujifilm Pro 400H",
-    camera: "Olympus µ[mju:] I",
+    film: "Kodak Gold 200",
+    camera: "Olympus mju",
     orientation: "horizontal",
     category: "city",
-    story: "La luz suave de las 7:00 AM bañando los azulejos de Alfama. Grabado en mi Olympus mju I con película Fujifilm para conservar los tonos pastel tan distintivos de Portugal.",
+    story: "La luz suave de las 7:00 AM bañando la costa de Coquimbo. Grabado en mi cámara Olympus mju con película Kodak Gold 200 para conservar tonos cálidos y orgánicos.",
     image: "/images/Huentelauquen.jpeg",
 
     sizes: [
@@ -57,11 +57,11 @@ export const PRODUCTS = [
     title: "Pan De Azucar",
     location: "Pan de Azucar, Brasil",
     year: "2024",
-    film: "Kodak Ektachrome E100",
-    camera: "Olympus µ[mju:] I",
+    film: "Kodak Gold 200",
+    camera: "Olympus mju",
     orientation: "horizontal",
     category: "coastal",
-    story: "Mirando hacia el Mar Tirreno tras recorrer el Sendero de los Dioses. La nitidez de la lente 35mm f/3.5 de Olympus resalta la inmensidad del horizonte mediterráneo.",
+    story: "Mirando hacia el horizonte tras recorrer los miradores. La nitidez de la óptica 35mm f/3.5 de la Olympus mju combinada con Kodak Gold 200 resalta los matices del paisaje.",
     image: "/images/PandeAzucar.jpeg",
 
     sizes: [

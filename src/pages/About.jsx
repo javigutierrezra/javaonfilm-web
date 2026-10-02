@@ -29,13 +29,13 @@ export default function About() {
           <div className="lg:col-span-6 relative">
             <div className="p-3 bg-[#FDFBF7] rounded-xl border border-[#EBE3D5] shadow-md">
               <img
-                src="/olympus-mju.jpg"
-                alt="Cámara análoga Olympus µ[mju:] I 35mm"
+                src="/images/about-camera-film.jpg"
+                alt="Cámara análoga Olympus mju 35mm con película Kodak Gold 200"
                 className="w-full h-[400px] object-cover rounded-lg shadow-inner bg-[#EFE8DC]"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-[#2A1E17] text-white p-4 rounded-xl shadow-xl hidden sm:block max-w-xs border border-[#6E4B37]/40">
-              <p className="text-xs font-mono font-semibold text-[#DFCEB5]">"Toda la colección de JavaOnFilm está capturada con la cámara Olympus µ[mju:] I."</p>
+              <p className="text-xs font-mono font-semibold text-[#DFCEB5]">"Toda la colección de JavaOnFilm está capturada con la cámara Olympus mju y película Kodak Gold 200."</p>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ export default function About() {
             </p>
 
             <p className="text-[#5A4C40] text-base leading-relaxed">
-              Ese grano característico, los tonos orgánicos de la película Kodak y Fujifilm, y la óptica cristalina de 35mm le otorgan a cada cuadro una textura viva e irrepetible.
+              Ese grano característico, los tonos dorados y cálidos de la película Kodak Gold 200, y la óptica cristalina de 35mm le otorgan a cada cuadro una textura viva e irrepetible.
             </p>
 
             <div className="pt-4 grid grid-cols-2 gap-4 border-t border-[#E4DCD0] text-xs font-mono">
@@ -63,7 +63,7 @@ export default function About() {
               </div>
               <div>
                 <span className="font-bold text-[#2A1E17] text-sm block">Cámara Signature</span>
-                <span className="text-[#736B63]">Olympus [mju:] I</span>
+                <span className="text-[#736B63]">Olympus mju · Kodak Gold 200</span>
               </div>
             </div>
           </div>
@@ -71,13 +71,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* Equipment Highlight: Olympus mju I */}
+      {/* Equipment Highlight: Olympus mju & Kodak Gold 200 */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">La Cámara</span>
-          <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">Olympus [mju:] I</h2>
+          <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">La Cámara & Película</span>
+          <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">Olympus mju · Kodak Gold 200</h2>
           <p className="text-sm text-[#5A4C40] max-w-xl mx-auto">
-            La legendaria point-and-shoot de 35mm lanzada en 1991 que acompaña cada uno de mis viajes.
+            La legendaria point-and-shoot de 35mm lanzada en 1991 junto al rollo Kodak Gold 200 acompañan cada uno de mis viajes.
           </p>
         </div>
 
@@ -88,8 +88,8 @@ export default function About() {
               <Camera className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-serif font-bold text-xl text-[#2A1E17]">Olympus [mju:] I (35mm f/3.5)</h3>
-              <p className="text-xs font-mono text-[#C85A32]">Diseño Cápsula Ultracompacto · Japón 1991</p>
+              <h3 className="font-serif font-bold text-xl text-[#2A1E17]">Olympus mju (35mm f/3.5)</h3>
+              <p className="text-xs font-mono text-[#C85A32]">Diseño Cápsula Ultracompacto · Película Kodak Gold 200</p>
             </div>
           </div>
 
@@ -111,7 +111,7 @@ export default function About() {
             <div className="space-y-1.5">
               <span className="font-bold text-[#2A1E17] block text-sm font-serif">Carácter Analógico Único</span>
               <p className="leading-relaxed">
-                La combinación de su enfoque preciso con películas Kodak Portra, Gold y CineStill produce la firma estética de JavaOnFilm.
+                La combinación de su enfoque preciso con la película Kodak Gold 200 produce la firma estética cálida y dorada de JavaOnFilm.
               </p>
             </div>
           </div>
