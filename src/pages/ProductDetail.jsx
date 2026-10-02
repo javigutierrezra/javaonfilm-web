@@ -76,17 +76,57 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
+  // View Mode: 'frame' or 'room'
+  const [viewMode, setViewMode] = useState('frame');
+
+  // Dynamic dimensions and scale helpers based on selected size
+  const getSizeConfig = () => {
+    switch (selectedSize.id) {
+      case '30x45':
+        return {
+          frameBorder: 'border-[10px] sm:border-[14px]',
+          passpartoutPadding: 'p-3 sm:p-5',
+          imgMaxHeight: 'max-h-[350px]',
+          scaleLabel: 'Formato Compacto (30 x 45 cm)',
+          roomWidth: 'w-[150px] sm:w-[170px]',
+          roomHeight: 'h-[225px] sm:h-[255px]',
+        };
+      case '70x100':
+        return {
+          frameBorder: 'border-[18px] sm:border-[24px]',
+          passpartoutPadding: 'p-6 sm:p-10',
+          imgMaxHeight: 'max-h-[520px]',
+          scaleLabel: 'Gran Formato Focal (70 x 100 cm)',
+          roomWidth: 'w-[270px] sm:w-[320px]',
+          roomHeight: 'h-[405px] sm:h-[480px]',
+        };
+      case '50x75':
+      default:
+        return {
+          frameBorder: 'border-[14px] sm:border-[18px]',
+          passpartoutPadding: 'p-4 sm:p-8',
+          imgMaxHeight: 'max-h-[440px]',
+          scaleLabel: 'Formato Galería Estándar (50 x 75 cm)',
+          roomWidth: 'w-[210px] sm:w-[240px]',
+          roomHeight: 'h-[315px] sm:h-[360px]',
+        };
+    }
+  };
+
+  const sizeConfig = getSizeConfig();
+
   // Get frame border CSS class for live photo display
   const getFrameCssClass = () => {
+    const borderCss = sizeConfig.frameBorder;
     switch (selectedFrame.id) {
       case 'black':
-        return 'border-[14px] sm:border-[18px] border-[#181411] shadow-2xl';
+        return `${borderCss} border-[#181411] shadow-2xl`;
       case 'oak':
-        return 'border-[14px] sm:border-[18px] border-[#8C6246] shadow-2xl';
+        return `${borderCss} border-[#8C6246] shadow-2xl`;
       case 'walnut':
-        return 'border-[14px] sm:border-[18px] border-[#362317] shadow-2xl';
+        return `${borderCss} border-[#362317] shadow-2xl`;
       case 'white':
-        return 'border-[14px] sm:border-[18px] border-[#EFE8DC] shadow-2xl';
+        return `${borderCss} border-[#EFE8DC] shadow-2xl`;
       default:
         return 'border-0 shadow-xl';
     }
@@ -109,41 +149,103 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* LEFT COLUMN: FINE ART PRINT DISPLAY WITH DYNAMIC FRAME */}
+          {/* LEFT COLUMN: FINE ART PRINT DISPLAY & INTERIOR WALL SIMULATOR */}
           <div className="lg:col-span-7 space-y-6">
             
-            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden">
-              
-              <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
+            {/* View Mode Selector Tabs */}
+            <div className="flex items-center justify-between bg-[#FAF6EE] p-1.5 rounded-xl border border-[#E4DCD0]">
+              <button
+                onClick={() => setViewMode('frame')}
+                className={`flex-1 py-2.5 px-4 rounded-lg text-xs font-mono font-bold transition-all ${
+                  viewMode === 'frame'
+                    ? 'bg-[#2A1E17] text-white shadow-sm'
+                    : 'text-[#736B63] hover:text-[#2A1E17]'
+                }`}
+              >
+                🖼️ EL CUADRO (DETALLE)
+              </button>
+              <button
+                onClick={() => setViewMode('room')}
+                className={`flex-1 py-2.5 px-4 rounded-lg text-xs font-mono font-bold transition-all ${
+                  viewMode === 'room'
+                    ? 'bg-[#2A1E17] text-white shadow-sm'
+                    : 'text-[#736B63] hover:text-[#2A1E17]'
+                }`}
+              >
+                🛋️ EN TU ESPACIO (ESCALA EN MURO)
+              </button>
+            </div>
+            
+            {viewMode === 'frame' ? (
+              /* FRAME & MAT DETAILED VIEW */
+              <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden transition-all duration-500 min-h-[480px]">
                 
-                {/* Frame container - Mantiene la foto 100% completa sin recortar */}
-                <div className={`transition-all duration-300 rounded-sm overflow-hidden ${getFrameCssClass()}`}>
-                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-4 sm:p-8 transition-all shadow-inner' : 'p-0'}>
-                    <div className="flex items-center justify-center bg-[#FAF6EE] min-h-[300px] max-h-[520px]">
+                <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
+                  
+                  {/* Dynamic Frame container scaled by selected size */}
+                  <div className={`transition-all duration-500 rounded-sm overflow-hidden mx-auto ${getFrameCssClass()}`}>
+                    <div className={hasPassepartout && selectedFrame.id !== 'none' ? `bg-[#FAF6EE] ${sizeConfig.passpartoutPadding} transition-all shadow-inner` : 'p-0'}>
+                      <div className="flex items-center justify-center bg-[#FAF6EE] transition-all duration-500">
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className={`w-auto h-auto ${sizeConfig.imgMaxHeight} max-w-full object-contain shadow-sm transition-all duration-500`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Full HD Zoom Action Button */}
+                  <button
+                    onClick={() => onOpenZoom(product)}
+                    className="absolute top-8 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
+                    title="Ver Fotografía Completa HD"
+                  >
+                    <Maximize2 className="w-5 h-5" />
+                  </button>
+
+                  <div className="mt-5 text-center space-y-1">
+                    <p className="text-xs text-[#2A1E17] font-mono font-bold">
+                      {sizeConfig.scaleLabel} · {selectedFrame.name} {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú)' : ''}
+                    </p>
+                    <p className="text-[10px] text-[#736B63] font-mono">
+                      Cambia la medida abajo a la derecha para ver cómo escala el cuadro físicamente.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            ) : (
+              /* INTERIOR ROOM WALL SCALE SIMULATOR */
+              <div className="bg-[#EBE3D5] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-inner flex flex-col items-center justify-between relative overflow-hidden min-h-[480px]">
+                
+                {/* Wall Title Tag */}
+                <div className="bg-[#FAF6EE]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E4DCD0] text-[10px] font-mono text-[#2A1E17] font-bold uppercase tracking-wider z-10">
+                  Escala Real en Muro de Living (Sofá 2.10m) · {selectedSize.label}
+                </div>
+
+                {/* Wall surface with framed print centered */}
+                <div className="flex-1 w-full flex items-center justify-center py-6 relative">
+                  <div className={`transition-all duration-500 ${sizeConfig.roomWidth} ${sizeConfig.roomHeight} ${getFrameCssClass()} shadow-2xl flex items-center justify-center relative`}>
+                    <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-2 sm:p-3 w-full h-full' : 'w-full h-full p-0'}>
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-auto h-auto max-h-[500px] max-w-full object-contain shadow-sm transition-transform duration-500"
+                        className="w-full h-full object-cover shadow-md"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Full HD Zoom Action Button */}
-                <button
-                  onClick={() => onOpenZoom(product)}
-                  className="absolute top-8 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
-                  title="Ver Fotografía Completa HD"
-                >
-                  <Maximize2 className="w-5 h-5" />
-                </button>
+                {/* Living Sofa Silhouette */}
+                <div className="w-full max-w-md bg-[#2A1E17]/10 rounded-t-2xl border-t-2 border-[#2A1E17]/20 p-4 text-center">
+                  <div className="w-4/5 h-10 bg-[#362317]/20 rounded-t-xl mx-auto flex items-center justify-center">
+                    <span className="text-[10px] font-mono text-[#5A4C40] font-bold uppercase">Sofá de Living (210 cm)</span>
+                  </div>
+                </div>
 
-                <p className="text-center text-xs text-[#736B63] font-mono mt-5">
-                  Vista previa de cuadro: <span className="font-bold text-[#2A1E17]">{selectedFrame.name}</span> {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú Blanco Galería)' : '(Sin Paspartú)'}
-                </p>
               </div>
-
-            </div>
+            )}
 
             {/* AUTHENTIC TRAVEL STORY BOX */}
             <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
