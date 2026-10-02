@@ -24,7 +24,6 @@ export const PRODUCTS = [
     archiveCode: "PHOTO 001",
     title: "Arraial do Cabo",
     place: "Arraial do Cabo",
-    city: "Región de los Lagos",
     country: "Brasil",
     location: "Arraial do Cabo, Brasil",
     year: "2025",
