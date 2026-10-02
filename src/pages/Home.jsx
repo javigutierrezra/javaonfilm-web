@@ -68,7 +68,7 @@ export default function Home({ onOpenZoom }) {
               </h1>
 
               <p className="text-base sm:text-lg text-[#5A4C40] leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                Cuadros fine art impresos en calidad de galería a partir de fotografías tomadas en película de 35mm durante viajes alrededor del mundo.
+                Fotografía analógica en 35mm, capturada durante viajes y convertida en piezas para conservar, enmarcar y llevar a tus espacios.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -76,30 +76,30 @@ export default function Home({ onOpenZoom }) {
                   to="/prints"
                   className="w-full sm:w-auto px-8 py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-sm rounded-lg shadow-md transition-all flex items-center justify-center gap-2 group"
                 >
-                  <span>Explorar Archivo de Cuadros</span>
+                  <span>Explorar el archivo</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   to="/about"
                   className="w-full sm:w-auto px-6 py-4 bg-[#FAF6EE] hover:bg-[#EFE5D5] text-[#2A1E17] border border-[#E4DCD0] text-sm font-semibold rounded-lg transition text-center"
                 >
-                  Sobre el Archivo
+                  Sobre JavaOnFilm
                 </Link>
               </div>
 
               {/* Archival Guarantees */}
               <div className="pt-6 grid grid-cols-3 gap-4 border-t border-[#E4DCD0] text-left">
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">35MM REAL</span>
-                  <span className="text-[11px] text-[#736B63]">Grano analógico químico</span>
+                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">CÁMARA</span>
+                  <span className="text-[11px] text-[#736B63]">Olympus mju I</span>
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">PAPEL FINE ART</span>
-                  <span className="text-[11px] text-[#736B63]">Algodón 240g de galería</span>
+                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">PELÍCULA</span>
+                  <span className="text-[11px] text-[#736B63]">Kodak Gold 200</span>
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">MARCOS MADERA</span>
-                  <span className="text-[11px] text-[#736B63]">Listos para colgar</span>
+                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">FORMATO</span>
+                  <span className="text-[11px] text-[#736B63]">35mm Film Original</span>
                 </div>
               </div>
 
@@ -172,9 +172,9 @@ export default function Home({ onOpenZoom }) {
                   <div className="mt-4 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#C85A32] font-bold uppercase tracking-wider">
-                        <span>FINE ART PRINT</span>
+                        <span>35MM FILM ARCHIVE</span>
                         <span>·</span>
-                        <span>EDICIÓN ARCHIVO</span>
+                        <span>PIEZAS ENMARCADAS</span>
                       </div>
                       <h3 className="font-serif font-bold text-base sm:text-lg text-[#2A1E17] mt-0.5">
                         {activeSlide.title}
@@ -188,7 +188,7 @@ export default function Home({ onOpenZoom }) {
                       onClick={() => navigate('/prints')}
                       className="px-4 py-2.5 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 shrink-0"
                     >
-                      <span>Ver Galería</span>
+                      <span>Explorar el archivo</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -202,65 +202,59 @@ export default function Home({ onOpenZoom }) {
         </div>
       </section>
 
-      {/* FEATURED PRINTS GRID EDITORIAL */}
+      {/* SECCIÓN: ÚLTIMAS FOTOGRAFÍAS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#E4DCD0]">
           <div>
             <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block mb-1">
-              SELECCIÓN DEL ARCHIVO
+              ARCHIVO DE VIAJES
             </span>
-            <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">Cuadros Destacados</h2>
+            <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">Últimas fotografías</h2>
           </div>
           <Link
             to="/prints"
             className="mt-4 sm:mt-0 text-xs font-mono font-bold text-[#C85A32] hover:text-[#B24B25] flex items-center gap-1 uppercase tracking-wider"
           >
-            <span>Ver colección completa</span>
+            <span>Ver archivo completo</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PRODUCTS.slice(0, 6).map((product) => (
             <ProductCard key={product.id} product={product} onOpenZoom={onOpenZoom} />
           ))}
         </div>
       </section>
 
-      {/* ABOUT BRIEF SECTION - DIARIO DE VIAJE CON FOTO DEL FOTÓGRAFO */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#FAF6EE] p-6 sm:p-10 rounded-2xl border border-[#E4DCD0] shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-5 relative">
-            <div className="border-4 border-white shadow-lg rounded-xl overflow-hidden aspect-[4/5] bg-[#EFE5D5]">
-              <img
-                src="/images/photographer-analog.jpg"
-                alt="Fotógrafo JavaOnFilm 35mm"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-3 -right-3 bg-[#2A1E17] text-[#FAF6EE] text-[10px] font-mono px-3 py-1 rounded-full shadow-md tracking-wider">
-              35MM ANALOG
-            </div>
-          </div>
+      {/* SECCIÓN: DEL ROLLO A TU PARED */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="bg-[#FAF6EE] p-8 sm:p-12 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-5 relative overflow-hidden">
           
-          <div className="md:col-span-7 space-y-5 text-center md:text-left">
-            <div className="w-10 h-10 bg-[#EFE5D5] text-[#C85A32] rounded-xl flex items-center justify-center mx-auto md:mx-0 shadow-inner border border-[#E4DCD0]">
-              <Compass className="w-5 h-5" />
-            </div>
-            
-            <blockquote className="text-lg sm:text-xl font-serif font-bold text-[#2A1E17] leading-relaxed">
-              “JavaOnFilm nace de fotografías análogas tomadas durante viajes, momentos y lugares que quise conservar más allá del rollo. Algunas de ellas ahora pueden vivir también en tus espacios.”
-            </blockquote>
+          <div className="w-12 h-12 bg-[#EFE5D5] text-[#C85A32] rounded-xl flex items-center justify-center mx-auto shadow-inner border border-[#E4DCD0]">
+            <Compass className="w-6 h-6" />
+          </div>
 
-            <div className="pt-2">
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A32] hover:text-[#B24B25]"
-              >
-                <span>Conoce la historia detrás de la marca</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+          <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">
+            EL PROCESO
+          </span>
+          
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#2A1E17]">
+            Del rollo a tu pared.
+          </h2>
+
+          <p className="text-base sm:text-lg text-[#5A4C40] leading-relaxed max-w-2xl mx-auto font-normal">
+            Cada imagen comienza en película de 35mm. Fotografío, revelo y selecciono las imágenes que pasan a formar parte del archivo JavaOnFilm.
+          </p>
+
+          <div className="pt-3">
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A32] hover:text-[#B24B25]"
+            >
+              <span>Conoce más sobre JavaOnFilm</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

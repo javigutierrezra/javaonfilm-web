@@ -5,6 +5,9 @@ import { Maximize2, ArrowRight } from 'lucide-react';
 export default function ProductCard({ product, onOpenZoom }) {
   const navigate = useNavigate();
 
+  const placeName = product.place || product.location?.split(',')[0] || '';
+  const countryName = product.country || product.location?.split(',')[1]?.trim() || '';
+
   return (
     <div className="group bg-[#FAF6EE] rounded-xl border border-[#E4DCD0] p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col relative">
       
@@ -13,8 +16,8 @@ export default function ProductCard({ product, onOpenZoom }) {
         <span className="font-bold text-[#C85A32]">
           {product.archiveCode || `PHOTO ${product.id}`}
         </span>
-        <span className="truncate max-w-[150px]" title={product.location}>
-          {product.location}
+        <span className="truncate max-w-[150px]" title={`${placeName} · ${countryName}`}>
+          {placeName} · {countryName}
         </span>
       </div>
 
@@ -46,12 +49,12 @@ export default function ProductCard({ product, onOpenZoom }) {
 
         {/* Bottom Film Roll Metadata Notation */}
         <div className="mt-2.5 pt-1.5 border-t border-[#EBE3D5] flex items-center justify-between text-[10px] font-mono text-[#736B63]">
-          <span>35MM / {product.film}</span>
-          <span>{product.year}</span>
+          <span>{product.camera || "Olympus mju I"}</span>
+          <span>{product.film || "Kodak Gold 200"}</span>
         </div>
       </div>
       
-      {/* Card Content & Pricing */}
+      {/* Card Content & Details */}
       <div className="mt-4 flex-1 flex flex-col justify-between px-1">
         <div>
           <Link to={`/prints/${product.id}`} className="block group-hover:text-[#C85A32] transition-colors">
@@ -59,7 +62,7 @@ export default function ProductCard({ product, onOpenZoom }) {
               {product.title}
             </h3>
             <p className="text-xs text-[#6E4B37] font-medium mt-0.5">
-              {product.location}
+              {placeName}, {countryName}
             </p>
           </Link>
         </div>
@@ -68,16 +71,15 @@ export default function ProductCard({ product, onOpenZoom }) {
           <div>
             <span className="text-[9px] font-mono text-[#736B63] uppercase tracking-wider block">Desde</span>
             <span className="text-base font-extrabold text-[#2A1E17]">
-              ${product.price.toLocaleString('es-CL')} <span className="text-[10px] font-bold text-[#C85A32]">CLP</span>
+              ${(product.price || 24000).toLocaleString('es-CL')} <span className="text-[10px] font-bold text-[#C85A32]">CLP</span>
             </span>
-            <span className="text-[10px] text-[#736B63] block font-normal">(~${product.priceUSD} USD)</span>
           </div>
 
           <Link
             to={`/prints/${product.id}`}
             className="px-3.5 py-2 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5"
           >
-            <span>Ver Cuadro</span>
+            <span>Ver fotografía</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

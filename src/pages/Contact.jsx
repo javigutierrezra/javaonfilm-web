@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, Instagram, Send, CheckCircle2, HelpCircle, MessageCircle } from 'lucide-react';
+import { Mail, Instagram, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: 'Consulta de Cuadro',
+    motive: 'Consulta sobre fotografía',
     message: ''
   });
 
@@ -17,20 +17,20 @@ export default function Contact() {
   };
 
   return (
-    <div className="pb-24 pt-6 space-y-16">
+    <div className="pb-24 pt-6 space-y-12">
       
       {/* Header */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-        <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">Contacto & Encargos de Archivo</span>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+        <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">CONTACTO</span>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#2A1E17]">
-          ¿Tienes dudas o buscas una medida especial?
+          ¿Una fotografía, tamaño o encargo?
         </h1>
         <p className="text-base text-[#5A4C40] max-w-xl mx-auto font-normal">
-          Escríbeme directamente para asesoría en marquería, encargos de formatos personalizados o proyectos de arquitectura e interiorismo.
+          Escríbeme directamente si buscas una imagen en particular, un tamaño especial o tienes cualquier consulta.
         </p>
       </section>
 
-      {/* Main Grid: Form + Direct Contact Info */}
+      {/* Main Grid: Form + Instagram / Contact Info */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
@@ -42,14 +42,14 @@ export default function Contact() {
                 <div className="w-14 h-14 bg-[#EFE5D5] text-[#C85A32] rounded-full flex items-center justify-center mx-auto border border-[#E4DCD0]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-serif font-bold text-[#2A1E17]">¡Mensaje Recibido en la Bitácora!</h3>
+                <h3 className="text-2xl font-serif font-bold text-[#2A1E17]">¡Mensaje Enviado!</h3>
                 <p className="text-sm text-[#5A4C40] max-w-md mx-auto font-mono">
-                  Gracias por comunicarte con JavaOnFilm. Te responderé al correo <span className="font-bold text-[#2A1E17]">{formData.email}</span> lo antes posible.
+                  Gracias por tu mensaje. Te responderé al correo <span className="font-bold text-[#2A1E17]">{formData.email}</span> a la brevedad.
                 </p>
                 <button
                   onClick={() => {
                     setSubmitted(false);
-                    setFormData({ name: '', email: '', subject: 'Consulta de Cuadro', message: '' });
+                    setFormData({ name: '', email: '', motive: 'Consulta sobre fotografía', message: '' });
                   }}
                   className="px-6 py-3 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-xs rounded-lg shadow-sm"
                 >
@@ -58,15 +58,15 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <h3 className="text-xl font-serif font-bold text-[#2A1E17] mb-2">Formulario de Correspondencia</h3>
+                <h3 className="text-xl font-serif font-bold text-[#2A1E17] mb-2">Mensaje Directo</h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Tu Nombre</label>
+                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Nombre</label>
                     <input
                       type="text"
                       required
-                      placeholder="Ej. Camila Morales"
+                      placeholder="Tu nombre"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17]"
@@ -74,7 +74,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Correo Electrónico</label>
+                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Email</label>
                     <input
                       type="email"
                       required
@@ -87,25 +87,25 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Asunto</label>
+                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Motivo</label>
                   <select
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    value={formData.motive}
+                    onChange={(e) => setFormData({ ...formData, motive: e.target.value })}
                     className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17] font-medium"
                   >
-                    <option value="Consulta de Cuadro">Consulta sobre un Cuadro Específico</option>
-                    <option value="Medida Personalizada">Encargo con Medida Personalizada</option>
-                    <option value="Envío Especial">Duda sobre Envío o Tiempos de Entrega</option>
-                    <option value="Proyecto / Galería">Proyectos de Decoración / Arquitectura</option>
+                    <option value="Consulta sobre fotografía">Consulta sobre una fotografía del archivo</option>
+                    <option value="Medida especial">Encargo de medida especial</option>
+                    <option value="Proyecto o colaboración">Proyecto o asesoría de espacios</option>
+                    <option value="Otro">Otro motivo</option>
                   </select>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Tu Mensaje</label>
+                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Mensaje</label>
                   <textarea
                     required
                     rows="5"
-                    placeholder="Cuéntame en qué puedo ayudarte..."
+                    placeholder="Escribe tu mensaje..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17]"
@@ -124,7 +124,7 @@ export default function Contact() {
 
           </div>
 
-          {/* Right Column: Direct Info & Instagram */}
+          {/* Right Column: Instagram & Direct Contact */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Instagram Card */}
@@ -139,18 +139,18 @@ export default function Contact() {
                   <Instagram className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">Instagram Oficial</span>
+                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">Instagram</span>
                   <span className="text-xl font-serif font-bold text-[#2A1E17] group-hover:text-[#C85A32] transition-colors">
                     @javaonfilm
                   </span>
-                  <p className="text-xs text-[#5A4C40] mt-0.5">Nuevos rollos, bitácoras de viajes y fotos inéditas.</p>
+                  <p className="text-xs text-[#5A4C40] mt-0.5">Bitácora constante, viajes y fotos en 35mm.</p>
                 </div>
               </div>
             </a>
 
             {/* WhatsApp Direct Card */}
             <a
-              href="https://wa.me/56968449779?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20tus%20cuadros%20an%C3%A1logos."
+              href="https://wa.me/56968449779?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20tus%20fotograf%C3%ADas%20an%C3%A1logas."
               target="_blank"
               rel="noreferrer"
               className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm block group hover:border-[#25D366] transition-all"
@@ -160,11 +160,11 @@ export default function Contact() {
                   <MessageCircle className="w-6 h-6 fill-slate-950 stroke-none" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">WhatsApp Oficial</span>
+                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">WhatsApp Directo</span>
                   <span className="text-xl font-serif font-bold text-[#2A1E17] group-hover:text-[#25D366] transition-colors">
                     +56 9 6844 9779
                   </span>
-                  <p className="text-xs text-[#5A4C40] mt-0.5">Cotizaciones inmediatas y atención personalizada.</p>
+                  <p className="text-xs text-[#5A4C40] mt-0.5">Atención rápida y personalizada.</p>
                 </div>
               </div>
             </a>
@@ -180,25 +180,6 @@ export default function Contact() {
                   <a href="mailto:javaonfilm@gmail.com" className="text-base font-bold text-[#2A1E17] hover:text-[#C85A32]">
                     javaonfilm@gmail.com
                   </a>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Box */}
-            <div className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-[#2A1E17] font-serif font-bold text-lg">
-                <HelpCircle className="w-5 h-5 text-[#C85A32]" />
-                <span>Preguntas Frecuentes</span>
-              </div>
-
-              <div className="space-y-4 text-xs text-[#5A4C40] divide-y divide-[#E4DCD0]">
-                <div className="pt-2">
-                  <p className="font-serif font-bold text-[#2A1E17] mb-1">¿Cuánto demoran los envíos?</p>
-                  <p>Envíos dentro de Santiago: 2 a 4 días hábiles. Regiones de Chile: 4 a 7 días hábiles.</p>
-                </div>
-                <div className="pt-3">
-                  <p className="font-serif font-bold text-[#2A1E17] mb-1">¿Los cuadros vienen listos para colgar?</p>
-                  <p>Sí, todas las opciones con marco incluyen colgante metálico instalado y protección frontal de cristal fine art.</p>
                 </div>
               </div>
             </div>

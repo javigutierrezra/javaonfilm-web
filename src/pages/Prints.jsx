@@ -43,13 +43,13 @@ export default function Prints({ onOpenZoom }) {
         <div className="max-w-7xl mx-auto text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EFE5D5] text-[#C85A32] text-[11px] font-mono font-bold tracking-widest uppercase rounded-full">
             <Folder className="w-3.5 h-3.5" />
-            <span>ARCHIVAL COLLECTION · 35MM FINE ART</span>
+            <span>35MM FILM ARCHIVE</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#2A1E17]">
-            Colección de Cuadros Análogos
+            Archivo de Fotografía Analógica
           </h1>
           <p className="text-base text-[#5A4C40] max-w-2xl mx-auto">
-            Cada pieza incluye certificado de autenticidad y está impresa en papel fine art de algodón, lista para ser montada en tus espacios.
+            Fotografías capturadas en película de 35mm y disponibles como prints y piezas enmarcadas.
           </p>
         </div>
       </div>

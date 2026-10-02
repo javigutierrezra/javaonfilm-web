@@ -21,8 +21,8 @@ export default function Header({ cartCount, onOpenCart }) {
 
   const navLinks = [
     { name: 'Inicio', path: '/' },
-    { name: 'Cuadros (Prints)', path: '/prints' },
-    { name: 'Sobre el Archivo', path: '/about' },
+    { name: 'Archivo', path: '/prints' },
+    { name: 'Sobre JavaOnFilm', path: '/about' },
     { name: 'Contacto', path: '/contact' }
   ];
 
@@ -41,7 +41,7 @@ export default function Header({ cartCount, onOpenCart }) {
                 JavaOnFilm
               </span>
               <span className="text-[10px] font-mono text-[#736B63] tracking-widest uppercase block mt-1">
-                ARCHIVAL FINE ART · 35MM
+                35MM FILM ARCHIVE
               </span>
             </div>
           </Link>
