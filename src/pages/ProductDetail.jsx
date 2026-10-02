@@ -76,9 +76,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
-  // View Mode: 'frame' or 'room'
-  const [viewMode, setViewMode] = useState('frame');
-
   // Dynamic dimensions and scale helpers based on selected size
   const getSizeConfig = () => {
     switch (selectedSize.id) {
@@ -149,117 +146,48 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* LEFT COLUMN: FINE ART PRINT DISPLAY & INTERIOR WALL SIMULATOR */}
+          {/* LEFT COLUMN: FINE ART PRINT DISPLAY */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* View Mode Selector Tabs */}
-            <div className="flex items-center justify-between bg-[#FAF6EE] p-1.5 rounded-xl border border-[#E4DCD0]">
-              <button
-                onClick={() => setViewMode('frame')}
-                className={`flex-1 py-2.5 px-4 rounded-lg text-xs font-mono font-bold transition-all ${
-                  viewMode === 'frame'
-                    ? 'bg-[#2A1E17] text-white shadow-sm'
-                    : 'text-[#736B63] hover:text-[#2A1E17]'
-                }`}
-              >
-                🖼️ EL CUADRO (DETALLE)
-              </button>
-              <button
-                onClick={() => setViewMode('room')}
-                className={`flex-1 py-2.5 px-4 rounded-lg text-xs font-mono font-bold transition-all ${
-                  viewMode === 'room'
-                    ? 'bg-[#2A1E17] text-white shadow-sm'
-                    : 'text-[#736B63] hover:text-[#2A1E17]'
-                }`}
-              >
-                🛋️ EN TU ESPACIO (ESCALA EN MURO)
-              </button>
-            </div>
-            
-            {viewMode === 'frame' ? (
-              /* FRAME & MAT DETAILED VIEW */
-              <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden transition-all duration-500 min-h-[480px]">
+            {/* FRAME & MAT VIEW */}
+            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-sm flex flex-col justify-center relative overflow-hidden transition-all duration-500 min-h-[480px]">
+              
+              <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
                 
-                <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
-                  
-                  {/* Dynamic Frame container scaled by selected size */}
-                  <div className={`transition-all duration-500 rounded-sm overflow-hidden mx-auto ${getFrameCssClass()}`}>
-                    <div className={hasPassepartout && selectedFrame.id !== 'none' ? `bg-[#FAF6EE] ${sizeConfig.passpartoutPadding} transition-all shadow-inner` : 'p-0'}>
-                      <div className="flex items-center justify-center bg-[#FAF6EE] transition-all duration-500">
-                        <img
-                          src={product.image}
-                          alt={product.title}
-                          className={`w-auto h-auto ${sizeConfig.imgMaxHeight} max-w-full object-contain shadow-sm transition-all duration-500`}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Full HD Zoom Action Button */}
-                  <button
-                    onClick={() => onOpenZoom(product)}
-                    className="absolute top-8 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
-                    title="Ver Fotografía Completa HD"
-                  >
-                    <Maximize2 className="w-5 h-5" />
-                  </button>
-
-                  <div className="mt-5 text-center space-y-1">
-                    <p className="text-xs text-[#2A1E17] font-mono font-bold">
-                      {sizeConfig.scaleLabel} · {selectedFrame.name} {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú)' : ''}
-                    </p>
-                    <p className="text-[10px] text-[#736B63] font-mono">
-                      Cambia la medida abajo a la derecha para ver cómo escala el cuadro físicamente.
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-            ) : (
-              /* INTERIOR ROOM WALL SCALE SIMULATOR */
-              <div className="bg-[#EBE3D5] rounded-2xl border border-[#E4DCD0] p-6 sm:p-10 shadow-inner flex flex-col items-center justify-between relative overflow-hidden min-h-[480px]">
-                
-                {/* Wall Title Tag */}
-                <div className="bg-[#FAF6EE]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E4DCD0] text-[10px] font-mono text-[#2A1E17] font-bold uppercase tracking-wider z-10">
-                  Escala Real en Muro de Living (Sofá 2.10m) · {selectedSize.label}
-                </div>
-
-                {/* Wall surface with framed print centered */}
-                <div className="flex-1 w-full flex items-center justify-center py-6 relative">
-                  <div className={`transition-all duration-500 ${sizeConfig.roomWidth} ${sizeConfig.roomHeight} ${getFrameCssClass()} shadow-2xl flex items-center justify-center relative`}>
-                    <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-2 sm:p-3 w-full h-full' : 'w-full h-full p-0'}>
+                {/* Dynamic Frame container scaled by selected size */}
+                <div className={`transition-all duration-500 rounded-sm overflow-hidden mx-auto ${getFrameCssClass()}`}>
+                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? `bg-[#FAF6EE] ${sizeConfig.passpartoutPadding} transition-all shadow-inner` : 'p-0'}>
+                    <div className="flex items-center justify-center bg-[#FAF6EE] transition-all duration-500">
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover shadow-md"
+                        className={`w-auto h-auto ${sizeConfig.imgMaxHeight} max-w-full object-contain shadow-sm transition-all duration-500`}
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Living Sofa Silhouette */}
-                <div className="w-full max-w-md bg-[#2A1E17]/10 rounded-t-2xl border-t-2 border-[#2A1E17]/20 p-4 text-center">
-                  <div className="w-4/5 h-10 bg-[#362317]/20 rounded-t-xl mx-auto flex items-center justify-center">
-                    <span className="text-[10px] font-mono text-[#5A4C40] font-bold uppercase">Sofá de Living (210 cm)</span>
-                  </div>
+                {/* Full HD Zoom Action Button */}
+                <button
+                  onClick={() => onOpenZoom(product)}
+                  className="absolute top-8 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110"
+                  title="Ver Fotografía Completa HD"
+                >
+                  <Maximize2 className="w-5 h-5" />
+                </button>
+
+                <div className="mt-5 text-center space-y-1">
+                  <p className="text-xs text-[#2A1E17] font-mono font-bold">
+                    {sizeConfig.scaleLabel} · {selectedFrame.name} {hasPassepartout && selectedFrame.id !== 'none' ? '(Con Paspartú)' : ''}
+                  </p>
                 </div>
-
-              </div>
-            )}
-
-            {/* AUTHENTIC TRAVEL STORY BOX */}
-            <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-[#C85A32] font-mono font-bold text-xs uppercase tracking-wider">
-                <Camera className="w-4 h-4" />
-                <span>La Historia detrás de esta Fotografía</span>
               </div>
 
-              <blockquote className="text-lg font-serif font-bold text-[#2A1E17] leading-relaxed italic">
-                “{product.story}”
-              </blockquote>
+            </div>
 
-              {/* Film & Technical Metadata Tags */}
-              <div className="pt-4 border-t border-[#E4DCD0] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
+            {/* TECHNICAL METADATA SPECIFICATIONS */}
+            <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
                 <div>
                   <span className="text-[#736B63] block text-[9px] uppercase font-bold">Ubicación</span>
                   <span className="font-bold text-[#2A1E17] flex items-center gap-1 mt-0.5">
@@ -286,7 +214,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                   </span>
                 </div>
               </div>
-
             </div>
 
           </div>
