@@ -115,13 +115,13 @@ export default function Home({ onOpenZoom }) {
                 >
                   {/* Main Image Viewport */}
                   <div 
-                    className="relative overflow-hidden rounded-xl aspect-[4/3] bg-[#EFE5D5] border border-[#E4DCD0] shadow-md cursor-pointer group/img"
+                    className="relative overflow-hidden rounded-xl h-[360px] sm:h-[420px] bg-[#EFE5D5]/70 border border-[#E4DCD0] shadow-md cursor-pointer group/img flex items-center justify-center p-3"
                     onClick={() => navigate('/prints')}
                   >
                     <img
                       src={activeSlide.image}
                       alt={activeSlide.title}
-                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                      className="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-700 shadow-sm"
                     />
                     
                     {/* Badge */}
@@ -157,13 +157,13 @@ export default function Home({ onOpenZoom }) {
                       <button
                         key={idx}
                         onClick={() => setCurrentSlideIndex(idx)}
-                        className={`relative rounded-lg overflow-hidden aspect-[4/3] border-2 transition-all ${
+                        className={`relative rounded-lg overflow-hidden h-20 bg-[#EFE5D5]/70 border-2 transition-all p-1 flex items-center justify-center ${
                           currentSlideIndex === idx
                             ? 'border-[#C85A32] ring-2 ring-[#C85A32]/30 scale-105'
                             : 'border-transparent opacity-60 hover:opacity-100'
                         }`}
                       >
-                        <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                        <img src={slide.image} alt={slide.title} className="max-w-full max-h-full object-contain" />
                       </button>
                     ))}
                   </div>
