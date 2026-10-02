@@ -1,13 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import { ArrowRight, Compass, Film, Award, ShieldCheck, Tag } from 'lucide-react';
+import { ArrowRight, Compass, Film, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const HERO_SLIDES = [
+  {
+    image: '/images/hero-framed-print.jpg',
+    badge: 'MARQUERÍA & MADERA',
+    title: 'Enmarcado Real en Madera Natural',
+    subtitle: 'Detalle de impresión fine art en papel de algodón con paspartú'
+  },
+  {
+    image: '/images/hero-room-surf.jpg',
+    badge: 'ESCALA EN ESPACIO',
+    title: 'Cuadro Gran Formato en Galería',
+    subtitle: 'Fotografía Análoga Ocean Surf 35mm en muro principal'
+  },
+  {
+    image: '/images/hero-room-couch.jpg',
+    badge: 'ESCALA EN LIVING',
+    title: 'Harmonía Fine Art en Espacios',
+    subtitle: 'Enmarcado horizontal fine art sobre sofás y salas de estar'
+  },
+  {
+    image: '/images/hero-room-porsche.jpg',
+    badge: 'GRAN FORMATO APOYADO',
+    title: 'Formato XL Classic B&W',
+    subtitle: 'Fotografía análoga enmarcada apoyada sobre piso de madera'
+  }
+];
 
 export default function Home({ onOpenZoom }) {
   const navigate = useNavigate();
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const featuredProducts = PRODUCTS.slice(0, 4);
-  const heroProduct = PRODUCTS[0];
+  const activeSlide = HERO_SLIDES[currentSlideIndex];
+
+  const handleNextSlide = (e) => {
+    e.stopPropagation();
+    setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const handlePrevSlide = (e) => {
+    e.stopPropagation();
+    setCurrentSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
 
   return (
     <div className="space-y-20 pb-20">
@@ -67,48 +105,87 @@ export default function Home({ onOpenZoom }) {
 
             </div>
 
-            {/* Hero Featured Travel Print with Real Hardwood Frame */}
+            {/* Hero Featured Travel Prints Carousel Showcase */}
             <div className="lg:col-span-6 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
-                {/* Archival Folder Card */}
+                {/* Archival Folder Card Showcase */}
                 <div 
-                  className="bg-[#FAF6EE] p-5 sm:p-7 rounded-2xl shadow-xl border border-[#E4DCD0] group cursor-pointer relative transition hover:border-[#C85A32]/40"
-                  onClick={() => navigate('/prints')}
+                  className="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#E4DCD0] group relative"
                 >
-                  {/* Photo Display Container */}
-                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-[#EFE5D5] border border-[#E4DCD0] shadow-md">
+                  {/* Main Image Viewport */}
+                  <div 
+                    className="relative overflow-hidden rounded-xl aspect-[4/3] bg-[#EFE5D5] border border-[#E4DCD0] shadow-md cursor-pointer group/img"
+                    onClick={() => navigate('/prints')}
+                  >
                     <img
-                      src="/images/hero-framed-print.jpg"
-                      alt="Cuadro análogo real enmarcado JavaOnFilm"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      src={activeSlide.image}
+                      alt={activeSlide.title}
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute top-3 left-3 bg-[#2A1E17]/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-mono tracking-wider">
-                      MUESTRA REAL ENMARCADO
+                    
+                    {/* Badge */}
+                    <div className="absolute top-3 left-3 bg-[#2A1E17]/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-mono tracking-wider shadow">
+                      {activeSlide.badge}
+                    </div>
+
+                    {/* Carousel Navigation Arrows */}
+                    <button
+                      onClick={handlePrevSlide}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#2A1E17]/60 hover:bg-[#2A1E17] text-white flex items-center justify-center backdrop-blur-sm transition opacity-80 hover:opacity-100 z-10"
+                      title="Ver foto anterior"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={handleNextSlide}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#2A1E17]/60 hover:bg-[#2A1E17] text-white flex items-center justify-center backdrop-blur-sm transition opacity-80 hover:opacity-100 z-10"
+                      title="Ver siguiente foto"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+
+                    {/* Slide Counter Indicator */}
+                    <div className="absolute bottom-3 right-3 bg-[#2A1E17]/75 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono">
+                      {currentSlideIndex + 1} / {HERO_SLIDES.length}
                     </div>
                   </div>
                   
-                  {/* Photo Archival Metadata Stamp */}
+                  {/* Thumbnails Row */}
+                  <div className="grid grid-cols-4 gap-2 mt-3">
+                    {HERO_SLIDES.map((slide, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlideIndex(idx)}
+                        className={`relative rounded-lg overflow-hidden aspect-[4/3] border-2 transition-all ${
+                          currentSlideIndex === idx
+                            ? 'border-[#C85A32] ring-2 ring-[#C85A32]/30 scale-105'
+                            : 'border-transparent opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Metadata & CTA */}
                   <div className="mt-4 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#C85A32] font-bold uppercase tracking-wider">
                         <span>FINE ART PRINT</span>
                         <span>·</span>
-                        <span>MARCO DE MADERA</span>
+                        <span>EDICIÓN ARCHIVO</span>
                       </div>
-                      <h3 className="font-serif font-bold text-lg text-[#2A1E17] mt-0.5">
-                        Enmarcado & Calidad de Galería
+                      <h3 className="font-serif font-bold text-base sm:text-lg text-[#2A1E17] mt-0.5">
+                        {activeSlide.title}
                       </h3>
                       <p className="text-xs font-mono text-[#736B63] mt-0.5">
-                        Fotografía 35mm · Paspartú Passe-Partout · Listo para colgar
+                        {activeSlide.subtitle}
                       </p>
                     </div>
 
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate('/prints');
-                      }}
+                      onClick={() => navigate('/prints')}
                       className="px-4 py-2.5 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 shrink-0"
                     >
                       <span>Ver Galería</span>
