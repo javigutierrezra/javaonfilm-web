@@ -23,11 +23,11 @@ export default function ProductCard({ product, onOpenZoom }) {
         className="relative overflow-hidden bg-[#FDFBF7] p-2.5 rounded-lg border border-[#EBE3D5] shadow-inner cursor-pointer"
         onClick={() => navigate(`/prints/${product.id}`)}
       >
-        <div className="relative overflow-hidden aspect-[4/5] bg-[#EFE8DC]">
+        <div className="relative overflow-hidden aspect-[4/5] bg-[#FAF6EE] flex items-center justify-center p-1.5 border border-[#E4DCD0]/40 rounded">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
           

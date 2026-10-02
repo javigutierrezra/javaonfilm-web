@@ -78,11 +78,11 @@ export default function Home({ onOpenZoom }) {
                 >
                   {/* Photo Frame Container */}
                   <div className="border-[14px] border-[#362317] shadow-2xl bg-[#FDFBF7] p-4 sm:p-6 outline outline-1 outline-[#1F130B]">
-                    <div className="relative overflow-hidden aspect-[4/5] bg-[#EFE8DC]">
+                    <div className="relative overflow-hidden aspect-[4/5] bg-[#FAF6EE] flex items-center justify-center p-1.5 border border-[#E4DCD0]/40">
                       <img
                         src={heroProduct.image}
                         alt={heroProduct.title}
-                        className="w-full h-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-contain shadow-sm group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
                   </div>

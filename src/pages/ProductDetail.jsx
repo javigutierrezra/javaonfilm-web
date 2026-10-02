@@ -116,14 +116,16 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               
               <div className="relative mx-auto max-w-lg w-full py-4 transition-all duration-500">
                 
-                {/* Frame container */}
+                {/* Frame container - Mantiene la foto 100% completa sin recortar */}
                 <div className={`transition-all duration-300 rounded-sm overflow-hidden ${getFrameCssClass()}`}>
-                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-6 sm:p-10 transition-all shadow-inner' : 'p-0'}>
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className={`w-full ${product.orientation === 'vertical' ? 'h-[440px] sm:h-[500px]' : 'h-[340px] sm:h-[400px]'} object-cover shadow-sm transition-transform duration-500`}
-                    />
+                  <div className={hasPassepartout && selectedFrame.id !== 'none' ? 'bg-[#FAF6EE] p-4 sm:p-8 transition-all shadow-inner' : 'p-0'}>
+                    <div className="flex items-center justify-center bg-[#FAF6EE] min-h-[300px] max-h-[520px]">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-auto h-auto max-h-[500px] max-w-full object-contain shadow-sm transition-transform duration-500"
+                      />
+                    </div>
                   </div>
                 </div>
 
