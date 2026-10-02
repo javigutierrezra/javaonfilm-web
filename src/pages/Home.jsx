@@ -1,51 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import { ArrowRight, Compass, Film, ChevronLeft, ChevronRight } from 'lucide-react';
-
-const HERO_SLIDES = [
-  {
-    image: '/images/hero-framed-print.jpg',
-    badge: 'MARQUERÍA & MADERA',
-    title: 'Enmarcado Real en Madera Natural',
-    subtitle: 'Detalle de impresión fine art en papel de algodón con paspartú'
-  },
-  {
-    image: '/images/hero-room-surf.jpg',
-    badge: 'ESCALA EN ESPACIO',
-    title: 'Cuadro Gran Formato en Galería',
-    subtitle: 'Fotografía Análoga Ocean Surf 35mm en muro principal'
-  },
-  {
-    image: '/images/hero-room-couch.jpg',
-    badge: 'ESCALA EN LIVING',
-    title: 'Harmonía Fine Art en Espacios',
-    subtitle: 'Enmarcado horizontal fine art sobre sofás y salas de estar'
-  },
-  {
-    image: '/images/hero-room-porsche.jpg',
-    badge: 'GRAN FORMATO APOYADO',
-    title: 'Formato XL Classic B&W',
-    subtitle: 'Fotografía análoga enmarcada apoyada sobre piso de madera'
-  }
-];
+import { ArrowRight, Compass, Film } from 'lucide-react';
 
 export default function Home({ onOpenZoom }) {
   const navigate = useNavigate();
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const featuredProducts = PRODUCTS.slice(0, 4);
-  const activeSlide = HERO_SLIDES[currentSlideIndex];
-
-  const handleNextSlide = (e) => {
-    e.stopPropagation();
-    setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-  };
-
-  const handlePrevSlide = (e) => {
-    e.stopPropagation();
-    setCurrentSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  };
 
   return (
     <div className="space-y-20 pb-20">
@@ -105,82 +65,43 @@ export default function Home({ onOpenZoom }) {
 
             </div>
 
-            {/* Hero Featured Travel Prints Carousel Showcase */}
+            {/* Hero Featured Photographer Image Card */}
             <div className="lg:col-span-6 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Archival Folder Card Showcase */}
-                <div 
-                  className="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#E4DCD0] group relative"
-                >
+                <div className="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#E4DCD0] group relative">
+                  
                   {/* Main Image Viewport */}
                   <div 
-                    className="relative overflow-hidden rounded-xl h-[360px] sm:h-[420px] bg-[#EFE5D5]/70 border border-[#E4DCD0] shadow-md cursor-pointer group/img flex items-center justify-center p-3"
+                    className="relative overflow-hidden rounded-xl h-[400px] sm:h-[460px] bg-[#EFE5D5]/70 border border-[#E4DCD0] shadow-md cursor-pointer group/img flex items-center justify-center p-3"
                     onClick={() => navigate('/prints')}
                   >
                     <img
-                      src={activeSlide.image}
-                      alt={activeSlide.title}
-                      className="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-700 shadow-sm"
+                      src="/images/hero-photographer.jpg"
+                      alt="Fotografía analógica 35mm JavaOnFilm"
+                      className="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-700 shadow-sm rounded-lg"
                     />
                     
                     {/* Badge */}
                     <div className="absolute top-3 left-3 bg-[#2A1E17]/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-mono tracking-wider shadow">
-                      {activeSlide.badge}
+                      35MM FILM ARCHIVE
                     </div>
-
-                    {/* Carousel Navigation Arrows */}
-                    <button
-                      onClick={handlePrevSlide}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#2A1E17]/60 hover:bg-[#2A1E17] text-white flex items-center justify-center backdrop-blur-sm transition opacity-80 hover:opacity-100 z-10"
-                      title="Ver foto anterior"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={handleNextSlide}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#2A1E17]/60 hover:bg-[#2A1E17] text-white flex items-center justify-center backdrop-blur-sm transition opacity-80 hover:opacity-100 z-10"
-                      title="Ver siguiente foto"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-
-                    {/* Slide Counter Indicator */}
-                    <div className="absolute bottom-3 right-3 bg-[#2A1E17]/75 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono">
-                      {currentSlideIndex + 1} / {HERO_SLIDES.length}
-                    </div>
-                  </div>
-                  
-                  {/* Thumbnails Row */}
-                  <div className="grid grid-cols-4 gap-2 mt-3">
-                    {HERO_SLIDES.map((slide, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentSlideIndex(idx)}
-                        className={`relative rounded-lg overflow-hidden h-20 bg-[#EFE5D5]/70 border-2 transition-all p-1 flex items-center justify-center ${
-                          currentSlideIndex === idx
-                            ? 'border-[#C85A32] ring-2 ring-[#C85A32]/30 scale-105'
-                            : 'border-transparent opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        <img src={slide.image} alt={slide.title} className="max-w-full max-h-full object-contain" />
-                      </button>
-                    ))}
                   </div>
 
                   {/* Metadata & CTA */}
                   <div className="mt-4 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#C85A32] font-bold uppercase tracking-wider">
-                        <span>35MM FILM ARCHIVE</span>
+                        <span>FOTOGRAFÍA DE AUTOR</span>
                         <span>·</span>
-                        <span>PIEZAS ENMARCADAS</span>
+                        <span>35MM ANALOG</span>
                       </div>
                       <h3 className="font-serif font-bold text-base sm:text-lg text-[#2A1E17] mt-0.5">
-                        {activeSlide.title}
+                        Bitácora & Fotografía de Viajes
                       </h3>
                       <p className="text-xs font-mono text-[#736B63] mt-0.5">
-                        {activeSlide.subtitle}
+                        Olympus mju I · Kodak Gold 200
                       </p>
                     </div>
 
