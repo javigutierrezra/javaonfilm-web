@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { PRODUCTS, FORMAT_OPTIONS, FRAME_OPTIONS, STORE_CONFIG } from '../data/products';
-import { Maximize2, ShoppingBag, ArrowLeft, Film, MessageCircle, Info, Layers } from 'lucide-react';
+import { Maximize2, ShoppingBag, ArrowLeft, Film, MessageCircle, Info, Layers, Eye, Home } from 'lucide-react';
 
 export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const { id } = useParams();
@@ -19,6 +19,9 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   // Fit Mode State (for when selected orientation differs from native photo orientation)
   const [fitMode, setFitMode] = useState('margin'); // 'margin' (Foto completa con margen) or 'crop' (Recortar para llenar)
   const [cropPosition, setCropPosition] = useState('center'); // 'center', 'top', 'bottom', 'left', 'right'
+
+  // View Mode: 'studio' (Close-up detail) vs 'room' (Living room wall with sofa scale)
+  const [previewMode, setPreviewMode] = useState('studio');
 
   if (!product) {
     return (
@@ -61,6 +64,105 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   // Total price
   const totalCLP = selectedFormat.priceCLP;
   const totalUSD = selectedFormat.priceUSD;
+
+  // Scale Percentage relative to maximum format (50x75 cm)
+  const getScalePercentage = (fmtId) => {
+    switch (fmtId) {
+      case 'print-20x30': return 42;
+      case 'print-30x45': return 60;
+      case 'frame-30x45': return 66;
+      case 'frame-40x60': return 82;
+      case 'frame-50x75': return 98;
+      default: return 66;
+    }
+  };
+
+  const currentScalePct = getScalePercentage(selectedFormat.id);
+
+  // Helper for sizing container style in Studio preview
+  const getStudioElementStyle = () => {
+    const scale = currentScalePct;
+    if (selectedOrientation === 'horizontal') {
+      return {
+        width: `${scale}%`,
+        aspectRatio: '3 / 2',
+        maxHeight: '85%'
+      };
+    } else {
+      return {
+        height: `${scale}%`,
+        aspectRatio: '2 / 3',
+        maxWidth: '85%'
+      };
+    }
+  };
+
+  // Helper for sizing container style in Living Room Wall preview
+  const getRoomElementStyle = () => {
+    const roomScale = currentScalePct * 0.9;
+    if (selectedOrientation === 'horizontal') {
+      return {
+        width: `${roomScale * 0.8}%`,
+        aspectRatio: '3 / 2',
+        maxHeight: '55%'
+      };
+    } else {
+      return {
+        height: `${roomScale * 0.7}%`,
+        aspectRatio: '2 / 3',
+        maxWidth: '65%'
+      };
+    }
+  };
+
+  // Dynamic frame thickness helper
+  const getFrameCssClass = () => {
+    if (!selectedFormat.requiresFrame) {
+      return 'border-0 shadow-2xl ring-1 ring-[#D5C9B8]/40';
+    }
+    
+    let borderThickness = 'border-[12px] sm:border-[16px]';
+    if (selectedFormat.id === 'frame-30x45') {
+      borderThickness = 'border-[8px] sm:border-[12px]';
+    } else if (selectedFormat.id === 'frame-40x60') {
+      borderThickness = 'border-[12px] sm:border-[16px]';
+    } else if (selectedFormat.id === 'frame-50x75') {
+      borderThickness = 'border-[16px] sm:border-[22px]';
+    }
+
+    switch (selectedFrame.id) {
+      case 'black':
+        return `${borderThickness} border-[#181411] shadow-2xl`;
+      case 'white':
+        return `${borderThickness} border-[#FDFBF7] shadow-2xl ring-1 ring-[#D5C9B8]`;
+      case 'natural-wood':
+      default:
+        return `${borderThickness} border-[#8C6246] shadow-2xl`;
+    }
+  };
+
+  // Dynamic mat padding helper
+  const getMatPaddingClass = () => {
+    if (!selectedFormat.requiresFrame) return 'p-0';
+    switch (selectedFormat.id) {
+      case 'frame-30x45': return 'p-2 sm:p-3';
+      case 'frame-40x60': return 'p-3.5 sm:p-5';
+      case 'frame-50x75': return 'p-5 sm:p-7';
+      default: return 'p-3 sm:p-4';
+    }
+  };
+
+  // Object position helper for crop mode
+  const getCropPositionClass = () => {
+    switch (cropPosition) {
+      case 'top': return 'object-top';
+      case 'bottom': return 'object-bottom';
+      case 'left': return 'object-left';
+      case 'right': return 'object-right';
+      case 'center':
+      default: return 'object-center';
+    }
+  };
 
   const handleAddToCart = () => {
     const frameLabel = selectedFormat.requiresFrame ? selectedFrame.name : 'Sin Marco (Lámina Solo)';
@@ -113,32 +215,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
-  // Frame Border Helper for display
-  const getFrameCssClass = () => {
-    if (!selectedFormat.requiresFrame) return 'border-0 shadow-lg';
-    switch (selectedFrame.id) {
-      case 'black':
-        return 'border-[14px] sm:border-[20px] border-[#181411] shadow-2xl';
-      case 'white':
-        return 'border-[14px] sm:border-[20px] border-[#FDFBF7] shadow-2xl ring-1 ring-[#D5C9B8]';
-      case 'natural-wood':
-      default:
-        return 'border-[14px] sm:border-[20px] border-[#8C6246] shadow-2xl';
-    }
-  };
-
-  // Object position helper for crop mode
-  const getCropPositionClass = () => {
-    switch (cropPosition) {
-      case 'top': return 'object-top';
-      case 'bottom': return 'object-bottom';
-      case 'left': return 'object-left';
-      case 'right': return 'object-right';
-      case 'center':
-      default: return 'object-center';
-    }
-  };
-
   return (
     <div className="pb-24 pt-4">
       
@@ -156,52 +232,124 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* TOP SECTION: PHOTO PROTAGONIST & SELECTION PANEL */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* LEFT COLUMN: LARGE PROTAGONIST PHOTO DISPLAY */}
+          {/* LEFT COLUMN: LARGE PROTAGONIST PHOTO DISPLAY & VIEW CONTROLS */}
           <div className="lg:col-span-7 space-y-4">
             
-            {/* LARGE PHOTO CONTAINER WITH DYNAMIC ASPECT RATIO */}
-            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-4 sm:p-8 shadow-sm flex flex-col justify-center relative overflow-hidden transition-all duration-500 min-h-[480px]">
+            {/* VIEW MODE TOGGLE BUTTONS */}
+            <div className="flex items-center justify-between bg-[#FAF6EE] p-1.5 rounded-xl border border-[#E4DCD0]">
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPreviewMode('studio')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                    previewMode === 'studio'
+                      ? 'bg-[#2A1E17] text-white shadow'
+                      : 'text-[#736B63] hover:text-[#2A1E17]'
+                  }`}
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Vista Marco</span>
+                </button>
+                <button
+                  onClick={() => setPreviewMode('room')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                    previewMode === 'room'
+                      ? 'bg-[#2A1E17] text-white shadow'
+                      : 'text-[#736B63] hover:text-[#2A1E17]'
+                  }`}
+                >
+                  <Home className="w-3.5 h-3.5" />
+                  <span>Escala en Pared (Sofá)</span>
+                </button>
+              </div>
+
+              {/* Dynamic Scale Indicator Badge */}
+              <div className="text-[11px] font-mono font-semibold text-[#C85A32] px-3 py-1 bg-[#EFE5D5] rounded-md border border-[#E4DCD0] shrink-0">
+                Proporción real: {currentScalePct}%
+              </div>
+            </div>
+            
+            {/* LARGE MOCKUP CONTAINER WITH FIXED CANVAS AND PROPORTIONAL SCALING */}
+            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-4 sm:p-6 shadow-sm flex flex-col justify-center items-center relative overflow-hidden h-[460px] sm:h-[540px]">
               
-              <div className={`relative mx-auto w-full py-2 transition-all duration-500 ${
-                selectedOrientation === 'horizontal' ? 'max-w-xl aspect-[4/3]' : 'max-w-sm sm:max-w-md aspect-[3/4]'
-              }`}>
-                
-                {/* Frame / Print Container */}
-                <div className={`w-full h-full transition-all duration-500 rounded-sm overflow-hidden mx-auto ${getFrameCssClass()}`}>
-                  <div className="w-full h-full flex items-center justify-center bg-[#FAF6EE] p-2 sm:p-4">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className={`w-full h-full transition-all duration-500 rounded ${
-                        isOrientationMismatched && fitMode === 'crop'
-                          ? `object-cover ${getCropPositionClass()}`
-                          : 'object-contain'
-                      }`}
-                    />
+              {/* STUDIO VIEW BACKDROP */}
+              {previewMode === 'studio' && (
+                <div className="absolute inset-0 bg-radial-vignette opacity-30 pointer-events-none" />
+              )}
+
+              {/* ROOM VIEW BACKDROP (WALL & SOFA GRAPHIC) */}
+              {previewMode === 'room' && (
+                <div className="absolute inset-0 flex flex-col justify-end pointer-events-none">
+                  {/* Subtle Wall Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#FAF6EE] via-[#F4EFE6] to-[#EAE2D5] opacity-90" />
+                  
+                  {/* Sofa Illustration Outline */}
+                  <div className="relative z-0 w-full flex flex-col items-center mb-2 px-8 opacity-45">
+                    {/* Sofa cushions outline */}
+                    <div className="w-[85%] sm:w-[80%] h-16 sm:h-20 bg-[#D8CEBF] rounded-t-2xl border-t-2 border-x-2 border-[#B8AC9A] relative flex items-center justify-center">
+                      <div className="w-full h-full flex divide-x-2 divide-[#B8AC9A]">
+                        <div className="flex-1"></div>
+                        <div className="flex-1"></div>
+                        <div className="flex-1"></div>
+                      </div>
+                      <div className="absolute -top-6 left-0 right-0 h-8 bg-[#C8BCAF] rounded-t-xl border-t-2 border-x-2 border-[#B8AC9A]"></div>
+                    </div>
+                    {/* Floor shadow line */}
+                    <div className="w-full h-1 bg-[#B8AC9A]/50 mt-1 rounded-full"></div>
+                    <span className="text-[9px] font-mono text-[#736B63] mt-1 uppercase tracking-wider">
+                      Referencia: Muro de estar con Sofá (200 cm)
+                    </span>
                   </div>
                 </div>
+              )}
 
-                {/* Full HD Zoom Action Button */}
-                <button
-                  onClick={() => onOpenZoom(product)}
-                  className="absolute top-4 right-4 p-3 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110 z-10"
-                  title="Ver Fotografía Completa HD"
+              {/* PROPORTIONALLY SCALED FRAME / PRINT ELEMENT */}
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-2">
+                <div
+                  style={previewMode === 'studio' ? getStudioElementStyle() : getRoomElementStyle()}
+                  className="transition-all duration-500 ease-out flex items-center justify-center relative shadow-2xl"
                 >
-                  <Maximize2 className="w-5 h-5" />
-                </button>
+                  {/* Frame / Paper Outer Shell */}
+                  <div className={`w-full h-full transition-all duration-500 rounded-sm overflow-hidden flex items-center justify-center ${getFrameCssClass()}`}>
+                    
+                    {/* Passepartout / Inner Mat Container */}
+                    <div className={`w-full h-full flex items-center justify-center bg-[#FAF6EE] transition-all duration-500 ${getMatPaddingClass()}`}>
+                      
+                      {/* Photo Image */}
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className={`w-full h-full transition-all duration-500 rounded-sm ${
+                          isOrientationMismatched && fitMode === 'crop'
+                            ? `object-cover ${getCropPositionClass()}`
+                            : 'object-contain'
+                        }`}
+                      />
+                    </div>
+                  </div>
 
-                <div className="mt-4 text-center space-y-1">
-                  <p className="text-xs text-[#2A1E17] font-mono font-bold">
-                    {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : ''}
-                  </p>
-                  {isOrientationMismatched && (
-                    <p className="text-[11px] font-mono text-[#C85A32]">
-                      Ajuste: {fitMode === 'margin' ? 'Foto completa con margen' : `Recortar para llenar (${cropPosition})`}
-                    </p>
-                  )}
+                  {/* Full HD Zoom Action Button */}
+                  <button
+                    onClick={() => onOpenZoom(product)}
+                    className="absolute top-2 right-2 p-2.5 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110 z-20"
+                    title="Ver Fotografía Completa HD"
+                  >
+                    <Maximize2 className="w-4 h-4" />
+                  </button>
                 </div>
+              </div>
+
+              {/* FOOTER LABEL BELOW MOCKUP */}
+              <div className="relative z-10 mt-2 text-center space-y-0.5 bg-[#FAF6EE]/90 backdrop-blur px-4 py-1.5 rounded-full border border-[#E4DCD0] shadow-sm">
+                <p className="text-xs text-[#2A1E17] font-mono font-bold">
+                  {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : '· Lámina Fine Art'}
+                </p>
+                {isOrientationMismatched && (
+                  <p className="text-[10px] font-mono text-[#C85A32]">
+                    Ajuste: {fitMode === 'margin' ? 'Foto completa con margen' : `Recortar para llenar (${cropPosition})`}
+                  </p>
+                )}
               </div>
 
             </div>
@@ -333,7 +481,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                       <span className="text-[10px] font-mono font-bold text-[#2A1E17] block uppercase">ZONA VISIBLE (ENFOQUE DE ENCUADRE)</span>
                       <div className="grid grid-cols-3 gap-2">
                         {product.orientation === 'horizontal' ? (
-                          // Horizontal photo in Vertical frame -> Top, Center, Bottom
                           <>
                             <button
                               onClick={() => setCropPosition('top')}
@@ -355,7 +502,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                             </button>
                           </>
                         ) : (
-                          // Vertical photo in Horizontal frame -> Left, Center, Right
                           <>
                             <button
                               onClick={() => setCropPosition('left')}
@@ -383,28 +529,41 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </div>
               )}
 
-              {/* 2. FORMAT SELECTION */}
+              {/* 2. FORMAT & SIZE SELECTION */}
               <div className="space-y-3">
                 <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
-                  2. Selección de Formato
+                  2. Selección de Formato y Tamaño
                 </label>
                 <div className="space-y-2">
-                  {FORMAT_OPTIONS.map((fmt) => (
-                    <button
-                      key={fmt.id}
-                      onClick={() => setSelectedFormat(fmt)}
-                      className={`w-full p-3 rounded-lg border flex items-center justify-between text-xs transition-all ${
-                        selectedFormat.id === fmt.id
-                          ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
-                          : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
-                      }`}
-                    >
-                      <span className="font-semibold">{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
-                      <span className="font-mono text-[11px] text-[#C85A32] font-bold">
-                        ${fmt.priceCLP.toLocaleString('es-CL')} CLP
-                      </span>
-                    </button>
-                  ))}
+                  {FORMAT_OPTIONS.map((fmt) => {
+                    const pct = getScalePercentage(fmt.id);
+                    return (
+                      <button
+                        key={fmt.id}
+                        onClick={() => setSelectedFormat(fmt)}
+                        className={`w-full p-3 rounded-lg border flex items-center justify-between text-xs transition-all ${
+                          selectedFormat.id === fmt.id
+                            ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
+                            : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          {/* Visual Scale Meter Bar */}
+                          <div className="w-8 h-2 bg-[#EFE5D5] rounded-full overflow-hidden border border-[#E4DCD0] shrink-0">
+                            <div
+                              className="h-full bg-[#C85A32] transition-all"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                          <span className="font-semibold">{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
+                        </div>
+                        
+                        <span className="font-mono text-[11px] text-[#C85A32] font-bold">
+                          ${fmt.priceCLP.toLocaleString('es-CL')} CLP
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
