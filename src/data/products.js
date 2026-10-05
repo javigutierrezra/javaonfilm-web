@@ -68,6 +68,22 @@ export const PRODUCTS = [
     image: "/images/PandeAzucar.jpeg",
     price: 24000,
     priceUSD: 25
+  },
+  {
+    id: "cisnes-04",
+    archiveCode: "PHOTO 004",
+    title: "Cisnes",
+    place: "Jardín Botánico",
+    country: "Chile",
+    location: "Jardín Botánico, Chile",
+    year: "2024",
+    film: "Kodak Gold 200",
+    camera: "Olympus mju I",
+    orientation: "horizontal",
+    story: "Cisnes navegando serenamente en aguas calmas. Fotografía analógica de 35mm seleccionada del archivo personal para llevar a muros y espacios.",
+    image: "/images/Cisnes.jpeg",
+    price: 24000,
+    priceUSD: 25
   }
 ];
 
