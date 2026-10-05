@@ -1,39 +1,49 @@
-import React, { useState, useMemo } from 'react';
-import { PRODUCTS } from '../data/products';
+import React, { useState, useEffect, useMemo } from 'react';
+import { PRODUCTS as FALLBACK_PRODUCTS } from '../data/products';
+import { getPublicPhotos } from '../services/productService';
 import ProductCard from '../components/ProductCard';
 import { Search, SlidersHorizontal, Folder } from 'lucide-react';
 
 export default function Prints({ onOpenZoom }) {
+  const [productsList, setProductsList] = useState(FALLBACK_PRODUCTS);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedFilm, setSelectedFilm] = useState('all');
   const [selectedOrientation, setSelectedOrientation] = useState('all');
 
-  // Extract unique filter options
-  const locations = useMemo(() => {
-    const set = new Set(PRODUCTS.map(p => p.location.split(',')[0]));
-    return Array.from(set);
+  useEffect(() => {
+    getPublicPhotos().then(data => {
+      if (data && data.length > 0) {
+        setProductsList(data);
+      }
+    });
   }, []);
 
+  // Extract unique filter options
+  const locations = useMemo(() => {
+    const set = new Set(productsList.map(p => (p.location || '').split(',')[0]));
+    return Array.from(set).filter(Boolean);
+  }, [productsList]);
+
   const films = useMemo(() => {
-    const set = new Set(PRODUCTS.map(p => p.film));
-    return Array.from(set);
-  }, []);
+    const set = new Set(productsList.map(p => p.film));
+    return Array.from(set).filter(Boolean);
+  }, [productsList]);
 
   // Filter products
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter(p => {
+    return productsList.filter(p => {
       const matchesSearch = p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            p.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            p.story.toLowerCase().includes(searchTerm.toLowerCase());
+                            (p.location || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            (p.story || '').toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesLocation = selectedLocation === 'all' || p.location.toLowerCase().includes(selectedLocation.toLowerCase());
+      const matchesLocation = selectedLocation === 'all' || (p.location || '').toLowerCase().includes(selectedLocation.toLowerCase());
       const matchesFilm = selectedFilm === 'all' || p.film === selectedFilm;
       const matchesOrientation = selectedOrientation === 'all' || p.orientation === selectedOrientation;
 
       return matchesSearch && matchesLocation && matchesFilm && matchesOrientation;
     });
-  }, [searchTerm, selectedLocation, selectedFilm, selectedOrientation]);
+  }, [productsList, searchTerm, selectedLocation, selectedFilm, selectedOrientation]);
 
   return (
     <div className="space-y-10 pb-24">
@@ -130,7 +140,7 @@ export default function Prints({ onOpenZoom }) {
           </div>
 
           <div className="text-xs font-mono text-[#736B63] pt-2 border-t border-[#E4DCD0] flex items-center justify-between">
-            <span>MOSTRANDO {filteredProducts.length} DE {PRODUCTS.length} FOTOGRAFÍAS EN ARCHIVO</span>
+            <span>MOSTRANDO {filteredProducts.length} DE {productsList.length} FOTOGRAFÍAS EN ARCHIVO</span>
             <span>JAVAONFILM ARCHIVE INDEX</span>
           </div>
 
