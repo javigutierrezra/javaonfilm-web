@@ -42,11 +42,11 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
         onClick={onClose}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex sm:pl-10">
         <div className="w-screen max-w-md bg-[#FAF8F5] shadow-2xl flex flex-col border-l border-[#E6E1DA]">
           
           {/* Header */}
-          <div className="px-8 py-6 border-b border-[#E6E1DA] flex items-center justify-between">
+          <div className="px-5 sm:px-8 py-5 sm:py-6 border-b border-[#E6E1DA] flex items-center justify-between">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
                 Archivo 35mm
@@ -65,9 +65,9 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
           </div>
 
           {/* Cart Items */}
-          <div className="flex-1 overflow-y-auto px-8 py-6 divide-y divide-[#E6E1DA]">
+          <div className="flex-1 overflow-y-auto px-5 sm:px-8 py-6 divide-y divide-[#E6E1DA]">
             {cart.length === 0 ? (
-              <div className="text-center py-24 space-y-2">
+              <div className="text-center py-20 sm:py-24 space-y-2">
                 <p className="font-serif text-lg text-[#141413]">Tu selección está vacía</p>
                 <p className="text-xs text-[#6E6A63] font-light max-w-xs mx-auto">
                   Explora la colección para configurar obras impresas o enmarcadas a medida.
@@ -75,7 +75,7 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
               </div>
             ) : (
               cart.map((item, index) => (
-                <div key={item.cartItemId || index} className="py-5 first:pt-0 last:pb-0 flex gap-5">
+                <div key={item.cartItemId || index} className="py-5 first:pt-0 last:pb-0 flex gap-4 sm:gap-5">
                   <div className="w-16 h-20 bg-[#F4F0EA] border border-[#E6E1DA] p-1.5 flex items-center justify-center shrink-0">
                     <img src={item.image} alt={item.title} className="max-w-full max-h-full object-contain" />
                   </div>
@@ -85,20 +85,20 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
                       <h4 className="font-serif text-base text-[#141413] truncate">{item.title}</h4>
                       <button
                         onClick={() => onRemoveItem(index)}
-                        className="text-[#9C968E] hover:text-[#141413] transition-colors"
+                        className="text-[#9C968E] hover:text-[#141413] transition-colors p-0.5"
                         title="Quitar de la selección"
                       >
                         <Trash2 className="w-3.5 h-3.5 stroke-[1.5]" />
                       </button>
                     </div>
-                    <p className="text-[11px] font-mono text-[#6E6A63] uppercase tracking-wider">{item.location}</p>
+                    <p className="text-[10px] sm:text-[11px] font-mono text-[#6E6A63] uppercase tracking-wider truncate">{item.location}</p>
                     
-                    <div className="text-[11px] text-[#6E6A63] mt-2 space-y-0.5 font-light">
-                      <p>{item.size}</p>
-                      <p>Terminación: {item.frame}</p>
+                    <div className="text-[11px] text-[#6E6A63] mt-1.5 space-y-0.5 font-light">
+                      <p className="truncate">{item.size}</p>
+                      <p className="truncate">Terminación: {item.frame}</p>
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between">
+                    <div className="mt-3 flex items-center justify-between gap-2">
                       <div className="flex items-center border border-[#E6E1DA] bg-[#FDFCFA]">
                         <button
                           onClick={() => onUpdateQuantity(index, -1)}
@@ -111,7 +111,7 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
                         >+</button>
                       </div>
 
-                      <p className="text-xs font-mono text-[#141413]">
+                      <p className="text-xs font-mono text-[#141413] whitespace-nowrap">
                         ${(item.price * item.quantity).toLocaleString('es-CL')} CLP
                       </p>
                     </div>
@@ -123,14 +123,14 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
 
           {/* Footer Checkout */}
           {cart.length > 0 && (
-            <div className="p-8 border-t border-[#E6E1DA] bg-[#FDFCFA] space-y-5">
-              <div className="flex items-baseline justify-between">
-                <span className="text-xs font-mono uppercase tracking-[0.15em] text-[#6E6A63]">Total Estimado</span>
+            <div className="p-5 sm:p-8 border-t border-[#E6E1DA] bg-[#FDFCFA] space-y-4 sm:space-y-5">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.15em] text-[#6E6A63]">Total Estimado</span>
                 <div className="text-right">
-                  <span className="text-lg font-mono text-[#141413] block">
+                  <span className="text-base sm:text-lg font-mono text-[#141413] block">
                     ${totalCLP.toLocaleString('es-CL')} CLP
                   </span>
-                  <span className="text-[11px] font-mono text-[#9C968E]">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-[#9C968E]">
                     Aprox. ${totalUSD} USD
                   </span>
                 </div>
@@ -142,10 +142,10 @@ export default function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity, on
 
               <button
                 onClick={handleCheckout}
-                className="w-full py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3.5 sm:py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
               >
                 <span>Solicitar Encargo vía WhatsApp</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
               </button>
             </div>
           )}

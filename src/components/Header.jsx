@@ -70,30 +70,30 @@ export default function Header({ cartCount, onOpenCart }) {
     <header
       className={`sticky top-0 z-40 transition-all duration-300 border-b ${
         scrolled
-          ? 'bg-[#FAF8F5]/95 backdrop-blur-md border-[#E6E1DA] py-4'
-          : 'bg-[#FAF8F5] border-transparent py-6'
+          ? 'bg-[#FAF8F5]/95 backdrop-blur-md border-[#E6E1DA] py-3.5 sm:py-4'
+          : 'bg-[#FAF8F5] border-transparent py-4 sm:py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-        <div className="flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between gap-2">
           
           {/* Analog Film Roll Logo + Editorial Wordmark */}
-          <Link to="/" className="group flex items-center gap-3.5">
-            <div className="w-10 h-10 border border-[#E6E1DA] bg-[#F4F0EA] group-hover:border-[#141413] transition-colors flex items-center justify-center text-[#141413] shrink-0">
-              <FilmCanisterIcon className="w-6 h-6" />
+          <Link to="/" className="group flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 border border-[#E6E1DA] bg-[#F4F0EA] group-hover:border-[#141413] transition-colors flex items-center justify-center text-[#141413] shrink-0">
+              <FilmCanisterIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <span className="text-2xl sm:text-[26px] font-serif font-medium tracking-[0.05em] text-[#141413] block leading-none">
+            <div className="min-w-0">
+              <span className="text-lg sm:text-2xl md:text-[26px] font-serif font-medium tracking-[0.04em] sm:tracking-[0.05em] text-[#141413] block leading-none truncate">
                 JAVA ON FILM
               </span>
-              <span className="text-[9px] font-mono text-[#6E6A63] tracking-[0.2em] uppercase block mt-1.5">
+              <span className="text-[8px] sm:text-[9px] font-mono text-[#6E6A63] tracking-[0.12em] sm:tracking-[0.2em] uppercase block mt-1 sm:mt-1.5 truncate">
                 35MM ARCHIVE · VIAJES & ECUESTRE
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10 shrink-0">
             {navLinks.map((link) => {
               const isActive =
                 location.pathname === link.path ||
@@ -102,7 +102,7 @@ export default function Header({ cartCount, onOpenCart }) {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative text-xs uppercase tracking-[0.18em] transition-colors duration-200 py-1 ${
+                  className={`relative text-xs uppercase tracking-[0.16em] lg:tracking-[0.18em] transition-colors duration-200 py-1 whitespace-nowrap ${
                     isActive
                       ? 'text-[#141413] font-medium'
                       : 'text-[#6E6A63] hover:text-[#141413]'
@@ -118,10 +118,10 @@ export default function Header({ cartCount, onOpenCart }) {
           </nav>
 
           {/* Actions: Cart / Selection & Mobile Menu */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 sm:gap-5 shrink-0">
             <button
               onClick={onOpenCart}
-              className="text-xs font-mono uppercase tracking-[0.15em] text-[#141413] hover:text-[#6E6A63] transition-colors flex items-center gap-2 py-1.5 border-b border-transparent hover:border-[#141413]"
+              className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.12em] sm:tracking-[0.15em] text-[#141413] hover:text-[#6E6A63] transition-colors flex items-center gap-1.5 py-1.5 px-1 border-b border-transparent hover:border-[#141413] whitespace-nowrap"
               aria-label="Ver Selección de Cuadros"
             >
               <span>Selección</span>
@@ -144,12 +144,12 @@ export default function Header({ cartCount, onOpenCart }) {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#E6E1DA] bg-[#FAF8F5] px-6 py-8 mt-4 space-y-5">
+        <div className="md:hidden border-t border-[#E6E1DA] bg-[#FAF8F5] px-5 py-6 mt-3.5 space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              className={`block text-xs uppercase tracking-[0.2em] transition-colors ${
+              className={`block text-xs uppercase tracking-[0.2em] py-1 transition-colors ${
                 location.pathname === link.path
                   ? 'text-[#141413] font-semibold'
                   : 'text-[#6E6A63] hover:text-[#141413]'

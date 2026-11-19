@@ -60,16 +60,16 @@ export default function Prints({ onOpenZoom }) {
   const hasFilters = searchTerm || selectedSeries !== 'all' || selectedLocation !== 'all' || selectedOrientation !== 'all';
 
   return (
-    <div className="pb-28 pt-10">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
+    <div className="pb-20 sm:pb-28 pt-6 sm:pt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 space-y-8 sm:space-y-12">
         
         {/* Minimalist Exhibition Header */}
-        <div className="border-b border-[#E6E1DA] pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#8C4A32] block">
+        <div className="border-b border-[#E6E1DA] pb-8 sm:pb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
+          <div className="space-y-1.5 sm:space-y-2">
+            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#8C4A32] block">
               Catálogo 35mm · Viajes & Mundo Ecuestre
             </span>
-            <h1 className="text-4xl sm:text-5xl font-serif font-normal text-[#141413]">
+            <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#141413]">
               Archivo Fotográfico
             </h1>
           </div>
@@ -79,17 +79,17 @@ export default function Prints({ onOpenZoom }) {
         </div>
 
         {/* Series Tabs + Filters Bar */}
-        <div className="space-y-6 pb-6 border-b border-[#E6E1DA]">
+        <div className="space-y-5 sm:space-y-6 pb-6 border-b border-[#E6E1DA]">
           
           {/* Primary Series Selector (Viajes vs Ecuestre) */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {SERIES_CATEGORIES.map((cat) => {
               const active = selectedSeries === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => handleSeriesChange(cat.id)}
-                  className={`px-5 py-2.5 text-xs font-mono uppercase tracking-[0.18em] border transition-colors ${
+                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-mono uppercase tracking-[0.14em] sm:tracking-[0.18em] border transition-colors ${
                     active
                       ? 'bg-[#141413] text-[#FAF8F5] border-[#141413]'
                       : 'bg-transparent text-[#6E6A63] border-[#E6E1DA] hover:border-[#141413] hover:text-[#141413]'
@@ -102,13 +102,13 @@ export default function Prints({ onOpenZoom }) {
           </div>
 
           {/* Secondary Filters Row */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-2">
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#9C968E]">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pt-1">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-6">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#9C968E]">
                   Origen:
                 </span>
-                <div className="flex items-center gap-3 text-xs font-mono">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-mono">
                   <button
                     onClick={() => setSelectedLocation('all')}
                     className={`uppercase tracking-wider transition-colors ${
@@ -137,11 +137,11 @@ export default function Prints({ onOpenZoom }) {
 
               <span className="hidden sm:inline text-[#E6E1DA]">|</span>
 
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#9C968E]">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#9C968E]">
                   Orientación:
                 </span>
-                <div className="flex items-center gap-3 text-xs font-mono">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-mono">
                   {[
                     { id: 'all', label: 'Todas' },
                     { id: 'horizontal', label: 'Horizontal' },
@@ -164,8 +164,8 @@ export default function Prints({ onOpenZoom }) {
             </div>
 
             {/* Minimalist Search Input */}
-            <div className="flex items-center gap-4">
-              <div className="relative w-full md:w-64">
+            <div className="flex items-center justify-between sm:justify-start gap-4 w-full lg:w-auto">
+              <div className="relative flex-1 sm:w-64">
                 <Search className="w-3.5 h-3.5 text-[#9C968E] absolute left-0 top-1/2 -translate-y-1/2 stroke-[1.5]" />
                 <input
                   type="text"
@@ -195,13 +195,13 @@ export default function Prints({ onOpenZoom }) {
 
         {/* Works Grid */}
         {filteredProducts.length === 0 ? (
-          <div className="py-24 text-center space-y-4 border border-[#E6E1DA] bg-[#F4F0EA]/40 px-6">
-            <p className="text-2xl font-serif text-[#141413]">
+          <div className="py-16 sm:py-24 text-center space-y-4 border border-[#E6E1DA] bg-[#F4F0EA]/40 px-4 sm:px-6">
+            <p className="text-xl sm:text-2xl font-serif text-[#141413]">
               {selectedSeries === 'ecuestre'
                 ? 'Próximamente nuevas obras de la Serie Ecuestre & Caballos'
                 : 'No se encontraron obras con los criterios seleccionados'}
             </p>
-            <p className="text-xs text-[#6E6A63] max-w-md mx-auto font-light">
+            <p className="text-xs text-[#6E6A63] max-w-md mx-auto font-light leading-relaxed">
               {selectedSeries === 'ecuestre'
                 ? 'Actualmente estamos digitalizando y preparando las nuevas copias en 35mm de equitación y caballos. Puedes explorar la Serie Viajes o consultar directamente por encargos ecuestres.'
                 : 'Intenta restablecer los filtros para explorar todo el catálogo.'}
@@ -214,14 +214,14 @@ export default function Prints({ onOpenZoom }) {
                   setSelectedLocation('all');
                   setSelectedOrientation('all');
                 }}
-                className="px-6 py-3 bg-[#141413] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.18em]"
+                className="px-6 py-3 bg-[#141413] text-[#FAF8F5] text-[11px] sm:text-xs font-mono uppercase tracking-[0.18em]"
               >
                 Ver todo el archivo disponible
               </button>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-12 sm:gap-y-16">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} onOpenZoom={onOpenZoom} />
             ))}

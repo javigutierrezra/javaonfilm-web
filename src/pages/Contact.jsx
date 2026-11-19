@@ -17,35 +17,35 @@ export default function Contact() {
   };
 
   return (
-    <div className="pb-28 pt-10">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16">
+    <div className="pb-20 sm:pb-28 pt-6 sm:pt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 space-y-12 sm:space-y-16">
         
         {/* Header */}
-        <div className="border-b border-[#E6E1DA] pb-10 max-w-3xl space-y-3">
-          <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#8C4A32] block">
+        <div className="border-b border-[#E6E1DA] pb-8 sm:pb-10 max-w-3xl space-y-2.5 sm:space-y-3">
+          <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#8C4A32] block">
             Contacto & Encargos a Medida
           </span>
-          <h1 className="text-4xl sm:text-5xl font-serif font-normal text-[#141413]">
+          <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#141413]">
             Asesoría, dimensiones especiales o encargos.
           </h1>
-          <p className="text-sm text-[#6E6A63] font-light leading-relaxed pt-1">
+          <p className="text-xs sm:text-sm text-[#6E6A63] font-light leading-relaxed pt-1">
             Cada impresión y enmarcado se realiza a pedido. Si tienes dudas sobre qué medida o moldura elegir para tu espacio, o buscas una fotografía específica de las series de Viajes o Ecuestre, escríbenos directamente.
           </p>
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Minimalist Form */}
           <div className="lg:col-span-7">
             {submitted ? (
-              <div className="p-12 border border-[#E6E1DA] bg-[#FDFCFA] space-y-4">
+              <div className="p-6 sm:p-12 border border-[#E6E1DA] bg-[#FDFCFA] space-y-4">
                 <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
                   Confirmación
                 </span>
                 <h3 className="text-2xl font-serif text-[#141413]">Mensaje recibido</h3>
-                <p className="text-xs text-[#6E6A63] leading-relaxed font-light max-w-md">
-                  Gracias por escribir. Te responderé a la brevedad posible al correo <span className="text-[#141413] font-mono">{formData.email}</span>.
+                <p className="text-xs text-[#6E6A63] leading-relaxed font-light max-w-md break-words">
+                  Gracias por escribir. Te responderemos a la brevedad posible al correo <span className="text-[#141413] font-mono">{formData.email}</span>.
                 </p>
                 <div className="pt-4">
                   <button
@@ -53,15 +53,15 @@ export default function Contact() {
                       setSubmitted(false);
                       setFormData({ name: '', email: '', motive: 'Consulta sobre obra del archivo', message: '' });
                     }}
-                    className="px-6 py-3 bg-[#141413] text-[#FAF8F5] text-[11px] font-mono uppercase tracking-[0.18em]"
+                    className="w-full sm:w-auto px-6 py-3 bg-[#141413] text-[#FAF8F5] text-[11px] font-mono uppercase tracking-[0.18em]"
                   >
                     Enviar nueva consulta
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-2">
                     <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
                       Nombre
@@ -72,7 +72,7 @@ export default function Contact() {
                       placeholder="Tu nombre completo"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors"
+                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
                     />
                   </div>
 
@@ -86,7 +86,7 @@ export default function Contact() {
                       placeholder="nombre@dominio.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors"
+                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
                     />
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export default function Contact() {
                   <select
                     value={formData.motive}
                     onChange={(e) => setFormData({ ...formData, motive: e.target.value })}
-                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] focus:outline-none focus:border-[#141413] transition-colors"
+                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
                   >
                     <option value="Consulta sobre obra del archivo">Consulta sobre una obra del archivo</option>
                     <option value="Dimensiones o enmarcado a medida">Dimensiones o enmarcado a medida</option>
@@ -117,13 +117,13 @@ export default function Contact() {
                     placeholder="Indica la obra, medidas o detalles de tu consulta..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors resize-none"
+                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors resize-none rounded-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="px-10 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors"
+                  className="w-full sm:w-auto px-10 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors"
                 >
                   Enviar Consulta
                 </button>
@@ -132,7 +132,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Direct Channels */}
-          <div className="lg:col-span-5 space-y-8 lg:pl-8 lg:border-l border-[#E6E1DA]">
+          <div className="lg:col-span-5 space-y-6 sm:space-y-8 lg:pl-8 lg:border-l border-[#E6E1DA]">
             
             <div className="space-y-2 pb-6 border-b border-[#E6E1DA]">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
@@ -142,7 +142,7 @@ export default function Contact() {
                 href="https://wa.me/56968449779?text=Hola,%20quisiera%20consultar%20por%20una%20obra%20del%20archivo%20JavaOnFilm."
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+                className="inline-flex items-center gap-2 text-xl sm:text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
               >
                 <span>+56 9 6844 9779</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
@@ -160,7 +160,7 @@ export default function Contact() {
                 href="https://instagram.com/javaonfilm"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+                className="inline-flex items-center gap-2 text-xl sm:text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
               >
                 <span>@javaonfilm</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
@@ -176,7 +176,7 @@ export default function Contact() {
               </span>
               <a
                 href="mailto:javaonfilm@gmail.com"
-                className="block text-xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+                className="block text-lg sm:text-xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors break-all"
               >
                 javaonfilm@gmail.com
               </a>

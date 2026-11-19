@@ -8,12 +8,15 @@
   --gallery-border: #E6E1DA;
 }
 
+html,
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: #FAF8F5;
   color: #141413;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Custom Fine Art Framing Styles */

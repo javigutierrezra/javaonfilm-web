@@ -24,7 +24,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-6 py-24 text-center space-y-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-24 text-center space-y-4">
         <h2 className="text-2xl font-serif text-[#141413]">Obra no encontrada en el archivo</h2>
         <Link to="/prints" className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-[#141413] underline">
           Volver a la colección
@@ -116,13 +116,13 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       return 'border-0 frame-shadow ring-1 ring-[#E6E1DA]';
     }
     
-    let borderThickness = 'border-[10px] sm:border-[14px]';
+    let borderThickness = 'border-[8px] sm:border-[14px]';
     if (selectedFormat.id === 'frame-30x45') {
-      borderThickness = 'border-[8px] sm:border-[11px]';
+      borderThickness = 'border-[6px] sm:border-[11px]';
     } else if (selectedFormat.id === 'frame-40x60') {
-      borderThickness = 'border-[11px] sm:border-[15px]';
+      borderThickness = 'border-[9px] sm:border-[15px]';
     } else if (selectedFormat.id === 'frame-50x75') {
-      borderThickness = 'border-[14px] sm:border-[19px]';
+      borderThickness = 'border-[12px] sm:border-[19px]';
     }
 
     switch (selectedFrame.id) {
@@ -139,10 +139,10 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const getMatPaddingClass = () => {
     if (!selectedFormat.requiresFrame) return 'p-0';
     switch (selectedFormat.id) {
-      case 'frame-30x45': return 'p-2.5 sm:p-3.5';
-      case 'frame-40x60': return 'p-4 sm:p-5';
-      case 'frame-50x75': return 'p-5 sm:p-7';
-      default: return 'p-3 sm:p-4';
+      case 'frame-30x45': return 'p-2 sm:p-3.5';
+      case 'frame-40x60': return 'p-3 sm:p-5';
+      case 'frame-50x75': return 'p-4 sm:p-7';
+      default: return 'p-2.5 sm:p-4';
     }
   };
 
@@ -209,33 +209,33 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   };
 
   return (
-    <div className="pb-28 pt-8">
+    <div className="pb-20 sm:pb-28 pt-6 sm:pt-8">
       
       {/* Back navigation */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 mb-6 sm:mb-8">
         <Link
           to="/prints"
-          className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] hover:text-[#141413] transition-colors"
+          className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6E6A63] hover:text-[#141413] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5]" />
           <span>Volver a la colección</span>
         </Link>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 space-y-14 sm:space-y-20">
         
         {/* MAIN CONFIGURATION GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* LEFT COLUMN: EXHIBITION VIEWPORT */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 space-y-3.5 sm:space-y-4">
             
             {/* View Mode Toggle Bar */}
-            <div className="flex items-center justify-between border-b border-[#E6E1DA] pb-3">
-              <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E6E1DA] pb-3">
+              <div className="flex items-center gap-5 sm:gap-6">
                 <button
                   onClick={() => setPreviewMode('studio')}
-                  className={`text-[11px] font-mono uppercase tracking-[0.18em] transition-colors pb-1 ${
+                  className={`text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.18em] transition-colors pb-1 ${
                     previewMode === 'studio'
                       ? 'text-[#141413] border-b border-[#141413]'
                       : 'text-[#9C968E] hover:text-[#141413]'
@@ -245,7 +245,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </button>
                 <button
                   onClick={() => setPreviewMode('room')}
-                  className={`text-[11px] font-mono uppercase tracking-[0.18em] transition-colors pb-1 ${
+                  className={`text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.18em] transition-colors pb-1 ${
                     previewMode === 'room'
                       ? 'text-[#141413] border-b border-[#141413]'
                       : 'text-[#9C968E] hover:text-[#141413]'
@@ -255,13 +255,13 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </button>
               </div>
 
-              <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#9C968E]">
-                Escala relativa: {currentScalePct}%
+              <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[#9C968E]">
+                Escala: {currentScalePct}%
               </span>
             </div>
             
             {/* EXHIBITION CANVAS */}
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-6 sm:p-10 flex flex-col justify-center items-center relative overflow-hidden h-[480px] sm:h-[560px]">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-10 flex flex-col justify-center items-center relative overflow-hidden h-[360px] sm:h-[480px] md:h-[560px]">
               
               {/* Architectural Room Scale Backdrop */}
               {previewMode === 'room' && (
@@ -269,17 +269,17 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                   <div className="absolute inset-0 bg-gradient-to-b from-[#F4F0EA] via-[#EFEAE2] to-[#E6E0D6]" />
                   
                   {/* Minimalist Architectural Bench / Sofa Outline */}
-                  <div className="relative z-0 w-full flex flex-col items-center mb-3 px-12 opacity-60">
-                    <div className="w-[82%] sm:w-[76%] h-14 sm:h-16 bg-[#E5DEC9]/40 border-t border-x border-[#BFB8AC] relative flex">
+                  <div className="relative z-0 w-full flex flex-col items-center mb-2 sm:mb-3 px-6 sm:px-12 opacity-60">
+                    <div className="w-[86%] sm:w-[76%] h-11 sm:h-16 bg-[#E5DEC9]/40 border-t border-x border-[#BFB8AC] relative flex">
                       <div className="w-full h-full flex divide-x divide-[#BFB8AC]">
                         <div className="flex-1" />
                         <div className="flex-1" />
                         <div className="flex-1" />
                       </div>
-                      <div className="absolute -top-5 left-0 right-0 h-5 border-t border-x border-[#BFB8AC] bg-[#EAE4D7]/50" />
+                      <div className="absolute -top-4 sm:-top-5 left-0 right-0 h-4 sm:h-5 border-t border-x border-[#BFB8AC] bg-[#EAE4D7]/50" />
                     </div>
                     <div className="w-full h-[1px] bg-[#BFB8AC]" />
-                    <span className="text-[9px] font-mono text-[#6E6A63] mt-1.5 uppercase tracking-[0.2em]">
+                    <span className="text-[8px] sm:text-[9px] font-mono text-[#6E6A63] mt-1 sm:mt-1.5 uppercase tracking-[0.15em] sm:tracking-[0.2em] text-center">
                       Referencia Arquitectónica — Muro 200 cm
                     </span>
                   </div>
@@ -287,7 +287,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               )}
 
               {/* PROPORTIONALLY SCALED FRAME / PRINT */}
-              <div className="relative z-10 w-full h-full flex items-center justify-center p-2">
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-1 sm:p-2">
                 <div
                   style={previewMode === 'studio' ? getStudioElementStyle() : getRoomElementStyle()}
                   className="transition-all duration-500 ease-out flex items-center justify-center relative"
@@ -314,7 +314,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                   {/* Fullscreen Inspection Button */}
                   <button
                     onClick={() => onOpenZoom(product)}
-                    className="absolute top-3 right-3 p-2 bg-[#141413]/80 hover:bg-[#141413] text-[#FAF8F5] transition-colors z-20"
+                    className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 bg-[#141413]/80 hover:bg-[#141413] text-[#FAF8F5] transition-colors z-20"
                     title="Inspeccionar obra en pantalla completa"
                   >
                     <Maximize2 className="w-3.5 h-3.5 stroke-[1.5]" />
@@ -323,9 +323,9 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               </div>
 
               {/* Technical Caption inside Canvas */}
-              <div className="relative z-10 mt-2 text-center">
-                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-[#6E6A63]">
-                  {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : '· Papel Algodón Libre de Ácido'}
+              <div className="relative z-10 mt-1.5 sm:mt-2 text-center px-2">
+                <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#6E6A63] truncate">
+                  {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : '· Papel Algodón'}
                 </p>
               </div>
 
@@ -333,40 +333,40 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
           </div>
 
           {/* RIGHT COLUMN: CURATORIAL CONFIGURATION PANEL */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-6 sm:space-y-8">
             
             {/* Artwork Title & Metadata */}
-            <div className="border-b border-[#E6E1DA] pb-6 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#9C968E] block">
+            <div className="border-b border-[#E6E1DA] pb-5 sm:pb-6 space-y-2">
+              <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#9C968E] block">
                 {product.archiveCode || "ARCHIVE"} — {placeName}, {countryName} ({product.year})
               </span>
               <h1 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413]">
                 {product.title}
               </h1>
-              <p className="text-xs font-mono text-[#6E6A63] pt-1">
+              <p className="text-[11px] sm:text-xs font-mono text-[#6E6A63] pt-1">
                 Olympus mju I · Kodak Gold 200 · 35mm
               </p>
             </div>
 
             {/* Price Display */}
-            <div className="flex items-baseline justify-between border-b border-[#E6E1DA] pb-6">
+            <div className="flex items-baseline justify-between border-b border-[#E6E1DA] pb-5 sm:pb-6 gap-2">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#9C968E] block">
                   Valor de la Obra
                 </span>
-                <div className="text-2xl font-mono text-[#141413] mt-1">
+                <div className="text-xl sm:text-2xl font-mono text-[#141413] mt-1">
                   ${totalCLP.toLocaleString('es-CL')} CLP
                 </div>
               </div>
-              <span className="text-xs font-mono text-[#9C968E]">
+              <span className="text-[11px] sm:text-xs font-mono text-[#9C968E] shrink-0">
                 Aprox. ${totalUSD} USD
               </span>
             </div>
 
             {/* 1. ORIENTATION */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63]">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label className="text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6E6A63]">
                   01 / Orientación
                 </label>
                 <span className="text-[10px] font-mono text-[#9C968E]">
@@ -374,10 +374,10 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                 <button
                   onClick={() => setSelectedOrientation('horizontal')}
-                  className={`py-3 px-4 border text-xs font-mono uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-colors ${
+                  className={`py-3 px-3 sm:px-4 border text-[11px] sm:text-xs font-mono uppercase tracking-[0.12em] sm:tracking-[0.15em] flex items-center justify-center gap-2 transition-colors ${
                     selectedOrientation === 'horizontal'
                       ? 'border-[#141413] bg-[#141413] text-[#FAF8F5]'
                       : 'border-[#E6E1DA] bg-transparent text-[#141413] hover:border-[#141413]'
@@ -389,7 +389,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
                 <button
                   onClick={() => setSelectedOrientation('vertical')}
-                  className={`py-3 px-4 border text-xs font-mono uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-colors ${
+                  className={`py-3 px-3 sm:px-4 border text-[11px] sm:text-xs font-mono uppercase tracking-[0.12em] sm:tracking-[0.15em] flex items-center justify-center gap-2 transition-colors ${
                     selectedOrientation === 'vertical'
                       ? 'border-[#141413] bg-[#141413] text-[#FAF8F5]'
                       : 'border-[#E6E1DA] bg-transparent text-[#141413] hover:border-[#141413]'
@@ -403,12 +403,12 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
             {/* FIT MODE (If orientation differs from native) */}
             {isOrientationMismatched && (
-              <div className="space-y-3 p-5 border border-[#E6E1DA] bg-[#F4F0EA]/50">
-                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#141413] block">
+              <div className="space-y-3 p-4 sm:p-5 border border-[#E6E1DA] bg-[#F4F0EA]/50">
+                <label className="text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#141413] block">
                   Adaptación de Encuadre
                 </label>
 
-                <div className="grid grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <button
                     onClick={() => setFitMode('margin')}
                     className={`p-3 border text-left transition-colors ${
@@ -439,9 +439,9 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                 </div>
 
                 {fitMode === 'crop' && (
-                  <div className="pt-2 flex items-center justify-between gap-2">
+                  <div className="pt-2 flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[#6E6A63]">Foco:</span>
-                    <div className="flex gap-1.5">
+                    <div className="flex flex-wrap gap-1.5">
                       {(product.orientation === 'horizontal'
                         ? [
                             { id: 'top', label: 'Arriba' },
@@ -474,7 +474,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
             {/* 2. FORMAT & DIMENSIONS */}
             <div className="space-y-3">
-              <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+              <label className="text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6E6A63] block">
                 02 / Formato & Dimensiones
               </label>
               <div className="divide-y divide-[#E6E1DA] border-y border-[#E6E1DA]">
@@ -484,21 +484,21 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                     <button
                       key={fmt.id}
                       onClick={() => setSelectedFormat(fmt)}
-                      className={`w-full py-3.5 px-3 flex items-center justify-between text-xs transition-colors ${
+                      className={`w-full py-3.5 px-2.5 sm:px-3 flex items-center justify-between gap-2 text-xs transition-colors ${
                         isSelected
                           ? 'bg-[#F4F0EA] text-[#141413] font-medium'
                           : 'bg-transparent text-[#6E6A63] hover:text-[#141413]'
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 text-left">
                         <span
-                          className={`w-2 h-2 rounded-full border ${
+                          className={`w-2 h-2 rounded-full border shrink-0 ${
                             isSelected ? 'bg-[#141413] border-[#141413]' : 'border-[#9C968E]'
                           }`}
                         />
-                        <span>{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
+                        <span className="truncate">{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
                       </div>
-                      <span className="font-mono text-xs text-[#141413]">
+                      <span className="font-mono text-[11px] sm:text-xs text-[#141413] whitespace-nowrap shrink-0">
                         ${fmt.priceCLP.toLocaleString('es-CL')} CLP
                       </span>
                     </button>
@@ -510,17 +510,17 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
             {/* 3. FRAME MOLDING SELECTION */}
             {selectedFormat.requiresFrame && (
               <div className="space-y-3">
-                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                <label className="text-[10px] font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6E6A63] block">
                   03 / Terminación del Marco
                 </label>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {FRAME_OPTIONS.map((frame) => {
                     const isSelected = selectedFrame.id === frame.id;
                     return (
                       <button
                         key={frame.id}
                         onClick={() => setSelectedFrame(frame)}
-                        className={`py-3 px-3 border flex items-center justify-center gap-2 transition-colors ${
+                        className={`py-2.5 sm:py-3 px-2 sm:px-3 border flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 transition-colors ${
                           isSelected
                             ? 'border-[#141413] bg-[#F4F0EA] text-[#141413]'
                             : 'border-[#E6E1DA] bg-transparent text-[#6E6A63] hover:border-[#141413]'
@@ -530,7 +530,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                           className="w-3.5 h-3.5 rounded-full border border-[#CFC8BC] shrink-0"
                           style={{ backgroundColor: frame.colorHex }}
                         />
-                        <span className="text-[11px] font-mono">
+                        <span className="text-[10px] sm:text-[11px] font-mono text-center leading-tight">
                           {frame.name}
                         </span>
                       </button>
@@ -541,10 +541,10 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
             )}
 
             {/* PURCHASE / INQUIRY ACTIONS */}
-            <div className="pt-4 space-y-3">
+            <div className="pt-3 sm:pt-4 space-y-3">
               <button
                 onClick={handleWhatsAppQuote}
-                className="w-full py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3.5 sm:py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-[11px] sm:text-xs font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
               >
                 <span>Encargar Obra</span>
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5]" />
@@ -552,7 +552,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
               <button
                 onClick={handleAddToCart}
-                className="w-full py-3.5 bg-transparent hover:bg-[#F4F0EA] text-[#141413] border border-[#E6E1DA] text-[11px] font-mono uppercase tracking-[0.18em] transition-colors"
+                className="w-full py-3.5 bg-transparent hover:bg-[#F4F0EA] text-[#141413] border border-[#E6E1DA] text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.18em] transition-colors"
               >
                 Añadir a la Selección
               </button>
@@ -563,9 +563,9 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
         </div>
 
         {/* CURATORIAL NOTE / ABOUT THE PHOTOGRAPH */}
-        <section className="border-t border-[#E6E1DA] pt-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <section className="border-t border-[#E6E1DA] pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
           <div className="lg:col-span-4 space-y-1.5">
-            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
               {product.seriesLabel || 'Archivo 35mm'} · Nota de la Obra
             </span>
             <h2 className="text-2xl font-serif font-normal text-[#141413]">
@@ -573,26 +573,26 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
             </h2>
           </div>
 
-          <div className="lg:col-span-8 space-y-8">
-            <p className="text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8">
+            <p className="text-sm sm:text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
               {product.story}
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-[#E6E1DA] text-xs font-mono">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#E6E1DA] text-xs font-mono">
               <div>
-                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Cámara</span>
+                <span className="block text-[9px] uppercase tracking-[0.18em] text-[#9C968E]">Cámara</span>
                 <span className="text-[#141413] mt-1 block">Olympus mju I</span>
               </div>
               <div>
-                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Película</span>
+                <span className="block text-[9px] uppercase tracking-[0.18em] text-[#9C968E]">Película</span>
                 <span className="text-[#141413] mt-1 block">Kodak Gold 200</span>
               </div>
               <div>
-                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Negativo Original</span>
+                <span className="block text-[9px] uppercase tracking-[0.18em] text-[#9C968E]">Negativo Original</span>
                 <span className="text-[#141413] mt-1 block">35mm ({product.orientation === 'horizontal' ? 'Horizontal' : 'Vertical'})</span>
               </div>
               <div>
-                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Año</span>
+                <span className="block text-[9px] uppercase tracking-[0.18em] text-[#9C968E]">Año</span>
                 <span className="text-[#141413] mt-1 block">{product.year}</span>
               </div>
             </div>
