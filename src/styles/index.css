@@ -3,98 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --brand-terracotta: #C85A32;
-  --coffee-dark: #2A1E17;
-  --cream-bg: #F6F1E7;
+  --gallery-bg: #FAF8F5;
+  --gallery-ink: #141413;
+  --gallery-border: #E6E1DA;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #F6F1E7;
-  color: #181411;
-  background-image: radial-gradient(#2A1E17 0.45px, transparent 0.45px);
-  background-size: 28px 28px;
-  background-color: #F6F1E7;
-}
-
-/* Texture overlay for printed paper / subtle film grain feel */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-color: #FAF8F5;
+  color: #141413;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Fine Art Framing Styles */
 .frame-container {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.frame-mockup {
-  box-shadow: 0 25px 50px -12px rgba(42, 30, 23, 0.28);
-  transition: all 0.35s ease;
+.frame-shadow {
+  box-shadow: 
+    0 20px 45px -15px rgba(20, 20, 19, 0.18),
+    0 4px 12px -2px rgba(20, 20, 19, 0.08);
 }
 
-.frame-border-black {
-  border: 18px solid #181411;
-  outline: 1px solid #362920;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 20px 30px -10px rgba(42, 30, 23, 0.3);
-  background: #FAF7F0;
-  padding: 20px;
-}
-
-.frame-border-wood {
-  border: 20px solid #8C6246;
-  outline: 1px solid #5C3D28;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 20px 30px -10px rgba(42, 30, 23, 0.3);
-  background: #FDFBF7;
-  padding: 20px;
-}
-
-.frame-border-walnut {
-  border: 20px solid #362317;
-  outline: 1px solid #1F130B;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 20px 30px -10px rgba(31, 19, 11, 0.4);
-  background: #FDFBF7;
-  padding: 20px;
-}
-
-.frame-border-white {
-  border: 18px solid #EFE8DC;
-  outline: 1px solid #DFD6C6;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.06), 0 20px 30px -10px rgba(42, 30, 23, 0.15);
-  background: #FFFFFF;
-  padding: 20px;
-}
-
-.frame-border-none {
-  border: 0px solid transparent;
-  padding: 0px;
-  box-shadow: 0 12px 28px -6px rgba(42, 30, 23, 0.2);
-}
-
-.passepartout {
-  background-color: #FAF6EE;
-  box-shadow: inset 0 0 8px rgba(42, 30, 23, 0.08);
+.passepartout-inner {
+  box-shadow: inset 0 1px 4px rgba(20, 20, 19, 0.08);
 }
 
 /* Archival Metadata Stamp */
 .archive-stamp {
   font-family: 'Space Mono', monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #736B63;
+  color: #6E6A63;
 }
 
-/* Subtle double line divider reminiscent of vintage photography publications */
-.editorial-divider {
-  border-top: 1px solid #E4DCD0;
-  border-bottom: 1px solid #E4DCD0;
-  height: 4px;
-}

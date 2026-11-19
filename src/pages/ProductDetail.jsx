@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS, FORMAT_OPTIONS, FRAME_OPTIONS, STORE_CONFIG } from '../data/products';
-import { Maximize2, ShoppingBag, ArrowLeft, Film, MessageCircle, Info, Layers, Eye, Home } from 'lucide-react';
+import { Maximize2, ArrowLeft, ArrowUpRight } from 'lucide-react';
 
 export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   // Find product
   const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
@@ -15,19 +14,21 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const [selectedOrientation, setSelectedOrientation] = useState(initialOrientation);
   const [selectedFormat, setSelectedFormat] = useState(FORMAT_OPTIONS[2]); // Default: Enmarcado 30x45 / 45x30
   const [selectedFrame, setSelectedFrame] = useState(FRAME_OPTIONS[1]);   // Default: Madera natural
-  
-  // Fit Mode State (for when selected orientation differs from native photo orientation)
-  const [fitMode, setFitMode] = useState('margin'); // 'margin' (Foto completa con margen) or 'crop' (Recortar para llenar)
-  const [cropPosition, setCropPosition] = useState('center'); // 'center', 'top', 'bottom', 'left', 'right'
 
-  // View Mode: 'studio' (Close-up detail) vs 'room' (Living room wall with sofa scale)
+  // Fit Mode State (for when selected orientation differs from native photo orientation)
+  const [fitMode, setFitMode] = useState('margin'); // 'margin' or 'crop'
+  const [cropPosition, setCropPosition] = useState('center');
+
+  // View Mode: 'studio' vs 'room'
   const [previewMode, setPreviewMode] = useState('studio');
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-serif font-bold text-[#2A1E17]">Fotografía no encontrada en el archivo</h2>
-        <Link to="/prints" className="mt-4 inline-block text-[#C85A32] font-mono text-sm font-bold">Volver al archivo</Link>
+      <div className="max-w-7xl mx-auto px-6 py-24 text-center space-y-4">
+        <h2 className="text-2xl font-serif text-[#141413]">Obra no encontrada en el archivo</h2>
+        <Link to="/prints" className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-[#141413] underline">
+          Volver a la colección
+        </Link>
       </div>
     );
   }
@@ -36,7 +37,6 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   const countryName = product.country || product.location?.split(',')[1]?.trim() || '';
   const isOrientationMismatched = selectedOrientation !== product.orientation;
 
-  // Helper for size label based on selected orientation
   const getFormattedSizeLabel = (fmt, orientation) => {
     if (orientation === 'horizontal') {
       switch (fmt.id) {
@@ -61,98 +61,91 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
   const formattedSizeLabel = getFormattedSizeLabel(selectedFormat, selectedOrientation);
 
-  // Total price
   const totalCLP = selectedFormat.priceCLP;
   const totalUSD = selectedFormat.priceUSD;
 
-  // Scale Percentage relative to maximum format (50x75 cm)
   const getScalePercentage = (fmtId) => {
     switch (fmtId) {
-      case 'print-20x30': return 42;
+      case 'print-20x30': return 44;
       case 'print-30x45': return 60;
       case 'frame-30x45': return 66;
       case 'frame-40x60': return 82;
-      case 'frame-50x75': return 98;
+      case 'frame-50x75': return 96;
       default: return 66;
     }
   };
 
   const currentScalePct = getScalePercentage(selectedFormat.id);
 
-  // Helper for sizing container style in Studio preview
   const getStudioElementStyle = () => {
     const scale = currentScalePct;
     if (selectedOrientation === 'horizontal') {
       return {
         width: `${scale}%`,
         aspectRatio: '3 / 2',
-        maxHeight: '85%'
+        maxHeight: '84%'
       };
     } else {
       return {
         height: `${scale}%`,
         aspectRatio: '2 / 3',
-        maxWidth: '85%'
+        maxWidth: '84%'
       };
     }
   };
 
-  // Helper for sizing container style in Living Room Wall preview
   const getRoomElementStyle = () => {
-    const roomScale = currentScalePct * 0.9;
+    const roomScale = currentScalePct * 0.88;
     if (selectedOrientation === 'horizontal') {
       return {
-        width: `${roomScale * 0.8}%`,
+        width: `${roomScale * 0.78}%`,
         aspectRatio: '3 / 2',
-        maxHeight: '55%'
+        maxHeight: '54%'
       };
     } else {
       return {
-        height: `${roomScale * 0.7}%`,
+        height: `${roomScale * 0.68}%`,
         aspectRatio: '2 / 3',
-        maxWidth: '65%'
+        maxWidth: '62%'
       };
     }
   };
 
-  // Dynamic frame thickness helper
   const getFrameCssClass = () => {
     if (!selectedFormat.requiresFrame) {
-      return 'border-0 shadow-2xl ring-1 ring-[#D5C9B8]/40';
+      return 'border-0 frame-shadow ring-1 ring-[#E6E1DA]';
     }
     
-    let borderThickness = 'border-[12px] sm:border-[16px]';
+    let borderThickness = 'border-[10px] sm:border-[14px]';
     if (selectedFormat.id === 'frame-30x45') {
-      borderThickness = 'border-[8px] sm:border-[12px]';
+      borderThickness = 'border-[8px] sm:border-[11px]';
     } else if (selectedFormat.id === 'frame-40x60') {
-      borderThickness = 'border-[12px] sm:border-[16px]';
+      borderThickness = 'border-[11px] sm:border-[15px]';
     } else if (selectedFormat.id === 'frame-50x75') {
-      borderThickness = 'border-[16px] sm:border-[22px]';
+      borderThickness = 'border-[14px] sm:border-[19px]';
     }
 
     switch (selectedFrame.id) {
       case 'black':
-        return `${borderThickness} border-[#181411] shadow-2xl`;
+        return `${borderThickness} border-[#181716] frame-shadow`;
       case 'white':
-        return `${borderThickness} border-[#FDFBF7] shadow-2xl ring-1 ring-[#D5C9B8]`;
+        return `${borderThickness} border-[#FAF8F5] frame-shadow ring-1 ring-[#DED8CE]`;
       case 'natural-wood':
       default:
-        return `${borderThickness} border-[#8C6246] shadow-2xl`;
+        return `${borderThickness} border-[#7D5A3F] frame-shadow`;
     }
   };
 
-  // Dynamic mat padding helper
   const getMatPaddingClass = () => {
     if (!selectedFormat.requiresFrame) return 'p-0';
     switch (selectedFormat.id) {
-      case 'frame-30x45': return 'p-2 sm:p-3';
-      case 'frame-40x60': return 'p-3.5 sm:p-5';
+      case 'frame-30x45': return 'p-2.5 sm:p-3.5';
+      case 'frame-40x60': return 'p-4 sm:p-5';
       case 'frame-50x75': return 'p-5 sm:p-7';
       default: return 'p-3 sm:p-4';
     }
   };
 
-  // Object position helper for crop mode
   const getCropPositionClass = () => {
     switch (cropPosition) {
       case 'top': return 'object-top';
@@ -165,10 +158,10 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
   };
 
   const handleAddToCart = () => {
-    const frameLabel = selectedFormat.requiresFrame ? selectedFrame.name : 'Sin Marco (Lámina Solo)';
+    const frameLabel = selectedFormat.requiresFrame ? `Marco ${selectedFrame.name}` : 'Papel Fine Art (Sin Marco)';
     const fitLabel = isOrientationMismatched
-      ? (fitMode === 'margin' ? 'Foto completa con margen' : `Recortar para llenar (${cropPosition})`)
-      : 'Encuadre Original';
+      ? (fitMode === 'margin' ? 'Completa con margen' : `Recorte lleno (${cropPosition})`)
+      : 'Proporción Original';
 
     const cartItem = {
       id: product.id,
@@ -191,136 +184,125 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
     const fullImageUrl = window.location.origin + product.image;
     const pageUrl = window.location.href;
     const orientationText = selectedOrientation === 'horizontal' ? 'Horizontal' : 'Vertical';
-    const frameText = selectedFormat.requiresFrame ? `Marco: ${selectedFrame.name}` : 'Lámina Fine Art (Sin marco)';
+    const frameText = selectedFormat.requiresFrame ? `Marco ${selectedFrame.name}` : 'Papel Fine Art (Sin marco)';
     const fitText = isOrientationMismatched
-      ? (fitMode === 'margin' ? 'Foto completa con margen' : `Recortar para llenar (Enfoque: ${cropPosition})`)
+      ? (fitMode === 'margin' ? 'Obra completa con margen' : `Cubrir formato (${cropPosition})`)
       : 'Encuadre Original';
 
-    let text = `📸 *SOLICITUD DE COMPRA / ENCARGO — JavaOnFilm*%0A`;
+    let text = `*SOLICITUD DE OBRA — JAVA ON FILM*%0A`;
     text += `----------------------------------------%0A`;
-    text += `🖼️ *Fotografía:* ${product.title} (${product.archiveCode || 'PHOTO'})%0A`;
-    text += `📍 *Lugar:* ${placeName}, ${countryName} (${product.year})%0A`;
-    text += `🎞️ *Especificaciones:* Olympus mju I · Kodak Gold 200 · 35mm%0A%0A`;
-    text += `📐 *Selección del Cliente:*%0A`;
+    text += `• *Obra:* ${product.title} (${product.archiveCode || 'ARCHIVE'})%0A`;
+    text += `• *Ubicación:* ${placeName}, ${countryName} (${product.year})%0A`;
+    text += `• *Negativo:* Olympus mju I · Kodak Gold 200 · 35mm%0A%0A`;
+    text += `*Configuración Seleccionada:*%0A`;
     text += `• *Orientación:* ${orientationText}%0A`;
-    text += `• *Formato / Medida:* ${formattedSizeLabel}%0A`;
-    text += `• *Acabado:* ${frameText}%0A`;
-    text += `• *Ajuste de Imagen:* ${fitText}%0A%0A`;
-    text += `💰 *Valor:* $${totalCLP.toLocaleString('es-CL')} CLP (~$${totalUSD} USD)%0A%0A`;
-    text += `🖼️ *Fotografía HD:* ${fullImageUrl}%0A`;
-    text += `🔗 *Enlace:* ${pageUrl}%0A%0A`;
-    text += `¡Hola! Quisiera encargar esta fotografía y coordinar el despacho.`;
+    text += `• *Formato:* ${formattedSizeLabel}%0A`;
+    text += `• *Terminación:* ${frameText}%0A`;
+    text += `• *Encuadre:* ${fitText}%0A%0A`;
+    text += `*Valor:* $${totalCLP.toLocaleString('es-CL')} CLP (~$${totalUSD} USD)%0A%0A`;
+    text += `• *Referencia:* ${fullImageUrl}%0A`;
+    text += `• *Ficha:* ${pageUrl}%0A%0A`;
+    text += `Hola, me gustaría encargar esta obra y coordinar el envío.`;
 
     const phone = STORE_CONFIG.whatsAppNumber || "56968449779";
     window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   };
 
   return (
-    <div className="pb-24 pt-4">
+    <div className="pb-28 pt-8">
       
-      {/* Back button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      {/* Back navigation */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-8">
         <Link
           to="/prints"
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#736B63] hover:text-[#C85A32] transition-colors"
+          className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] hover:text-[#141413] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Volver al archivo de fotografías</span>
+          <ArrowLeft className="w-3.5 h-3.5 stroke-[1.5]" />
+          <span>Volver a la colección</span>
         </Link>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-20">
         
-        {/* TOP SECTION: PHOTO PROTAGONIST & SELECTION PANEL */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* MAIN CONFIGURATION GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* LEFT COLUMN: LARGE PROTAGONIST PHOTO DISPLAY & VIEW CONTROLS */}
+          {/* LEFT COLUMN: EXHIBITION VIEWPORT */}
           <div className="lg:col-span-7 space-y-4">
             
-            {/* VIEW MODE TOGGLE BUTTONS */}
-            <div className="flex items-center justify-between bg-[#FAF6EE] p-1.5 rounded-xl border border-[#E4DCD0]">
-              <div className="flex items-center gap-1">
+            {/* View Mode Toggle Bar */}
+            <div className="flex items-center justify-between border-b border-[#E6E1DA] pb-3">
+              <div className="flex items-center gap-6">
                 <button
                   onClick={() => setPreviewMode('studio')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                  className={`text-[11px] font-mono uppercase tracking-[0.18em] transition-colors pb-1 ${
                     previewMode === 'studio'
-                      ? 'bg-[#2A1E17] text-white shadow'
-                      : 'text-[#736B63] hover:text-[#2A1E17]'
+                      ? 'text-[#141413] border-b border-[#141413]'
+                      : 'text-[#9C968E] hover:text-[#141413]'
                   }`}
                 >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>Vista Marco</span>
+                  Vista Estudio
                 </button>
                 <button
                   onClick={() => setPreviewMode('room')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                  className={`text-[11px] font-mono uppercase tracking-[0.18em] transition-colors pb-1 ${
                     previewMode === 'room'
-                      ? 'bg-[#2A1E17] text-white shadow'
-                      : 'text-[#736B63] hover:text-[#2A1E17]'
+                      ? 'text-[#141413] border-b border-[#141413]'
+                      : 'text-[#9C968E] hover:text-[#141413]'
                   }`}
                 >
-                  <Home className="w-3.5 h-3.5" />
-                  <span>Escala en Pared (Sofá)</span>
+                  Escala en Muro
                 </button>
               </div>
 
-              {/* Dynamic Scale Indicator Badge */}
-              <div className="text-[11px] font-mono font-semibold text-[#C85A32] px-3 py-1 bg-[#EFE5D5] rounded-md border border-[#E4DCD0] shrink-0">
-                Proporción real: {currentScalePct}%
-              </div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#9C968E]">
+                Escala relativa: {currentScalePct}%
+              </span>
             </div>
             
-            {/* LARGE MOCKUP CONTAINER WITH FIXED CANVAS AND PROPORTIONAL SCALING */}
-            <div className="bg-[#FAF6EE] rounded-2xl border border-[#E4DCD0] p-4 sm:p-6 shadow-sm flex flex-col justify-center items-center relative overflow-hidden h-[460px] sm:h-[540px]">
+            {/* EXHIBITION CANVAS */}
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-6 sm:p-10 flex flex-col justify-center items-center relative overflow-hidden h-[480px] sm:h-[560px]">
               
-              {/* STUDIO VIEW BACKDROP */}
-              {previewMode === 'studio' && (
-                <div className="absolute inset-0 bg-radial-vignette opacity-30 pointer-events-none" />
-              )}
-
-              {/* ROOM VIEW BACKDROP (WALL & SOFA GRAPHIC) */}
+              {/* Architectural Room Scale Backdrop */}
               {previewMode === 'room' && (
                 <div className="absolute inset-0 flex flex-col justify-end pointer-events-none">
-                  {/* Subtle Wall Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#FAF6EE] via-[#F4EFE6] to-[#EAE2D5] opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#F4F0EA] via-[#EFEAE2] to-[#E6E0D6]" />
                   
-                  {/* Sofa Illustration Outline */}
-                  <div className="relative z-0 w-full flex flex-col items-center mb-2 px-8 opacity-45">
-                    {/* Sofa cushions outline */}
-                    <div className="w-[85%] sm:w-[80%] h-16 sm:h-20 bg-[#D8CEBF] rounded-t-2xl border-t-2 border-x-2 border-[#B8AC9A] relative flex items-center justify-center">
-                      <div className="w-full h-full flex divide-x-2 divide-[#B8AC9A]">
-                        <div className="flex-1"></div>
-                        <div className="flex-1"></div>
-                        <div className="flex-1"></div>
+                  {/* Minimalist Architectural Bench / Sofa Outline */}
+                  <div className="relative z-0 w-full flex flex-col items-center mb-3 px-12 opacity-60">
+                    <div className="w-[82%] sm:w-[76%] h-14 sm:h-16 bg-[#E5DEC9]/40 border-t border-x border-[#BFB8AC] relative flex">
+                      <div className="w-full h-full flex divide-x divide-[#BFB8AC]">
+                        <div className="flex-1" />
+                        <div className="flex-1" />
+                        <div className="flex-1" />
                       </div>
-                      <div className="absolute -top-6 left-0 right-0 h-8 bg-[#C8BCAF] rounded-t-xl border-t-2 border-x-2 border-[#B8AC9A]"></div>
+                      <div className="absolute -top-5 left-0 right-0 h-5 border-t border-x border-[#BFB8AC] bg-[#EAE4D7]/50" />
                     </div>
-                    {/* Floor shadow line */}
-                    <div className="w-full h-1 bg-[#B8AC9A]/50 mt-1 rounded-full"></div>
-                    <span className="text-[9px] font-mono text-[#736B63] mt-1 uppercase tracking-wider">
-                      Referencia: Muro de estar con Sofá (200 cm)
+                    <div className="w-full h-[1px] bg-[#BFB8AC]" />
+                    <span className="text-[9px] font-mono text-[#6E6A63] mt-1.5 uppercase tracking-[0.2em]">
+                      Referencia Arquitectónica — Muro 200 cm
                     </span>
                   </div>
                 </div>
               )}
 
-              {/* PROPORTIONALLY SCALED FRAME / PRINT ELEMENT */}
+              {/* PROPORTIONALLY SCALED FRAME / PRINT */}
               <div className="relative z-10 w-full h-full flex items-center justify-center p-2">
                 <div
                   style={previewMode === 'studio' ? getStudioElementStyle() : getRoomElementStyle()}
-                  className="transition-all duration-500 ease-out flex items-center justify-center relative shadow-2xl"
+                  className="transition-all duration-500 ease-out flex items-center justify-center relative"
                 >
                   {/* Frame / Paper Outer Shell */}
-                  <div className={`w-full h-full transition-all duration-500 rounded-sm overflow-hidden flex items-center justify-center ${getFrameCssClass()}`}>
+                  <div className={`w-full h-full transition-all duration-500 overflow-hidden flex items-center justify-center ${getFrameCssClass()}`}>
                     
                     {/* Passepartout / Inner Mat Container */}
-                    <div className={`w-full h-full flex items-center justify-center bg-[#FAF6EE] transition-all duration-500 ${getMatPaddingClass()}`}>
+                    <div className={`w-full h-full flex items-center justify-center bg-[#FAF8F5] passepartout-inner transition-all duration-500 ${getMatPaddingClass()}`}>
                       
                       {/* Photo Image */}
                       <img
                         src={product.image}
                         alt={product.title}
-                        className={`w-full h-full transition-all duration-500 rounded-sm ${
+                        className={`w-full h-full transition-all duration-500 ${
                           isOrientationMismatched && fitMode === 'crop'
                             ? `object-cover ${getCropPositionClass()}`
                             : 'object-contain'
@@ -329,330 +311,290 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                     </div>
                   </div>
 
-                  {/* Full HD Zoom Action Button */}
+                  {/* Fullscreen Inspection Button */}
                   <button
                     onClick={() => onOpenZoom(product)}
-                    className="absolute top-2 right-2 p-2.5 bg-[#2A1E17]/85 hover:bg-[#2A1E17] text-white rounded-full backdrop-blur-md shadow-lg transition-transform hover:scale-110 z-20"
-                    title="Ver Fotografía Completa HD"
+                    className="absolute top-3 right-3 p-2 bg-[#141413]/80 hover:bg-[#141413] text-[#FAF8F5] transition-colors z-20"
+                    title="Inspeccionar obra en pantalla completa"
                   >
-                    <Maximize2 className="w-4 h-4" />
+                    <Maximize2 className="w-3.5 h-3.5 stroke-[1.5]" />
                   </button>
                 </div>
               </div>
 
-              {/* FOOTER LABEL BELOW MOCKUP */}
-              <div className="relative z-10 mt-2 text-center space-y-0.5 bg-[#FAF6EE]/90 backdrop-blur px-4 py-1.5 rounded-full border border-[#E4DCD0] shadow-sm">
-                <p className="text-xs text-[#2A1E17] font-mono font-bold">
-                  {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : '· Lámina Fine Art'}
+              {/* Technical Caption inside Canvas */}
+              <div className="relative z-10 mt-2 text-center">
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-[#6E6A63]">
+                  {formattedSizeLabel} {selectedFormat.requiresFrame ? `· Marco ${selectedFrame.name}` : '· Papel Algodón Libre de Ácido'}
                 </p>
-                {isOrientationMismatched && (
-                  <p className="text-[10px] font-mono text-[#C85A32]">
-                    Ajuste: {fitMode === 'margin' ? 'Foto completa con margen' : `Recortar para llenar (${cropPosition})`}
-                  </p>
-                )}
               </div>
 
             </div>
-
           </div>
 
-          {/* RIGHT COLUMN: SELECTION & PURCHASING PANEL */}
-          <div className="lg:col-span-5 space-y-6 sticky top-24">
+          {/* RIGHT COLUMN: CURATORIAL CONFIGURATION PANEL */}
+          <div className="lg:col-span-5 space-y-8">
             
-            <div className="bg-[#FAF6EE] p-6 sm:p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-6">
-              
-              {/* Header Info */}
+            {/* Artwork Title & Metadata */}
+            <div className="border-b border-[#E6E1DA] pb-6 space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#9C968E] block">
+                {product.archiveCode || "ARCHIVE"} — {placeName}, {countryName} ({product.year})
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413]">
+                {product.title}
+              </h1>
+              <p className="text-xs font-mono text-[#6E6A63] pt-1">
+                Olympus mju I · Kodak Gold 200 · 35mm
+              </p>
+            </div>
+
+            {/* Price Display */}
+            <div className="flex items-baseline justify-between border-b border-[#E6E1DA] pb-6">
               <div>
-                <span className="text-xs font-mono text-[#C85A32] uppercase tracking-widest block font-bold">
-                  {product.archiveCode || "PHOTO"} · {placeName}, {countryName}
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                  Valor de la Obra
                 </span>
-                <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#2A1E17] mt-1">
-                  {product.title}
-                </h1>
-                
-                {/* Tech Badge Specified by User */}
-                <div className="inline-flex items-center gap-2 mt-3 px-3 py-1 bg-[#EFE5D5] border border-[#E4DCD0] rounded-full text-xs font-mono font-semibold text-[#2A1E17]">
-                  <Film className="w-3.5 h-3.5 text-[#C85A32]" />
-                  <span>Olympus mju I · Kodak Gold 200 · 35mm</span>
+                <div className="text-2xl font-mono text-[#141413] mt-1">
+                  ${totalCLP.toLocaleString('es-CL')} CLP
                 </div>
               </div>
+              <span className="text-xs font-mono text-[#9C968E]">
+                Aprox. ${totalUSD} USD
+              </span>
+            </div>
 
-              {/* Price Computation Display */}
-              <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0] flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-mono text-[#736B63] uppercase tracking-wider block">Valor de la pieza</span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#2A1E17]">
-                    ${totalCLP.toLocaleString('es-CL')} <span className="text-xs font-bold text-[#C85A32]">CLP</span>
-                  </div>
-                  <span className="text-xs font-mono text-[#736B63] block">(~${totalUSD} USD)</span>
-                </div>
-
-                <div className="text-right text-[11px] font-mono text-[#6E4B37] bg-[#EFE5D5] px-3 py-1.5 rounded-lg border border-[#E4DCD0]">
-                  Pieza física original
-                </div>
-              </div>
-
-              {/* 1. ORIENTATION SELECTION */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
-                    1. Orientación del Cuadro
-                  </label>
-                  {product.orientation && (
-                    <span className="text-[10px] font-mono text-[#C85A32] bg-[#EFE5D5] px-2 py-0.5 rounded">
-                      Original: {product.orientation === 'horizontal' ? 'Horizontal' : 'Vertical'}
-                    </span>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => setSelectedOrientation('horizontal')}
-                    className={`p-3 rounded-lg border text-xs font-semibold flex items-center justify-center gap-2 transition-all ${
-                      selectedOrientation === 'horizontal'
-                        ? 'border-[#C85A32] bg-[#F6EAE1] text-[#C85A32] font-bold ring-2 ring-[#C85A32]'
-                        : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
-                    }`}
-                  >
-                    <span className="w-5 h-3.5 border-2 border-current rounded-sm shrink-0"></span>
-                    <span>Horizontal</span>
-                  </button>
-
-                  <button
-                    onClick={() => setSelectedOrientation('vertical')}
-                    className={`p-3 rounded-lg border text-xs font-semibold flex items-center justify-center gap-2 transition-all ${
-                      selectedOrientation === 'vertical'
-                        ? 'border-[#C85A32] bg-[#F6EAE1] text-[#C85A32] font-bold ring-2 ring-[#C85A32]'
-                        : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
-                    }`}
-                  >
-                    <span className="w-3.5 h-5 border-2 border-current rounded-sm shrink-0"></span>
-                    <span>Vertical</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* FIT MODE SELECTION (Shown when selected orientation differs from original photo orientation) */}
-              {isOrientationMismatched && (
-                <div className="space-y-3 pt-2 bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0]">
-                  <div className="space-y-1">
-                    <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#C85A32] flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5" />
-                      <span>Ajuste de Imagen (Orientación Distinta)</span>
-                    </label>
-                    <p className="text-[11px] text-[#736B63] leading-tight">
-                      La orientación elegida ({selectedOrientation === 'horizontal' ? 'Horizontal' : 'Vertical'}) difiere de la toma original. Elige cómo deseas encuadrar la obra sin deformarla:
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <button
-                      onClick={() => setFitMode('margin')}
-                      className={`w-full p-3 rounded-lg border text-left text-xs transition-all ${
-                        fitMode === 'margin'
-                          ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
-                          : 'border-[#E4DCD0] bg-[#FAF6EE] hover:border-[#C85A32] text-[#2A1E17]'
-                      }`}
-                    >
-                      <span className="font-semibold block text-xs">Foto completa con margen</span>
-                      <span className="text-[10px] text-[#736B63] block font-normal mt-0.5 leading-tight">
-                        Conserva el 100% de la fotografía completa agregando un margen para adaptarla al cuadro.
-                      </span>
-                    </button>
-
-                    <button
-                      onClick={() => setFitMode('crop')}
-                      className={`w-full p-3 rounded-lg border text-left text-xs transition-all ${
-                        fitMode === 'crop'
-                          ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
-                          : 'border-[#E4DCD0] bg-[#FAF6EE] hover:border-[#C85A32] text-[#2A1E17]'
-                      }`}
-                    >
-                      <span className="font-semibold block text-xs">Recortar para llenar</span>
-                      <span className="text-[10px] text-[#736B63] block font-normal mt-0.5 leading-tight">
-                        Llena el espacio del cuadro permitiendo ajustar qué parte de la fotografía queda visible.
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Position selector when fitMode === 'crop' */}
-                  {fitMode === 'crop' && (
-                    <div className="pt-2 space-y-1.5 border-t border-[#E4DCD0] mt-2">
-                      <span className="text-[10px] font-mono font-bold text-[#2A1E17] block uppercase">ZONA VISIBLE (ENFOQUE DE ENCUADRE)</span>
-                      <div className="grid grid-cols-3 gap-2">
-                        {product.orientation === 'horizontal' ? (
-                          <>
-                            <button
-                              onClick={() => setCropPosition('top')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'top' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Arriba
-                            </button>
-                            <button
-                              onClick={() => setCropPosition('center')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'center' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Centro
-                            </button>
-                            <button
-                              onClick={() => setCropPosition('bottom')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'bottom' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Abajo
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              onClick={() => setCropPosition('left')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'left' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Izquierda
-                            </button>
-                            <button
-                              onClick={() => setCropPosition('center')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'center' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Centro
-                            </button>
-                            <button
-                              onClick={() => setCropPosition('right')}
-                              className={`py-1.5 px-2 rounded text-[10px] font-mono font-bold border transition ${cropPosition === 'right' ? 'bg-[#2A1E17] text-white border-[#2A1E17]' : 'bg-[#FAF6EE] text-[#5A4C40] border-[#E4DCD0]'}`}
-                            >
-                              Derecha
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* 2. FORMAT & SIZE SELECTION */}
-              <div className="space-y-3">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
-                  2. Selección de Formato y Tamaño
+            {/* 1. ORIENTATION */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63]">
+                  01 / Orientación
                 </label>
-                <div className="space-y-2">
-                  {FORMAT_OPTIONS.map((fmt) => {
-                    const pct = getScalePercentage(fmt.id);
+                <span className="text-[10px] font-mono text-[#9C968E]">
+                  Toma original: {product.orientation === 'horizontal' ? 'Horizontal' : 'Vertical'}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => setSelectedOrientation('horizontal')}
+                  className={`py-3 px-4 border text-xs font-mono uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-colors ${
+                    selectedOrientation === 'horizontal'
+                      ? 'border-[#141413] bg-[#141413] text-[#FAF8F5]'
+                      : 'border-[#E6E1DA] bg-transparent text-[#141413] hover:border-[#141413]'
+                  }`}
+                >
+                  <span className="w-4 h-2.5 border border-current shrink-0" />
+                  <span>Horizontal</span>
+                </button>
+
+                <button
+                  onClick={() => setSelectedOrientation('vertical')}
+                  className={`py-3 px-4 border text-xs font-mono uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-colors ${
+                    selectedOrientation === 'vertical'
+                      ? 'border-[#141413] bg-[#141413] text-[#FAF8F5]'
+                      : 'border-[#E6E1DA] bg-transparent text-[#141413] hover:border-[#141413]'
+                  }`}
+                >
+                  <span className="w-2.5 h-4 border border-current shrink-0" />
+                  <span>Vertical</span>
+                </button>
+              </div>
+            </div>
+
+            {/* FIT MODE (If orientation differs from native) */}
+            {isOrientationMismatched && (
+              <div className="space-y-3 p-5 border border-[#E6E1DA] bg-[#F4F0EA]/50">
+                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#141413] block">
+                  Adaptación de Encuadre
+                </label>
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  <button
+                    onClick={() => setFitMode('margin')}
+                    className={`p-3 border text-left transition-colors ${
+                      fitMode === 'margin'
+                        ? 'border-[#141413] bg-[#FAF8F5]'
+                        : 'border-[#E6E1DA] bg-transparent text-[#6E6A63]'
+                    }`}
+                  >
+                    <span className="text-xs font-mono text-[#141413] block">Con Margen</span>
+                    <span className="text-[10px] text-[#6E6A63] block mt-0.5 leading-snug">
+                      Sin recorte, preserva el 100% del negativo.
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setFitMode('crop')}
+                    className={`p-3 border text-left transition-colors ${
+                      fitMode === 'crop'
+                        ? 'border-[#141413] bg-[#FAF8F5]'
+                        : 'border-[#E6E1DA] bg-transparent text-[#6E6A63]'
+                    }`}
+                  >
+                    <span className="text-xs font-mono text-[#141413] block">Cubrir Formato</span>
+                    <span className="text-[10px] text-[#6E6A63] block mt-0.5 leading-snug">
+                      Llena el lienzo ajustando el foco.
+                    </span>
+                  </button>
+                </div>
+
+                {fitMode === 'crop' && (
+                  <div className="pt-2 flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#6E6A63]">Foco:</span>
+                    <div className="flex gap-1.5">
+                      {(product.orientation === 'horizontal'
+                        ? [
+                            { id: 'top', label: 'Arriba' },
+                            { id: 'center', label: 'Centro' },
+                            { id: 'bottom', label: 'Abajo' }
+                          ]
+                        : [
+                            { id: 'left', label: 'Izquierda' },
+                            { id: 'center', label: 'Centro' },
+                            { id: 'right', label: 'Derecha' }
+                          ]
+                      ).map((pos) => (
+                        <button
+                          key={pos.id}
+                          onClick={() => setCropPosition(pos.id)}
+                          className={`px-2.5 py-1 text-[10px] font-mono uppercase border transition-colors ${
+                            cropPosition === pos.id
+                              ? 'bg-[#141413] text-[#FAF8F5] border-[#141413]'
+                              : 'bg-transparent text-[#6E6A63] border-[#E6E1DA]'
+                          }`}
+                        >
+                          {pos.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* 2. FORMAT & DIMENSIONS */}
+            <div className="space-y-3">
+              <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                02 / Formato & Dimensiones
+              </label>
+              <div className="divide-y divide-[#E6E1DA] border-y border-[#E6E1DA]">
+                {FORMAT_OPTIONS.map((fmt) => {
+                  const isSelected = selectedFormat.id === fmt.id;
+                  return (
+                    <button
+                      key={fmt.id}
+                      onClick={() => setSelectedFormat(fmt)}
+                      className={`w-full py-3.5 px-3 flex items-center justify-between text-xs transition-colors ${
+                        isSelected
+                          ? 'bg-[#F4F0EA] text-[#141413] font-medium'
+                          : 'bg-transparent text-[#6E6A63] hover:text-[#141413]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`w-2 h-2 rounded-full border ${
+                            isSelected ? 'bg-[#141413] border-[#141413]' : 'border-[#9C968E]'
+                          }`}
+                        />
+                        <span>{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
+                      </div>
+                      <span className="font-mono text-xs text-[#141413]">
+                        ${fmt.priceCLP.toLocaleString('es-CL')} CLP
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 3. FRAME MOLDING SELECTION */}
+            {selectedFormat.requiresFrame && (
+              <div className="space-y-3">
+                <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                  03 / Terminación del Marco
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {FRAME_OPTIONS.map((frame) => {
+                    const isSelected = selectedFrame.id === frame.id;
                     return (
                       <button
-                        key={fmt.id}
-                        onClick={() => setSelectedFormat(fmt)}
-                        className={`w-full p-3 rounded-lg border flex items-center justify-between text-xs transition-all ${
-                          selectedFormat.id === fmt.id
-                            ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
-                            : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
+                        key={frame.id}
+                        onClick={() => setSelectedFrame(frame)}
+                        className={`py-3 px-3 border flex items-center justify-center gap-2 transition-colors ${
+                          isSelected
+                            ? 'border-[#141413] bg-[#F4F0EA] text-[#141413]'
+                            : 'border-[#E6E1DA] bg-transparent text-[#6E6A63] hover:border-[#141413]'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5">
-                          {/* Visual Scale Meter Bar */}
-                          <div className="w-8 h-2 bg-[#EFE5D5] rounded-full overflow-hidden border border-[#E4DCD0] shrink-0">
-                            <div
-                              className="h-full bg-[#C85A32] transition-all"
-                              style={{ width: `${pct}%` }}
-                            />
-                          </div>
-                          <span className="font-semibold">{getFormattedSizeLabel(fmt, selectedOrientation)}</span>
-                        </div>
-                        
-                        <span className="font-mono text-[11px] text-[#C85A32] font-bold">
-                          ${fmt.priceCLP.toLocaleString('es-CL')} CLP
+                        <span
+                          className="w-3.5 h-3.5 rounded-full border border-[#CFC8BC] shrink-0"
+                          style={{ backgroundColor: frame.colorHex }}
+                        />
+                        <span className="text-[11px] font-mono">
+                          {frame.name}
                         </span>
                       </button>
                     );
                   })}
                 </div>
               </div>
+            )}
 
-              {/* 3. FRAME COLOR SELECTION (Shown only when format requires frame) */}
-              {selectedFormat.requiresFrame && (
-                <div className="space-y-3 pt-2">
-                  <label className="text-xs font-mono font-bold uppercase tracking-wider text-[#2A1E17] block">
-                    3. Selección de Marco
-                  </label>
-                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                    {FRAME_OPTIONS.map((frame) => (
-                      <button
-                        key={frame.id}
-                        onClick={() => setSelectedFrame(frame)}
-                        className={`p-2.5 sm:p-3 rounded-lg border flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 transition-all ${
-                          selectedFrame.id === frame.id
-                            ? 'border-[#C85A32] bg-[#F6EAE1] ring-2 ring-[#C85A32] font-bold text-[#2A1E17]'
-                            : 'border-[#E4DCD0] bg-[#FDFBF7] hover:border-[#C85A32] text-[#2A1E17]'
-                        }`}
-                      >
-                        <span
-                          className="w-5 h-5 rounded-full border border-[#D5C9B8] shadow-sm shrink-0"
-                          style={{ backgroundColor: frame.colorHex }}
-                        />
-                        <span className="text-[11px] sm:text-xs text-center sm:text-left leading-tight font-medium">
-                          {frame.name}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+            {/* PURCHASE / INQUIRY ACTIONS */}
+            <div className="pt-4 space-y-3">
+              <button
+                onClick={handleWhatsAppQuote}
+                className="w-full py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
+              >
+                <span>Encargar Obra</span>
+                <ArrowUpRight className="w-3.5 h-3.5 stroke-[1.5]" />
+              </button>
 
-              {/* ACTION BUTTONS */}
-              <div className="pt-4 space-y-3">
-                <button
-                  onClick={handleWhatsAppQuote}
-                  className="w-full py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white font-bold text-sm rounded-lg shadow-md transition flex items-center justify-center gap-2.5 group"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white stroke-none" />
-                  <span>Comprar / Encargar</span>
-                </button>
-
-                <button
-                  onClick={handleAddToCart}
-                  className="w-full py-3 bg-[#FAF6EE] hover:bg-[#EFE5D5] text-[#2A1E17] border border-[#E4DCD0] text-xs font-mono font-semibold rounded-lg transition flex items-center justify-center gap-2"
-                >
-                  <ShoppingBag className="w-4 h-4 text-[#C85A32]" />
-                  <span>Añadir a mi Cotización Múltiple</span>
-                </button>
-              </div>
-
+              <button
+                onClick={handleAddToCart}
+                className="w-full py-3.5 bg-transparent hover:bg-[#F4F0EA] text-[#141413] border border-[#E6E1DA] text-[11px] font-mono uppercase tracking-[0.18em] transition-colors"
+              >
+                Añadir a la Selección
+              </button>
             </div>
 
           </div>
 
         </div>
 
-        {/* BOTTOM SECTION: "LA FOTOGRAFÍA" (2-4 LINES ABOUT STORY/LOCATION) */}
-        <section className="max-w-4xl mx-auto bg-[#FAF6EE] p-8 sm:p-10 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
-          <div className="flex items-center gap-2 text-[#C85A32] font-mono text-xs font-bold uppercase tracking-widest">
-            <Info className="w-4 h-4" />
-            <span>La fotografía</span>
+        {/* CURATORIAL NOTE / ABOUT THE PHOTOGRAPH */}
+        <section className="border-t border-[#E6E1DA] pt-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-4 space-y-1.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+              {product.seriesLabel || 'Archivo 35mm'} · Nota de la Obra
+            </span>
+            <h2 className="text-2xl font-serif font-normal text-[#141413]">
+              {product.title} — {placeName}
+            </h2>
           </div>
-          
-          <h2 className="text-2xl font-serif font-bold text-[#2A1E17]">
-            {product.title} — {placeName}, {countryName}
-          </h2>
 
-          <p className="text-base text-[#5A4C40] leading-relaxed font-normal">
-            {product.story}
-          </p>
+          <div className="lg:col-span-8 space-y-8">
+            <p className="text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
+              {product.story}
+            </p>
 
-          <div className="pt-4 border-t border-[#E4DCD0] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono text-[#736B63]">
-            <div>
-              <span className="block text-[10px] uppercase font-bold text-[#2A1E17]">Cámara</span>
-              <span>Olympus mju I</span>
-            </div>
-            <div>
-              <span className="block text-[10px] uppercase font-bold text-[#2A1E17]">Película</span>
-              <span>Kodak Gold 200</span>
-            </div>
-            <div>
-              <span className="block text-[10px] uppercase font-bold text-[#2A1E17]">Formato Original</span>
-              <span>35mm ({product.orientation === 'horizontal' ? 'Horizontal' : 'Vertical'})</span>
-            </div>
-            <div>
-              <span className="block text-[10px] uppercase font-bold text-[#2A1E17]">Año</span>
-              <span>{product.year}</span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-[#E6E1DA] text-xs font-mono">
+              <div>
+                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Cámara</span>
+                <span className="text-[#141413] mt-1 block">Olympus mju I</span>
+              </div>
+              <div>
+                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Película</span>
+                <span className="text-[#141413] mt-1 block">Kodak Gold 200</span>
+              </div>
+              <div>
+                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Negativo Original</span>
+                <span className="text-[#141413] mt-1 block">35mm ({product.orientation === 'horizontal' ? 'Horizontal' : 'Vertical'})</span>
+              </div>
+              <div>
+                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#9C968E]">Año</span>
+                <span className="text-[#141413] mt-1 block">{product.year}</span>
+              </div>
             </div>
           </div>
         </section>

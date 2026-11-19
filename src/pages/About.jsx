@@ -1,128 +1,91 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Film, Camera, ArrowRight, Compass } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function About() {
   return (
-    <div className="pb-24 pt-6 space-y-16">
+    <div className="pb-28 pt-10 space-y-24">
       
-      {/* Header Editorial */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE5D5] border border-[#E4DCD0] text-[#C85A32] text-xs font-mono tracking-wider uppercase">
-          <Film className="w-3.5 h-3.5" />
-          <span>Sobre JavaOnFilm</span>
-        </div>
-
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#2A1E17] leading-tight">
-          Un archivo de lugares, momentos y rollos.
+      {/* Editorial Project Header */}
+      <section className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 space-y-6">
+        <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8C4A32] block">
+          El Proyecto · 35mm Film Archive
+        </span>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#141413] leading-[1.1]">
+          Dos miradas en película de 35mm: la ruta y el mundo ecuestre.
         </h1>
-
-        <p className="text-lg text-[#5A4C40] leading-relaxed font-normal max-w-2xl mx-auto">
-          JavaOnFilm nace de mi forma de guardar los lugares por los que he pasado. Fotografío en película de 35mm porque me gusta no saber exactamente qué quedó registrado hasta revelar el rollo. Algunas de esas imágenes terminan aquí, convertidas en piezas físicas.
+        <p className="text-base sm:text-lg text-[#6E6A63] leading-relaxed font-light max-w-2xl pt-2">
+          JavaOnFilm reúne fotografías capturadas exclusivamente en formato analógico de 35mm. El archivo nace del cruce entre dos mundos que comparten una misma estética: la quietud de los paisajes de viaje y la elegancia atemporal de la equitación y los caballos.
         </p>
       </section>
 
-      {/* Main Image & Narrative */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-[#FAF6EE] p-8 sm:p-12 rounded-2xl border border-[#E4DCD0] shadow-sm">
+      {/* Two-Column Visual & Essay */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center border-y border-[#E6E1DA] py-16">
           
-          <div className="lg:col-span-6 relative">
-            <div className="p-3 bg-[#FDFBF7] rounded-xl border border-[#EBE3D5] shadow-md">
+          <div className="lg:col-span-6">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-6 sm:p-10">
               <img
                 src="/images/about-camera-film.jpg"
                 alt="Cámara análoga Olympus mju I y rollo Kodak Gold 200"
-                className="w-full h-[380px] object-cover rounded-lg shadow-inner bg-[#EFE8DC]"
+                className="w-full h-[380px] object-cover contrast-[1.02]"
               />
             </div>
           </div>
 
-          <div className="lg:col-span-6 space-y-5">
-            <span className="text-xs font-mono text-[#C85A32] font-bold uppercase tracking-widest block">
-              ESTÉTIKA & PROCESO
+          <div className="lg:col-span-6 space-y-6">
+            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+              Estética & Materialidad
             </span>
 
-            <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">
-              Fotografía real de viajes
+            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413] leading-snug">
+              La textura orgánica de la película química.
             </h2>
 
-            <p className="text-[#5A4C40] text-base leading-relaxed">
-              Cada fotografía del archivo es capturada en viajes personales. La película de 35mm entrega tonos cálidos, textura viva y una cualidad tangible que preserva la atmósfera original del momento.
-            </p>
+            <div className="space-y-4 text-sm text-[#6E6A63] leading-relaxed font-light">
+              <p>
+                Fotografiar en 35mm exige observar con pausa. A diferencia de la inmediatez digital, cada rollo cuenta con sólo 36 exposiciones donde la luz natural y la emulsión de Kodak Gold 200 construyen tonos cálidos y un grano imposible de imitar artificialmente.
+              </p>
+              <p>
+                Tanto en las series de costa y viajes como en los registros ecuestres, cada fotografía seleccionada del archivo es impresa bajo estándares de galería sobre papel Fine Art de algodón y enmarcada a medida para habitar espacios con carácter y sobriedad.
+              </p>
+            </div>
 
-            <p className="text-[#5A4C40] text-base leading-relaxed">
-              Las imágenes son seleccionadas con cuidado para transformarse en prints y piezas enmarcadas listas para acompañar tus espacios.
-            </p>
-
-            <div className="pt-4 grid grid-cols-3 gap-4 border-t border-[#E4DCD0] text-xs font-mono">
+            <div className="pt-6 grid grid-cols-3 gap-6 border-t border-[#E6E1DA]">
               <div>
-                <span className="font-bold text-[#2A1E17] block text-sm">Mi cámara</span>
-                <span className="text-[#736B63]">Olympus mju I</span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">Cámara</span>
+                <span className="text-xs font-mono text-[#141413] mt-1 block">Olympus mju I</span>
               </div>
               <div>
-                <span className="font-bold text-[#2A1E17] block text-sm">Película habitual</span>
-                <span className="text-[#736B63]">Kodak Gold 200</span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">Emulsión</span>
+                <span className="text-xs font-mono text-[#141413] mt-1 block">Kodak Gold 200</span>
               </div>
               <div>
-                <span className="font-bold text-[#2A1E17] block text-sm">Formato</span>
-                <span className="text-[#736B63]">35mm</span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">Óptica</span>
+                <span className="text-xs font-mono text-[#141413] mt-1 block">35mm f/3.5</span>
               </div>
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* Equipment Specs summary card */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#FAF6EE] p-8 sm:p-10 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-6">
-          <div className="flex items-center gap-4 border-b border-[#E4DCD0] pb-5">
-            <div className="w-12 h-12 bg-[#2A1E17] text-[#C85A32] rounded-xl flex items-center justify-center font-mono font-bold text-base shadow-md shrink-0 border border-[#6E4B37]/30">
-              <Camera className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-xl text-[#2A1E17]">Especificaciones del Archivo</h3>
-              <p className="text-xs font-mono text-[#C85A32]">Equipo compacto & película analógica de 35mm</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#5A4C40]">
-            <div className="space-y-1 bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0]">
-              <span className="font-bold text-[#2A1E17] block text-sm font-serif">Mi cámara</span>
-              <p className="font-mono text-[#C85A32] font-bold text-base">Olympus mju I</p>
-              <p className="text-[11px] text-[#736B63] mt-1">Cámara compacta de 35mm de lente fijo 35mm f/3.5.</p>
-            </div>
-
-            <div className="space-y-1 bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0]">
-              <span className="font-bold text-[#2A1E17] block text-sm font-serif">Película habitual</span>
-              <p className="font-mono text-[#C85A32] font-bold text-base">Kodak Gold 200</p>
-              <p className="text-[11px] text-[#736B63] mt-1">Tonos cálidos, grano sutil y calidez natural.</p>
-            </div>
-
-            <div className="space-y-1 bg-[#FDFBF7] p-4 rounded-xl border border-[#E4DCD0]">
-              <span className="font-bold text-[#2A1E17] block text-sm font-serif">Formato</span>
-              <p className="font-mono text-[#C85A32] font-bold text-base">35mm</p>
-              <p className="text-[11px] text-[#736B63] mt-1">Formato analógico original sin retoque digital excesivo.</p>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-[#2A1E17] text-white p-10 sm:p-12 rounded-2xl space-y-5 shadow-xl border border-[#6E4B37]/30">
-          <h2 className="text-3xl font-serif font-bold text-[#FAF6EE]">Explora el archivo de fotografías</h2>
-          <p className="text-[#DFCEB5] text-sm max-w-xl mx-auto font-mono">
-            Descubre las fotografías disponibles como prints y piezas enmarcadas.
-          </p>
-          <div className="pt-2">
-            <Link
-              to="/prints"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-sm rounded-lg shadow-md transition-transform hover:scale-105"
-            >
-              <span>Ir al Archivo</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+      <section className="max-w-3xl mx-auto px-6 sm:px-10 text-center space-y-6">
+        <h2 className="text-3xl font-serif font-normal text-[#141413]">
+          Explora las series disponibles en el archivo
+        </h2>
+        <p className="text-xs font-mono uppercase tracking-[0.16em] text-[#6E6A63]">
+          Ediciones Fine Art impresas y enmarcadas a pedido en Chile
+        </p>
+        <div className="pt-2">
+          <Link
+            to="/prints"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors"
+          >
+            <span>Ver Archivo 35mm</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
+          </Link>
         </div>
       </section>
 

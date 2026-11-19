@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, Instagram, Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    motive: 'Consulta sobre fotografía',
+    motive: 'Consulta sobre obra del archivo',
     message: ''
   });
 
@@ -17,178 +17,176 @@ export default function Contact() {
   };
 
   return (
-    <div className="pb-24 pt-6 space-y-12">
-      
-      {/* Header */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-        <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">CONTACTO</span>
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#2A1E17]">
-          ¿Una fotografía, tamaño o encargo?
-        </h1>
-        <p className="text-base text-[#5A4C40] max-w-xl mx-auto font-normal">
-          Escríbeme directamente si buscas una imagen en particular, un tamaño especial o tienes cualquier consulta.
-        </p>
-      </section>
+    <div className="pb-28 pt-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16">
+        
+        {/* Header */}
+        <div className="border-b border-[#E6E1DA] pb-10 max-w-3xl space-y-3">
+          <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#8C4A32] block">
+            Contacto & Encargos a Medida
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-serif font-normal text-[#141413]">
+            Asesoría, dimensiones especiales o encargos.
+          </h1>
+          <p className="text-sm text-[#6E6A63] font-light leading-relaxed pt-1">
+            Cada impresión y enmarcado se realiza a pedido. Si tienes dudas sobre qué medida o moldura elegir para tu espacio, o buscas una fotografía específica de las series de Viajes o Ecuestre, escríbenos directamente.
+          </p>
+        </div>
 
-      {/* Main Grid: Form + Instagram / Contact Info */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          {/* Left Column: Form */}
-          <div className="lg:col-span-7 bg-[#FAF6EE] p-8 sm:p-10 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-6">
-            
+          {/* Left Column: Minimalist Form */}
+          <div className="lg:col-span-7">
             {submitted ? (
-              <div className="text-center py-12 space-y-4">
-                <div className="w-14 h-14 bg-[#EFE5D5] text-[#C85A32] rounded-full flex items-center justify-center mx-auto border border-[#E4DCD0]">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-serif font-bold text-[#2A1E17]">¡Mensaje Enviado!</h3>
-                <p className="text-sm text-[#5A4C40] max-w-md mx-auto font-mono">
-                  Gracias por tu mensaje. Te responderé al correo <span className="font-bold text-[#2A1E17]">{formData.email}</span> a la brevedad.
+              <div className="p-12 border border-[#E6E1DA] bg-[#FDFCFA] space-y-4">
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                  Confirmación
+                </span>
+                <h3 className="text-2xl font-serif text-[#141413]">Mensaje recibido</h3>
+                <p className="text-xs text-[#6E6A63] leading-relaxed font-light max-w-md">
+                  Gracias por escribir. Te responderé a la brevedad posible al correo <span className="text-[#141413] font-mono">{formData.email}</span>.
                 </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', email: '', motive: 'Consulta sobre fotografía', message: '' });
-                  }}
-                  className="px-6 py-3 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-xs rounded-lg shadow-sm"
-                >
-                  Enviar otro mensaje
-                </button>
+                <div className="pt-4">
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', motive: 'Consulta sobre obra del archivo', message: '' });
+                    }}
+                    className="px-6 py-3 bg-[#141413] text-[#FAF8F5] text-[11px] font-mono uppercase tracking-[0.18em]"
+                  >
+                    Enviar nueva consulta
+                  </button>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <h3 className="text-xl font-serif font-bold text-[#2A1E17] mb-2">Mensaje Directo</h3>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Nombre</label>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                      Nombre
+                    </label>
                     <input
                       type="text"
                       required
-                      placeholder="Tu nombre"
+                      placeholder="Tu nombre completo"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17]"
+                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors"
                     />
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-bold text-[#2A1E17] block">Email</label>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                      Correo Electrónico
+                    </label>
                     <input
                       type="email"
                       required
-                      placeholder="tu.email@ejemplo.com"
+                      placeholder="nombre@dominio.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17]"
+                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Motivo</label>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                    Asunto
+                  </label>
                   <select
                     value={formData.motive}
                     onChange={(e) => setFormData({ ...formData, motive: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17] font-medium"
+                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] focus:outline-none focus:border-[#141413] transition-colors"
                   >
-                    <option value="Consulta sobre fotografía">Consulta sobre una fotografía del archivo</option>
-                    <option value="Medida especial">Encargo de medida especial</option>
-                    <option value="Proyecto o colaboración">Proyecto o asesoría de espacios</option>
+                    <option value="Consulta sobre obra del archivo">Consulta sobre una obra del archivo</option>
+                    <option value="Dimensiones o enmarcado a medida">Dimensiones o enmarcado a medida</option>
+                    <option value="Proyecto de interiorismo / arquitectura">Proyecto de interiorismo o arquitectura</option>
                     <option value="Otro">Otro motivo</option>
                   </select>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-bold text-[#2A1E17] block">Mensaje</label>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                    Mensaje
+                  </label>
                   <textarea
                     required
-                    rows="5"
-                    placeholder="Escribe tu mensaje..."
+                    rows="4"
+                    placeholder="Indica la obra, medidas o detalles de tu consulta..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FDFBF7] border border-[#E4DCD0] rounded-lg text-sm focus:outline-none focus:border-[#C85A32] text-[#2A1E17]"
-                  ></textarea>
+                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors resize-none"
+                  />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-sm rounded-lg shadow-md transition flex items-center justify-center gap-2"
+                  className="px-10 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Enviar Mensaje</span>
+                  Enviar Consulta
                 </button>
               </form>
             )}
-
           </div>
 
-          {/* Right Column: Instagram & Direct Contact */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Right Column: Direct Channels */}
+          <div className="lg:col-span-5 space-y-8 lg:pl-8 lg:border-l border-[#E6E1DA]">
             
-            {/* Instagram Card */}
-            <a
-              href="https://instagram.com/javaonfilm"
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm block group hover:border-[#C85A32] transition-all"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-[#2A1E17] text-[#C85A32] rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-[#6E4B37]/30">
-                  <Instagram className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">Instagram</span>
-                  <span className="text-xl font-serif font-bold text-[#2A1E17] group-hover:text-[#C85A32] transition-colors">
-                    @javaonfilm
-                  </span>
-                  <p className="text-xs text-[#5A4C40] mt-0.5">Bitácora constante, viajes y fotos en 35mm.</p>
-                </div>
-              </div>
-            </a>
+            <div className="space-y-2 pb-6 border-b border-[#E6E1DA]">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                Atención Directa (WhatsApp)
+              </span>
+              <a
+                href="https://wa.me/56968449779?text=Hola,%20quisiera%20consultar%20por%20una%20obra%20del%20archivo%20JavaOnFilm."
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+              >
+                <span>+56 9 6844 9779</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
+              </a>
+              <p className="text-xs text-[#6E6A63] font-light">
+                Consultas rápidas sobre disponibilidad, marcos y tiempos de despacho.
+              </p>
+            </div>
 
-            {/* WhatsApp Direct Card */}
-            <a
-              href="https://wa.me/56968449779?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20tus%20fotograf%C3%ADas%20an%C3%A1logas."
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm block group hover:border-[#25D366] transition-all"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-[#25D366] text-slate-950 rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <MessageCircle className="w-6 h-6 fill-slate-950 stroke-none" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">WhatsApp Directo</span>
-                  <span className="text-xl font-serif font-bold text-[#2A1E17] group-hover:text-[#25D366] transition-colors">
-                    +56 9 6844 9779
-                  </span>
-                  <p className="text-xs text-[#5A4C40] mt-0.5">Atención rápida y personalizada.</p>
-                </div>
-              </div>
-            </a>
+            <div className="space-y-2 pb-6 border-b border-[#E6E1DA]">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                Bitácora Visual (Instagram)
+              </span>
+              <a
+                href="https://instagram.com/javaonfilm"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+              >
+                <span>@javaonfilm</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
+              </a>
+              <p className="text-xs text-[#6E6A63] font-light">
+                Nuevos rollos revelados, procesos de enmarcado y registros de viaje.
+              </p>
+            </div>
 
-            {/* Email Direct */}
-            <div className="bg-[#FAF6EE] p-8 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#EFE5D5] text-[#C85A32] rounded-lg flex items-center justify-center">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-[#736B63] block uppercase tracking-wider">Correo Directo</span>
-                  <a href="mailto:javaonfilm@gmail.com" className="text-base font-bold text-[#2A1E17] hover:text-[#C85A32]">
-                    javaonfilm@gmail.com
-                  </a>
-                </div>
-              </div>
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                Correo Electrónico
+              </span>
+              <a
+                href="mailto:javaonfilm@gmail.com"
+                className="block text-xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+              >
+                javaonfilm@gmail.com
+              </a>
             </div>
 
           </div>
 
         </div>
-      </section>
 
+      </div>
     </div>
   );
 }

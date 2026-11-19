@@ -56,7 +56,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-[#FAF8F5] text-slate-900 flex flex-col font-sans selection:bg-brand selection:text-white">
+      <div className="min-h-screen bg-[#FAF8F5] text-[#141413] flex flex-col font-sans selection:bg-[#141413] selection:text-[#FAF8F5]">
         
         {/* Header */}
         <Header

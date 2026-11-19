@@ -2,120 +2,97 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import { ArrowRight, Compass, Film } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Home({ onOpenZoom }) {
   const navigate = useNavigate();
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-28 pb-28">
 
-      {/* HERO SECTION EDITORIAL & ARCHIVO DE VIAJES */}
-      <section className="relative pt-4 pb-12 md:pt-10 md:pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* HERO SECTION — TRAVEL & EQUESTRIAN 35MM ARCHIVE */}
+      <section className="pt-8 pb-16 md:pt-14 md:pb-24 border-b border-[#E6E1DA]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
             
-            {/* Hero Text */}
-            <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-              
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE5D5] border border-[#E4DCD0] text-[#C85A32] text-xs font-mono tracking-wider uppercase">
-                <Film className="w-3.5 h-3.5" />
-                <span>35mm Chemical Film Archive</span>
+            {/* Hero Editorial Copy */}
+            <div className="lg:col-span-6 space-y-8">
+              <div className="space-y-3">
+                <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#8C4A32] block">
+                  Archivo Fotográfico 35mm · Viajes & Mundo Ecuestre
+                </span>
+                <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-serif font-normal tracking-tight text-[#141413] leading-[1.08]">
+                  Viajes, paisajes y caballos en película de 35mm.
+                </h1>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-[#2A1E17] leading-[1.12]">
-                Fotografías de lugares en los que estuve.
-              </h1>
-
-              <p className="text-base sm:text-lg text-[#5A4C40] leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                Fotografía analógica en 35mm, capturada durante viajes y convertida en piezas para conservar, enmarcar y llevar a tus espacios.
+              <p className="text-sm sm:text-base text-[#6E6A63] leading-relaxed max-w-lg font-light">
+                Una selección curada de fotografía analógica dividida en dos pasiones: la quietud de los lugares recorridos en viajes y la nobleza del mundo ecuestre. Obras impresas en papel Fine Art y enmarcadas a medida para tus espacios.
               </p>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <Link
                   to="/prints"
-                  className="w-full sm:w-auto px-8 py-4 bg-[#C85A32] hover:bg-[#B24B25] text-white font-semibold text-sm rounded-lg shadow-md transition-all flex items-center justify-center gap-2 group"
+                  className="px-8 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-3 group"
                 >
-                  <span>Explorar el archivo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span>Explorar el Archivo</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[1.5]" />
                 </Link>
                 <Link
                   to="/about"
-                  className="w-full sm:w-auto px-6 py-4 bg-[#FAF6EE] hover:bg-[#EFE5D5] text-[#2A1E17] border border-[#E4DCD0] text-sm font-semibold rounded-lg transition text-center"
+                  className="px-7 py-4 bg-transparent hover:bg-[#F4F0EA] text-[#141413] border border-[#E6E1DA] text-xs font-mono uppercase tracking-[0.18em] transition-colors text-center"
                 >
-                  Sobre JavaOnFilm
+                  El Proyecto
                 </Link>
               </div>
 
-              {/* Archival Guarantees */}
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-[#E4DCD0] text-left">
+              {/* Technical Specifications Footer */}
+              <div className="pt-8 grid grid-cols-3 gap-6 border-t border-[#E6E1DA]">
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">CÁMARA</span>
-                  <span className="text-[11px] text-[#736B63]">Olympus mju I</span>
+                  <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                    Cámara
+                  </span>
+                  <span className="text-xs font-mono text-[#141413] mt-1 block">
+                    Olympus mju I
+                  </span>
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">PELÍCULA</span>
-                  <span className="text-[11px] text-[#736B63]">Kodak Gold 200</span>
+                  <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                    Película
+                  </span>
+                  <span className="text-xs font-mono text-[#141413] mt-1 block">
+                    Kodak Gold 200
+                  </span>
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#2A1E17] block">FORMATO</span>
-                  <span className="text-[11px] text-[#736B63]">35mm Film Original</span>
+                  <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
+                    Series
+                  </span>
+                  <span className="text-xs font-mono text-[#141413] mt-1 block">
+                    Viajes & Ecuestre
+                  </span>
                 </div>
               </div>
-
             </div>
 
-            {/* Hero Featured Photographer Image Card */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                
-                {/* Archival Folder Card Showcase */}
-                <div className="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#E4DCD0] group relative">
-                  
-                  {/* Main Image Viewport */}
-                  <div 
-                    className="relative overflow-hidden rounded-xl h-[400px] sm:h-[460px] bg-[#EFE5D5]/70 border border-[#E4DCD0] shadow-md cursor-pointer group/img flex items-center justify-center p-3"
-                    onClick={() => navigate('/prints')}
-                  >
-                    <img
-                      src="/images/hero-photographer.jpg"
-                      alt="Fotografía analógica 35mm JavaOnFilm"
-                      className="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-700 shadow-sm rounded-lg"
-                    />
-                    
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3 bg-[#2A1E17]/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-mono tracking-wider shadow">
-                      35MM FILM ARCHIVE
-                    </div>
-                  </div>
-
-                  {/* Metadata & CTA */}
-                  <div className="mt-4 pt-3 border-t border-[#E4DCD0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div>
-                      <div className="flex items-center gap-2 text-[10px] font-mono text-[#C85A32] font-bold uppercase tracking-wider">
-                        <span>FOTOGRAFÍA DE AUTOR</span>
-                        <span>·</span>
-                        <span>35MM ANALOG</span>
-                      </div>
-                      <h3 className="font-serif font-bold text-base sm:text-lg text-[#2A1E17] mt-0.5">
-                        Bitácora & Fotografía de Viajes
-                      </h3>
-                      <p className="text-xs font-mono text-[#736B63] mt-0.5">
-                        Olympus mju I · Kodak Gold 200
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={() => navigate('/prints')}
-                      className="px-4 py-2.5 bg-[#C85A32] hover:bg-[#B24B25] text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 shrink-0"
-                    >
-                      <span>Explorar el archivo</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
+            {/* Hero Exhibition Frame Showcase */}
+            <div className="lg:col-span-6">
+              <div
+                onClick={() => navigate('/prints')}
+                className="group cursor-pointer bg-[#F4F0EA] border border-[#E6E1DA] p-7 sm:p-11 transition-colors duration-500 hover:bg-[#EFEAE2]"
+              >
+                <div className="relative h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/images/hero-photographer.jpg"
+                    alt="Archivo analógico 35mm JavaOnFilm"
+                    className="max-w-full max-h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015] shadow-[0_12px_30px_rgba(20,20,19,0.14)]"
+                  />
                 </div>
 
+                <div className="mt-6 pt-4 border-t border-[#E6E1DA] flex items-baseline justify-between text-[10px] font-mono uppercase tracking-[0.18em] text-[#6E6A63]">
+                  <span>35mm Negative Film · Fine Art Prints</span>
+                  <span className="text-[#141413] group-hover:underline">Ver colección →</span>
+                </div>
               </div>
             </div>
 
@@ -123,60 +100,115 @@ export default function Home({ onOpenZoom }) {
         </div>
       </section>
 
-      {/* SECCIÓN: ÚLTIMAS FOTOGRAFÍAS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#E4DCD0]">
+      {/* SECTION: THE TWO SERIES (VIAJES & ECUESTRE) */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Serie 01: Viajes */}
+          <div
+            onClick={() => navigate('/prints?serie=viajes')}
+            className="group cursor-pointer border border-[#E6E1DA] bg-[#F4F0EA]/60 hover:bg-[#F4F0EA] p-8 sm:p-10 transition-colors flex flex-col justify-between space-y-6"
+          >
+            <div className="space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+                Serie 01 · Bitácora de Ruta
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#141413]">
+                Fotografía de Viajes & Costa
+              </h3>
+              <p className="text-xs sm:text-sm text-[#6E6A63] font-light leading-relaxed">
+                Costas, horizontes abiertos y arquitectura natural capturados alrededor de Chile, Brasil y nuevos destinos en película de 35mm.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#E6E1DA] flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.18em] text-[#141413]">
+              <span>Explorar Serie Viajes</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[1.5]" />
+            </div>
+          </div>
+
+          {/* Serie 02: Ecuestre & Caballos */}
+          <div
+            onClick={() => navigate('/prints?serie=ecuestre')}
+            className="group cursor-pointer border border-[#E6E1DA] bg-[#F4F0EA]/60 hover:bg-[#F4F0EA] p-8 sm:p-10 transition-colors flex flex-col justify-between space-y-6"
+          >
+            <div className="space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+                Serie 02 · Equitación & Campo
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#141413]">
+                Mundo Ecuestre & Caballos
+              </h3>
+              <p className="text-xs sm:text-sm text-[#6E6A63] font-light leading-relaxed">
+                La estética de la equitación, el movimiento, la textura y la calma de los caballos retratados con la calidez clásica del grano analógico.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#E6E1DA] flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.18em] text-[#141413]">
+              <span>Explorar Serie Ecuestre</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[1.5]" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION: CURATED WORKS */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-5 border-b border-[#E6E1DA]">
           <div>
-            <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block mb-1">
-              ARCHIVO DE VIAJES
+            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block mb-1.5">
+              Selección del Archivo
             </span>
-            <h2 className="text-3xl font-serif font-bold text-[#2A1E17]">Últimas fotografías</h2>
+            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413]">
+              Obras Destacadas
+            </h2>
           </div>
           <Link
             to="/prints"
-            className="mt-4 sm:mt-0 text-xs font-mono font-bold text-[#C85A32] hover:text-[#B24B25] flex items-center gap-1 uppercase tracking-wider"
+            className="mt-4 sm:mt-0 text-xs font-mono uppercase tracking-[0.18em] text-[#141413] hover:text-[#8C4A32] flex items-center gap-2 transition-colors"
           >
-            <span>Ver archivo completo</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Ver archivo completo ({PRODUCTS.length})</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-16">
           {PRODUCTS.slice(0, 6).map((product) => (
             <ProductCard key={product.id} product={product} onOpenZoom={onOpenZoom} />
           ))}
         </div>
       </section>
 
-      {/* SECCIÓN: DEL ROLLO A TU PARED */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-[#FAF6EE] p-8 sm:p-12 rounded-2xl border border-[#E4DCD0] shadow-sm space-y-5 relative overflow-hidden">
+      {/* SECTION: CRAFTSMANSHIP & PROCESS */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="border-y border-[#E6E1DA] py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          <div className="w-12 h-12 bg-[#EFE5D5] text-[#C85A32] rounded-xl flex items-center justify-center mx-auto shadow-inner border border-[#E4DCD0]">
-            <Compass className="w-6 h-6" />
+          <div className="lg:col-span-5 space-y-3">
+            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+              Oficio & Materialidad
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413] leading-snug">
+              Del negativo de 35mm al cuadro en tu pared.
+            </h2>
           </div>
 
-          <span className="text-xs font-mono font-bold text-[#C85A32] uppercase tracking-widest block">
-            EL PROCESO
-          </span>
-          
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#2A1E17]">
-            Del rollo a tu pared.
-          </h2>
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <div className="space-y-2.5">
+              <span className="text-xs font-mono text-[#8C4A32]">01 / PELÍCULA QUÍMICA</span>
+              <h3 className="text-lg font-serif text-[#141413]">Grano y luz natural</h3>
+              <p className="text-xs text-[#6E6A63] leading-relaxed font-light">
+                Cada imagen es capturada en rollo de 35mm sin filtros ni artificios digitales. La emulsión Kodak Gold 200 entrega tonos tierra, verdes profundos y una atmósfera atemporal ideal para decoración.
+              </p>
+            </div>
 
-          <p className="text-base sm:text-lg text-[#5A4C40] leading-relaxed max-w-2xl mx-auto font-normal">
-            Cada imagen comienza en película de 35mm. Fotografío, revelo y selecciono las imágenes que pasan a formar parte del archivo JavaOnFilm.
-          </p>
-
-          <div className="pt-3">
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A32] hover:text-[#B24B25]"
-            >
-              <span>Conoce más sobre JavaOnFilm</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="space-y-2.5">
+              <span className="text-xs font-mono text-[#8C4A32]">02 / IMPRESIÓN & MARCO</span>
+              <h3 className="text-lg font-serif text-[#141413]">Producción Fine Art a pedido</h3>
+              <p className="text-xs text-[#6E6A63] leading-relaxed font-light">
+                Impresión en papel de algodón libre de ácido y enmarcado artesanal en madera natural, negro o blanco, listo para colgar y conservar por décadas.
+              </p>
+            </div>
           </div>
+
         </div>
       </section>
 

@@ -1,7 +1,8 @@
 /**
  * BASE DE DATOS DE FOTOGRAFÍAS Y ARCHIVO - JavaOnFilm
  * ===================================================
- * Fotografía analógica 35mm personal capturada con Olympus mju I & Kodak Gold 200.
+ * Archivo fotográfico 35mm: Viajes & Mundo Ecuestre.
+ * Capturado con Olympus mju I & Kodak Gold 200.
  */
 
 export const FORMAT_OPTIONS = [
@@ -13,15 +14,24 @@ export const FORMAT_OPTIONS = [
 ];
 
 export const FRAME_OPTIONS = [
-  { id: "black", name: "Negro", colorHex: "#111827" },
-  { id: "natural-wood", name: "Madera natural", colorHex: "#8B5A2B" },
+  { id: "black", name: "Negro", colorHex: "#141413" },
+  { id: "natural-wood", name: "Madera natural", colorHex: "#7D5A3F" },
   { id: "white", name: "Blanco", colorHex: "#FFFFFF" }
+];
+
+export const SERIES_CATEGORIES = [
+  { id: "all", label: "Todo el Archivo" },
+  { id: "viajes", label: "Viajes" },
+  { id: "ecuestre", label: "Ecuestre & Caballos" }
 ];
 
 export const PRODUCTS = [
   {
     id: "arraialdocabo-02",
-    archiveCode: "PHOTO 001",
+    archiveCode: "35MM · 001",
+    frameNumber: "14A",
+    series: "viajes",
+    seriesLabel: "Serie Viajes",
     title: "Arraial do Cabo",
     place: "Arraial do Cabo",
     country: "Brasil",
@@ -30,31 +40,18 @@ export const PRODUCTS = [
     film: "Kodak Gold 200",
     camera: "Olympus mju I",
     orientation: "vertical",
-    story: "Capturada bajo la luz natural en las playas de Arraial do Cabo con película Kodak Gold 200. La calma del agua y la calidez del día quedaron registradas exactamente como las viví.",
+    caption: "Luz matinal y quietud sobre la costa atlántica.",
+    story: "Capturada bajo luz natural en las playas de Arraial do Cabo con película Kodak Gold 200. La serenidad del agua y los tonos cálidos de la mañana quedaron registrados en un único disparo de 35mm.",
     image: "/images/ArraialDoCabo.jpeg",
     price: 24000,
     priceUSD: 25
   },
   {
-    id: "huentelauquen-04",
-    archiveCode: "PHOTO 002",
-    title: "Huentelauquen",
-    place: "Huentelauquen",
-    city: "Coquimbo",
-    country: "Chile",
-    location: "Coquimbo, Chile",
-    year: "2024",
-    film: "Kodak Gold 200",
-    camera: "Olympus mju I",
-    orientation: "horizontal",
-    story: "La luz matinal bañando la costa de Coquimbo. Fotografía tomada en ruta durante un viaje por el norte de Chile con película Kodak Gold 200.",
-    image: "/images/Huentelauquen.jpeg",
-    price: 24000,
-    priceUSD: 25
-  },
-  {
     id: "pandeazucar-06",
-    archiveCode: "PHOTO 003",
+    archiveCode: "35MM · 002",
+    frameNumber: "21A",
+    series: "viajes",
+    seriesLabel: "Serie Viajes",
     title: "Pan de Azúcar",
     place: "Pan de Azúcar",
     city: "Río de Janeiro",
@@ -64,14 +61,18 @@ export const PRODUCTS = [
     film: "Kodak Gold 200",
     camera: "Olympus mju I",
     orientation: "horizontal",
-    story: "Vista panorámica hacia los morros y el mar. Fotografía analógica de 35mm seleccionada del archivo personal para llevar a muros y espacios.",
+    caption: "Silueta de los morros frente a la bahía al caer la tarde.",
+    story: "Perspectiva abierta hacia los morros y el mar en Río de Janeiro. Fotografía analógica de 35mm seleccionada del archivo para llevar la profundidad y calidez del grano químico a muros y espacios.",
     image: "/images/PandeAzucar.jpeg",
     price: 24000,
     priceUSD: 25
   },
   {
     id: "cisnes-04",
-    archiveCode: "PHOTO 004",
+    archiveCode: "35MM · 003",
+    frameNumber: "33A",
+    series: "viajes",
+    seriesLabel: "Serie Naturaleza & Viajes",
     title: "Cisnes",
     place: "Jardín Botánico",
     country: "Chile",
@@ -80,7 +81,8 @@ export const PRODUCTS = [
     film: "Kodak Gold 200",
     camera: "Olympus mju I",
     orientation: "horizontal",
-    story: "Cisnes navegando serenamente en aguas calmas. Fotografía analógica de 35mm seleccionada del archivo personal para llevar a muros y espacios.",
+    caption: "Movimiento silencioso sobre el espejo de agua.",
+    story: "Cisnes navegando en aguas calmas bajo la sombra de los árboles. Una composición de ritmo pausado en 35mm pensada para aportar equilibrio y sobriedad a cualquier ambiente.",
     image: "/images/Cisnes.jpeg",
     price: 24000,
     priceUSD: 25
@@ -89,7 +91,7 @@ export const PRODUCTS = [
 
 export const STORE_CONFIG = {
   storeName: "JavaOnFilm",
-  whatsAppNumber: "56968449779", // WhatsApp (+56 9 6844 9779)
+  whatsAppNumber: "56968449779",
   instagramUrl: "https://instagram.com/javaonfilm",
   email: "javaonfilm@gmail.com"
 };
