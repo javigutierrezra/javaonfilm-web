@@ -49,12 +49,12 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
   const getScalePercentage = (fmtId) => {
     switch (fmtId) {
-      case 'print-20x30': return 44;
-      case 'print-30x45': return 60;
-      case 'frame-30x45': return 66;
+      case 'print-20x30': return 46;
+      case 'print-30x45': return 62;
+      case 'frame-30x45': return 68;
       case 'frame-40x60': return 82;
-      case 'frame-50x75': return 96;
-      default: return 66;
+      case 'frame-50x75': return 95;
+      default: return 68;
     }
   };
 
@@ -74,29 +74,35 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
       : { height: `${roomScale * 0.68}%`, aspectRatio: '2 / 3', maxWidth: '62%' };
   };
 
-  const getFrameCssClass = () => {
+  // Delicate, slim gallery frame profile (using padding on gradient molding for realistic bevel & sheen)
+  const getFrameMoldingClass = () => {
     if (!selectedFormat.requiresFrame) {
-      return 'border-0 frame-shadow ring-1 ring-[#E6E1DA]';
+      return 'p-0 print-only-elevation ring-1 ring-[#E6E1DA] bg-[#FAF8F5]';
     }
-    let borderThickness = 'border-[8px] sm:border-[14px]';
-    if (selectedFormat.id === 'frame-30x45') borderThickness = 'border-[6px] sm:border-[11px]';
-    else if (selectedFormat.id === 'frame-40x60') borderThickness = 'border-[9px] sm:border-[15px]';
-    else if (selectedFormat.id === 'frame-50x75') borderThickness = 'border-[12px] sm:border-[19px]';
+
+    let moldingThickness = 'p-[5px] sm:p-[7px]';
+    if (selectedFormat.id === 'frame-30x45') moldingThickness = 'p-[4px] sm:p-[6px]';
+    else if (selectedFormat.id === 'frame-40x60') moldingThickness = 'p-[5px] sm:p-[7px]';
+    else if (selectedFormat.id === 'frame-50x75') moldingThickness = 'p-[6px] sm:p-[9px]';
 
     switch (selectedFrame.id) {
-      case 'black': return `${borderThickness} border-[#181716] frame-shadow`;
-      case 'white': return `${borderThickness} border-[#FAF8F5] frame-shadow ring-1 ring-[#DED8CE]`;
-      default: return `${borderThickness} border-[#7D5A3F] frame-shadow`;
+      case 'black':
+        return `${moldingThickness} frame-molding-black`;
+      case 'white':
+        return `${moldingThickness} frame-molding-white`;
+      default:
+        return `${moldingThickness} frame-molding-wood`;
     }
   };
 
+  // Generous, airy museum passepartout (mat board)
   const getMatPaddingClass = () => {
-    if (!selectedFormat.requiresFrame) return 'p-0';
+    if (!selectedFormat.requiresFrame) return 'p-2 sm:p-3';
     switch (selectedFormat.id) {
-      case 'frame-30x45': return 'p-2 sm:p-3.5';
-      case 'frame-40x60': return 'p-3 sm:p-5';
-      case 'frame-50x75': return 'p-4 sm:p-7';
-      default: return 'p-2.5 sm:p-4';
+      case 'frame-30x45': return 'p-3.5 sm:p-6';
+      case 'frame-40x60': return 'p-5 sm:p-8';
+      case 'frame-50x75': return 'p-6 sm:p-10';
+      default: return 'p-4 sm:p-6';
     }
   };
 
@@ -185,10 +191,17 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
               </div>
             </div>
             
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-10 flex flex-col justify-center items-center relative overflow-hidden h-[360px] sm:h-[480px] md:h-[540px]">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-6 sm:p-12 flex flex-col justify-center items-center relative overflow-hidden h-[360px] sm:h-[480px] md:h-[540px]">
+              {/* Soft Gallery Spotlight Effect */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at 50% 42%, rgba(255,253,249,0.7) 0%, rgba(244,240,234,0.2) 55%, rgba(230,224,214,0.5) 100%)'
+                }}
+              />
+
               {previewMode === 'room' && (
                 <div className="absolute inset-0 flex flex-col justify-end pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#F4F0EA] via-[#EFEAE2] to-[#E6E0D6]" />
                   <div className="relative z-0 w-full flex flex-col items-center mb-2 sm:mb-3 px-6 sm:px-12 opacity-60">
                     <div className="w-[86%] sm:w-[76%] h-11 sm:h-16 bg-[#E5DEC9]/40 border-t border-x border-[#BFB8AC] relative flex">
                       <div className="w-full h-full flex divide-x divide-[#BFB8AC]">
@@ -206,23 +219,41 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                   style={previewMode === 'studio' ? getStudioElementStyle() : getRoomElementStyle()}
                   className="transition-all duration-500 ease-out flex items-center justify-center relative"
                 >
-                  <div className={`w-full h-full transition-all duration-500 overflow-hidden flex items-center justify-center ${getFrameCssClass()}`}>
-                    <div className={`w-full h-full flex items-center justify-center bg-[#FAF8F5] passepartout-inner transition-all duration-500 ${getMatPaddingClass()}`}>
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className={`w-full h-full transition-all duration-500 ${
-                          isOrientationMismatched && fitMode === 'crop'
-                            ? `object-cover ${getCropPositionClass()}`
-                            : 'object-contain'
-                        }`}
-                      />
+                  {/* Slim Gallery Frame Outer Molding */}
+                  <div className={`w-full h-full transition-all duration-500 flex items-center justify-center relative ${getFrameMoldingClass()}`}>
+                    
+                    {/* Cotton Passepartout Mat Board */}
+                    <div className={`w-full h-full flex items-center justify-center bg-[#FAF8F4] frame-rabbet transition-all duration-500 relative ${getMatPaddingClass()}`}>
+                      
+                      {/* Beveled Mat Window Opening */}
+                      <div className="w-full h-full flex items-center justify-center overflow-hidden bg-[#F5F2EC] mat-bevel-opening relative">
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className={`w-full h-full transition-all duration-500 ${
+                            isOrientationMismatched && fitMode === 'crop'
+                              ? `object-cover ${getCropPositionClass()}`
+                              : 'object-contain'
+                          }`}
+                        />
+
+                        {/* Subtle Museum Glass Diagonal Reflection */}
+                        {selectedFormat.requiresFrame && (
+                          <div
+                            className="absolute inset-0 pointer-events-none opacity-35"
+                            style={{
+                              background: 'linear-gradient(125deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.04) 38%, rgba(255,255,255,0) 50%)'
+                            }}
+                          />
+                        )}
+                      </div>
+
                     </div>
                   </div>
 
                   <button
                     onClick={() => onOpenZoom(product)}
-                    className="absolute top-2 right-2 p-1.5 bg-[#141413]/80 hover:bg-[#141413] text-[#FAF8F5] transition-colors z-20"
+                    className="absolute -bottom-1 -right-1 sm:bottom-2 sm:right-2 p-1.5 bg-[#FAF8F5]/90 hover:bg-[#141413] text-[#141413] hover:text-[#FAF8F5] border border-[#E6E1DA] transition-colors z-20 shadow-sm"
                     title="Ver completa"
                   >
                     <Maximize2 className="w-3.5 h-3.5 stroke-[1.5]" />
