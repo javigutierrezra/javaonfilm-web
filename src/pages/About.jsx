@@ -13,10 +13,10 @@ export default function About() {
             Sobre mí · JavaOnFilm
           </span>
           <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#141413] leading-tight max-w-3xl">
-            Fotografía en 35mm, viajes y equitación.
+            Entre el código, los viajes y la equitación.
           </h1>
           <p className="text-sm sm:text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
-            JavaOnFilm nace para reunir en un solo lugar las fotografías que voy tomando en película de 35mm. Más que armar un catálogo comercial, la idea es compartir dos cosas que forman parte de mi vida cotidiana: salir a viajar para conocer distintos lugares y culturas, y mi práctica constante en la equitación.
+            Soy programadora y gran parte de mi día transcurre frente a una pantalla. Por lo mismo, la fotografía analógica en 35mm se transformó en mi contrapeso fuera de lo digital: una forma de guardar en papel dos cosas que me mueven en el día a día, que son viajar para conocer otras culturas y mi práctica en la equitación. Esta misma página web la programé yo para reunir ese archivo.
           </p>
         </div>
 
@@ -34,13 +34,13 @@ export default function About() {
             </div>
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
-                01 / Viajes & Culturas
+                01 / Viajes
               </span>
               <h2 className="text-2xl font-serif font-normal text-[#141413]">
-                Conocer otros ritmos y lugares
+                Viajar y conocer otras culturas
               </h2>
               <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
-                Viajar y observar cómo se vive en otras partes siempre ha sido una de mis mayores motivaciones. Llevar una cámara análoga compacta me permite registrar cada destino de manera directa y real, guardando los colores y el ambiente tal como se vieron en el momento.
+                Siempre que puedo salgo de viaje para conocer otros lugares, sus ritmos y su gente. Viajar con una cámara compacta de 35mm me permite registrar cada destino sin pantallas de por medio, tal como se vio en ese momento.
               </p>
             </div>
           </div>
@@ -56,13 +56,13 @@ export default function About() {
             </div>
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
-                02 / Equitación & Caballos
+                02 / Caballos
               </span>
               <h2 className="text-2xl font-serif font-normal text-[#141413]">
-                El día a día con los caballos
+                Mi práctica en equitación
               </h2>
               <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
-                Practico equitación y paso gran parte de mi tiempo cerca de los caballos. Fotografiarlos en 35mm es una extensión natural de esa disciplina: capturar su presencia, los entrenamientos y la estética propia del mundo ecuestre desde adentro.
+                Hago equitación y paso gran parte de mi tiempo entre caballos. Fotografiarlos en película analógica es una forma muy natural de unir esa disciplina con el archivo visual que voy armando rollo a rollo.
               </p>
             </div>
           </div>
@@ -85,13 +85,13 @@ export default function About() {
           <div className="md:col-span-7 space-y-5">
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
-                El Formato Analógico
+                35mm
               </span>
               <h3 className="text-2xl font-serif font-normal text-[#141413]">
-                Del rollo de 35mm al cuadro enmarcado
+                Del rollo al cuadro
               </h3>
               <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
-                Trabajo con película química porque cada rollo tiene solo 36 disparos y obliga a elegir bien el momento antes de apretar el obturador. Las fotografías seleccionadas del archivo se imprimen y enmarcan a pedido para quienes quieran llevarlas a sus espacios.
+                Cada rollo tiene solo 36 disparos y no se puede ver el resultado hasta revelarlo. Las fotos que más me gustan tras cada revelado las subo a esta web para que puedas encargarlas impresas o enmarcadas a medida.
               </p>
             </div>
 
