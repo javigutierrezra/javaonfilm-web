@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname, search]);
+
+  return null;
+}
 
 // Layout & Global Components
 import Header from './components/Header';
@@ -56,6 +66,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-[#FAF8F5] text-[#141413] flex flex-col font-sans selection:bg-[#141413] selection:text-[#FAF8F5]">
         
         {/* Header */}
