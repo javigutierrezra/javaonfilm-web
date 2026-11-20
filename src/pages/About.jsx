@@ -24,14 +24,12 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 border-b border-[#E6E1DA] pb-14 sm:pb-16">
           
           {/* Column 1: Viajes */}
-          <div className="space-y-5">
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-5">
-              <img
-                src="/images/about-plane-sunset.jpg"
-                alt="Vista de avión al atardecer en 35mm"
-                className="w-full h-[250px] sm:h-[310px] object-cover"
-              />
-            </div>
+          <div className="space-y-4">
+            <img
+              src="/images/about-plane-sunset.jpg"
+              alt="Vista de avión al atardecer en 35mm"
+              className="w-full h-[260px] sm:h-[320px] object-cover"
+            />
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
                 01 / Viajes
@@ -46,14 +44,12 @@ export default function About() {
           </div>
 
           {/* Column 2: Equitación & Caballos */}
-          <div className="space-y-5">
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-5">
-              <img
-                src="/images/about-horse-film.jpg"
-                alt="Fotografía de caballo y equitación en 35mm"
-                className="w-full h-[250px] sm:h-[310px] object-cover"
-              />
-            </div>
+          <div className="space-y-4">
+            <img
+              src="/images/about-horse-film.jpg"
+              alt="Fotografía de caballo y equitación en 35mm"
+              className="w-full h-[260px] sm:h-[320px] object-cover"
+            />
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
                 02 / Caballos
@@ -73,13 +69,11 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           
           <div className="md:col-span-5">
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4">
-              <img
-                src="/images/about-camera-film.jpg"
-                alt="Olympus mju I y Kodak Gold 200"
-                className="w-full h-[200px] sm:h-[220px] object-cover"
-              />
-            </div>
+            <img
+              src="/images/about-camera-film.jpg"
+              alt="Olympus mju I y Kodak Gold 200"
+              className="w-full h-[220px] sm:h-[240px] object-cover"
+            />
           </div>
 
           <div className="md:col-span-7 space-y-5">

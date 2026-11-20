@@ -53,15 +53,13 @@ export default function Home({ onOpenZoom }) {
             <div className="lg:col-span-6">
               <div
                 onClick={() => navigate('/prints')}
-                className="group cursor-pointer bg-[#F4F0EA] border border-[#E6E1DA] p-5 sm:p-10 transition-colors duration-500 hover:bg-[#EFEAE2]"
+                className="group cursor-pointer overflow-hidden"
               >
-                <div className="relative h-[280px] sm:h-[380px] md:h-[420px] flex items-center justify-center overflow-hidden">
-                  <img
-                    src="/images/hero-photographer.jpg"
-                    alt="JavaOnFilm 35mm"
-                    className="max-w-full max-h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015] shadow-[0_12px_30px_rgba(20,20,19,0.14)]"
-                  />
-                </div>
+                <img
+                  src="/images/hero-photographer.jpg"
+                  alt="JavaOnFilm 35mm"
+                  className="w-full h-[320px] sm:h-[420px] md:h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
               </div>
             </div>
 

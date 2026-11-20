@@ -8,18 +8,20 @@ export default function ProductCard({ product, onOpenZoom }) {
   const placeName = product.place || product.location?.split(',')[0] || '';
   const countryName = product.country || product.location?.split(',')[1]?.trim() || '';
 
+  const aspectClass = product.orientation === 'vertical' ? 'aspect-[2/3]' : 'aspect-[3/2]';
+
   return (
     <article className="group flex flex-col">
       
-      {/* Clean Photo Mat */}
+      {/* Clean Photo without extra box */}
       <div
         onClick={() => navigate(`/prints/${product.id}`)}
-        className="relative aspect-[4/5] bg-[#F4F0EA] border border-[#E6E1DA] p-6 sm:p-9 flex items-center justify-center cursor-pointer transition-colors duration-500 group-hover:bg-[#EFEAE2]"
+        className="relative overflow-hidden cursor-pointer"
       >
         <img
           src={product.image}
           alt={product.title}
-          className="max-w-full max-h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02] shadow-[0_8px_24px_rgba(20,20,19,0.12)]"
+          className={`w-full ${aspectClass} object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]`}
           loading="lazy"
         />
 
@@ -29,7 +31,7 @@ export default function ProductCard({ product, onOpenZoom }) {
             e.stopPropagation();
             onOpenZoom(product);
           }}
-          className="absolute top-3 right-3 p-1.5 text-[#6E6A63] hover:text-[#141413] opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute top-3 right-3 p-1.5 bg-[#FAF8F5]/80 backdrop-blur-sm text-[#141413] opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300"
           title="Ver en pantalla completa"
         >
           <Maximize2 className="w-3.5 h-3.5 stroke-[1.5]" />
