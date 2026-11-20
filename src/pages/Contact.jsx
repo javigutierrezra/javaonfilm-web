@@ -6,7 +6,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    motive: 'Consulta sobre obra del archivo',
     message: ''
   });
 
@@ -17,171 +16,137 @@ export default function Contact() {
   };
 
   return (
-    <div className="pb-20 sm:pb-28 pt-6 sm:pt-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 space-y-12 sm:space-y-16">
+    <div className="pb-20 sm:pb-28 pt-8 sm:pt-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
         
-        {/* Header */}
-        <div className="border-b border-[#E6E1DA] pb-8 sm:pb-10 max-w-3xl space-y-2.5 sm:space-y-3">
-          <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#8C4A32] block">
-            Contacto & Encargos a Medida
+        <div className="border-b border-[#E6E1DA] pb-6">
+          <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block mb-1">
+            Contacto
           </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#141413]">
-            Asesoría, dimensiones especiales o encargos.
+          <h1 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413]">
+            Consultas y encargos
           </h1>
-          <p className="text-xs sm:text-sm text-[#6E6A63] font-light leading-relaxed pt-1">
-            Cada impresión y enmarcado se realiza a pedido. Si tienes dudas sobre qué medida o moldura elegir para tu espacio, o buscas una fotografía específica de las series de Viajes o Ecuestre, escríbenos directamente.
-          </p>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Minimalist Form */}
+          {/* Form */}
           <div className="lg:col-span-7">
             {submitted ? (
-              <div className="p-6 sm:p-12 border border-[#E6E1DA] bg-[#FDFCFA] space-y-4">
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
-                  Confirmación
-                </span>
-                <h3 className="text-2xl font-serif text-[#141413]">Mensaje recibido</h3>
-                <p className="text-xs text-[#6E6A63] leading-relaxed font-light max-w-md break-words">
-                  Gracias por escribir. Te responderemos a la brevedad posible al correo <span className="text-[#141413] font-mono">{formData.email}</span>.
+              <div className="p-8 border border-[#E6E1DA] bg-[#FDFCFA] space-y-4">
+                <h3 className="text-xl font-serif text-[#141413]">Mensaje enviado</h3>
+                <p className="text-xs text-[#6E6A63] font-light">
+                  Te responderé pronto a <span className="text-[#141413] font-mono">{formData.email}</span>.
                 </p>
-                <div className="pt-4">
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: '', email: '', motive: 'Consulta sobre obra del archivo', message: '' });
-                    }}
-                    className="w-full sm:w-auto px-6 py-3 bg-[#141413] text-[#FAF8F5] text-[11px] font-mono uppercase tracking-[0.18em]"
-                  >
-                    Enviar nueva consulta
-                  </button>
-                </div>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({ name: '', email: '', message: '' });
+                  }}
+                  className="px-6 py-3 bg-[#141413] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.18em]"
+                >
+                  Enviar otro mensaje
+                </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#6E6A63] block">
                       Nombre
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Tu nombre completo"
+                      placeholder="Tu nombre"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
+                      className="w-full py-2.5 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] rounded-none"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
-                      Correo Electrónico
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#6E6A63] block">
+                      Email
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="nombre@dominio.com"
+                      placeholder="tu@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
+                      className="w-full py-2.5 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] rounded-none"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
-                    Asunto
-                  </label>
-                  <select
-                    value={formData.motive}
-                    onChange={(e) => setFormData({ ...formData, motive: e.target.value })}
-                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] focus:outline-none focus:border-[#141413] transition-colors rounded-none"
-                  >
-                    <option value="Consulta sobre obra del archivo">Consulta sobre una obra del archivo</option>
-                    <option value="Dimensiones o enmarcado a medida">Dimensiones o enmarcado a medida</option>
-                    <option value="Proyecto de interiorismo / arquitectura">Proyecto de interiorismo o arquitectura</option>
-                    <option value="Otro">Otro motivo</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6E6A63] block">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#6E6A63] block">
                     Mensaje
                   </label>
                   <textarea
                     required
-                    rows="4"
-                    placeholder="Indica la obra, medidas o detalles de tu consulta..."
+                    rows="3"
+                    placeholder="Escribe tu consulta..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full py-3 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] transition-colors resize-none rounded-none"
+                    className="w-full py-2.5 bg-transparent border-b border-[#E6E1DA] text-sm text-[#141413] placeholder:text-[#9C968E] focus:outline-none focus:border-[#141413] resize-none rounded-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-10 py-4 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.18em] transition-colors"
                 >
-                  Enviar Consulta
+                  Enviar
                 </button>
               </form>
             )}
           </div>
 
-          {/* Right Column: Direct Channels */}
-          <div className="lg:col-span-5 space-y-6 sm:space-y-8 lg:pl-8 lg:border-l border-[#E6E1DA]">
-            
-            <div className="space-y-2 pb-6 border-b border-[#E6E1DA]">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
-                Atención Directa (WhatsApp)
+          {/* Direct Links */}
+          <div className="lg:col-span-5 space-y-6 lg:pl-8 lg:border-l border-[#E6E1DA]">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#9C968E] block">
+                WhatsApp
               </span>
               <a
-                href="https://wa.me/56968449779?text=Hola,%20quisiera%20consultar%20por%20una%20obra%20del%20archivo%20JavaOnFilm."
+                href="https://wa.me/56968449779"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-xl sm:text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xl font-serif text-[#141413] hover:text-[#8C4A32] mt-1"
               >
                 <span>+56 9 6844 9779</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
               </a>
-              <p className="text-xs text-[#6E6A63] font-light">
-                Consultas rápidas sobre disponibilidad, marcos y tiempos de despacho.
-              </p>
             </div>
 
-            <div className="space-y-2 pb-6 border-b border-[#E6E1DA]">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
-                Bitácora Visual (Instagram)
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#9C968E] block">
+                Instagram
               </span>
               <a
                 href="https://instagram.com/javaonfilm"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-xl sm:text-2xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xl font-serif text-[#141413] hover:text-[#8C4A32] mt-1"
               >
                 <span>@javaonfilm</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[1.25]" />
               </a>
-              <p className="text-xs text-[#6E6A63] font-light">
-                Nuevos rollos revelados, procesos de enmarcado y registros de viaje.
-              </p>
             </div>
 
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9C968E] block">
-                Correo Electrónico
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#9C968E] block">
+                Email
               </span>
               <a
                 href="mailto:javaonfilm@gmail.com"
-                className="block text-lg sm:text-xl font-serif text-[#141413] hover:text-[#6E6A63] transition-colors break-all"
+                className="block text-lg font-serif text-[#141413] hover:text-[#8C4A32] mt-1 break-all"
               >
                 javaonfilm@gmail.com
               </a>
             </div>
-
           </div>
 
         </div>
