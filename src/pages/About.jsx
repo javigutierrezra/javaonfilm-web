@@ -16,7 +16,7 @@ export default function About() {
             Entre el código, los viajes y la equitación.
           </h1>
           <p className="text-sm sm:text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
-            Soy programadora y gran parte de mi día transcurre frente a una pantalla. Por lo mismo, la fotografía analógica en 35mm se transformó en mi contrapeso fuera de lo digital: una forma de guardar en papel dos cosas que me mueven en el día a día, que son viajar para conocer otras culturas y mi práctica en la equitación. Esta misma página web la programé yo para reunir ese archivo.
+            Soy programadora y gran parte de mi día transcurre frente a una pantalla. Por lo mismo, la fotografía analógica en 35mm se transformó en mi contrapeso fuera de lo digital: una forma de guardar en papel dos cosas que me mueven en el día a día, que son viajar para conocer otras culturas y mi práctica en la equitación.
           </p>
         </div>
 
