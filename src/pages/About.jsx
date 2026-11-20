@@ -5,34 +5,97 @@ import { ArrowRight } from 'lucide-react';
 export default function About() {
   return (
     <div className="pb-20 sm:pb-28 pt-8 sm:pt-12">
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 space-y-14 sm:space-y-16">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center border-b border-[#E6E1DA] pb-14">
+        {/* Top Intro */}
+        <div className="border-b border-[#E6E1DA] pb-8 sm:pb-10 space-y-4">
+          <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
+            Sobre mí · JavaOnFilm
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#141413] leading-tight max-w-3xl">
+            Fotografía en 35mm, viajes y equitación.
+          </h1>
+          <p className="text-sm sm:text-base text-[#6E6A63] leading-relaxed font-light max-w-2xl">
+            JavaOnFilm nace para reunir en un solo lugar las fotografías que voy tomando en película de 35mm. Más que armar un catálogo comercial, la idea es compartir dos cosas que forman parte de mi vida cotidiana: salir a viajar para conocer distintos lugares y culturas, y mi práctica constante en la equitación.
+          </p>
+        </div>
+
+        {/* Two Cards: Viajes (Plane Sunset) & Caballos (Equestrian) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 border-b border-[#E6E1DA] pb-14 sm:pb-16">
           
-          <div className="md:col-span-6">
-            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-6">
+          {/* Column 1: Viajes */}
+          <div className="space-y-5">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-5">
+              <img
+                src="/images/about-plane-sunset.jpg"
+                alt="Vista de avión al atardecer en 35mm"
+                className="w-full h-[250px] sm:h-[310px] object-cover"
+              />
+            </div>
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
+                01 / Viajes & Culturas
+              </span>
+              <h2 className="text-2xl font-serif font-normal text-[#141413]">
+                Conocer otros ritmos y lugares
+              </h2>
+              <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
+                Viajar y observar cómo se vive en otras partes siempre ha sido una de mis mayores motivaciones. Llevar una cámara análoga compacta me permite registrar cada destino de manera directa y real, guardando los colores y el ambiente tal como se vieron en el momento.
+              </p>
+            </div>
+          </div>
+
+          {/* Column 2: Equitación & Caballos */}
+          <div className="space-y-5">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4 sm:p-5">
+              <img
+                src="/images/about-horse-film.jpg"
+                alt="Fotografía de caballo y equitación en 35mm"
+                className="w-full h-[250px] sm:h-[310px] object-cover"
+              />
+            </div>
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
+                02 / Equitación & Caballos
+              </span>
+              <h2 className="text-2xl font-serif font-normal text-[#141413]">
+                El día a día con los caballos
+              </h2>
+              <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
+                Practico equitación y paso gran parte de mi tiempo cerca de los caballos. Fotografiarlos en 35mm es una extensión natural de esa disciplina: capturar su presencia, los entrenamientos y la estética propia del mundo ecuestre desde adentro.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Camera & Gear + CTA */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <div className="md:col-span-5">
+            <div className="bg-[#F4F0EA] border border-[#E6E1DA] p-4">
               <img
                 src="/images/about-camera-film.jpg"
                 alt="Olympus mju I y Kodak Gold 200"
-                className="w-full h-[260px] sm:h-[340px] object-cover"
+                className="w-full h-[200px] sm:h-[220px] object-cover"
               />
             </div>
           </div>
 
-          <div className="md:col-span-6 space-y-5">
-            <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#8C4A32] block">
-              JavaOnFilm
-            </span>
+          <div className="md:col-span-7 space-y-5">
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
+                El Formato Analógico
+              </span>
+              <h3 className="text-2xl font-serif font-normal text-[#141413]">
+                Del rollo de 35mm al cuadro enmarcado
+              </h3>
+              <p className="text-xs sm:text-sm text-[#6E6A63] leading-relaxed font-light">
+                Trabajo con película química porque cada rollo tiene solo 36 disparos y obliga a elegir bien el momento antes de apretar el obturador. Las fotografías seleccionadas del archivo se imprimen y enmarcan a pedido para quienes quieran llevarlas a sus espacios.
+              </p>
+            </div>
 
-            <h1 className="text-3xl sm:text-4xl font-serif font-normal text-[#141413] leading-snug">
-              Viajes y caballos en 35mm.
-            </h1>
-
-            <p className="text-sm text-[#6E6A63] leading-relaxed font-light">
-              JavaOnFilm reúne mis fotografías analógicas favoritas tomadas en viajes y en equitación. Cada imagen es capturada en película de 35mm y está disponible impresa o enmarcada a medida.
-            </p>
-
-            <div className="pt-4 grid grid-cols-3 gap-4 border-t border-[#E6E1DA] text-xs font-mono">
+            <div className="pt-3 grid grid-cols-3 gap-4 border-t border-[#E6E1DA] text-xs font-mono">
               <div>
                 <span className="text-[9px] uppercase tracking-[0.18em] text-[#9C968E] block">Cámara</span>
                 <span className="text-[#141413] mt-1 block">Olympus mju I</span>
@@ -47,7 +110,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-1">
               <Link
                 to="/prints"
                 className="inline-flex items-center gap-3 px-7 py-3.5 bg-[#141413] hover:bg-[#2A2A28] text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.18em] transition-colors"
