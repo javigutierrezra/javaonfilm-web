@@ -21,14 +21,14 @@ export default function About() {
         </div>
 
         {/* Two Cards: Viajes (Plane Sunset) & Caballos (Equestrian) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 border-b border-[#E6E1DA] pb-14 sm:pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 border-b border-[#E6E1DA] pb-14 sm:pb-16 items-start">
           
           {/* Column 1: Viajes */}
           <div className="space-y-4">
             <img
               src="/images/about-plane-sunset.jpg"
               alt="Vista de avión al atardecer en 35mm"
-              className="w-full h-[260px] sm:h-[320px] object-cover"
+              className="w-full h-auto block"
             />
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
@@ -48,7 +48,7 @@ export default function About() {
             <img
               src="/images/about-horse-film.jpg"
               alt="Fotografía de caballo y equitación en 35mm"
-              className="w-full h-[260px] sm:h-[320px] object-cover"
+              className="w-full h-auto block"
             />
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C4A32] block">
@@ -72,7 +72,7 @@ export default function About() {
             <img
               src="/images/about-camera-film.jpg"
               alt="Olympus mju I y Kodak Gold 200"
-              className="w-full h-[220px] sm:h-[240px] object-cover"
+              className="w-full max-w-xs mx-auto md:mx-0 h-auto block"
             />
           </div>
 

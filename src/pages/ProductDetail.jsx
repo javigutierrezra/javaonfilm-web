@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS, FORMAT_OPTIONS, FRAME_OPTIONS, STORE_CONFIG } from '../data/products';
 import { Maximize2, ArrowLeft, ArrowUpRight } from 'lucide-react';
@@ -9,6 +9,12 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
 
   const initialOrientation = product?.orientation || 'horizontal';
   const [selectedOrientation, setSelectedOrientation] = useState(initialOrientation);
+
+  useEffect(() => {
+    if (product?.orientation) {
+      setSelectedOrientation(product.orientation);
+    }
+  }, [product]);
   const [selectedFormat, setSelectedFormat] = useState(FORMAT_OPTIONS[2]);
   const [selectedFrame, setSelectedFrame] = useState(FRAME_OPTIONS[1]);
   const [fitMode, setFitMode] = useState('margin');
@@ -229,9 +235,7 @@ export default function ProductDetail({ onAddToCart, onOpenZoom }) {
                         className={`w-full h-full transition-all duration-500 ${
                           isOrientationMismatched && fitMode === 'crop'
                             ? `object-cover ${getCropPositionClass()}`
-                            : isOrientationMismatched && fitMode === 'margin'
-                            ? 'object-contain'
-                            : 'object-cover'
+                            : 'object-contain'
                         }`}
                       />
                     </div>

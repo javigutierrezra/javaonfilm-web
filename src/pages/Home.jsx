@@ -50,15 +50,15 @@ export default function Home({ onOpenZoom }) {
             </div>
 
             {/* Hero Image */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 flex justify-center lg:justify-end">
               <div
                 onClick={() => navigate('/prints')}
-                className="group cursor-pointer overflow-hidden"
+                className="group cursor-pointer overflow-hidden max-w-md w-full"
               >
                 <img
                   src="/images/hero-photographer.jpg"
                   alt="JavaOnFilm 35mm"
-                  className="w-full h-[320px] sm:h-[420px] md:h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="w-full h-auto max-h-[520px] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function Home({ onOpenZoom }) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {PRODUCTS.map((product) => (
             <ProductCard key={product.id} product={product} onOpenZoom={onOpenZoom} />
           ))}

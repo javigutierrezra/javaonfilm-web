@@ -57,7 +57,7 @@ export const PRODUCTS = [
     year: "2024",
     film: "Kodak Gold 200",
     camera: "Olympus mju I",
-    orientation: "horizontal",
+    orientation: "vertical",
     story: "Río de Janeiro, Brasil. Capturada en 35mm con Kodak Gold 200.",
     image: "/images/PandeAzucar.jpeg",
     price: 24000,

@@ -8,12 +8,10 @@ export default function ProductCard({ product, onOpenZoom }) {
   const placeName = product.place || product.location?.split(',')[0] || '';
   const countryName = product.country || product.location?.split(',')[1]?.trim() || '';
 
-  const aspectClass = product.orientation === 'vertical' ? 'aspect-[2/3]' : 'aspect-[3/2]';
-
   return (
     <article className="group flex flex-col">
       
-      {/* Clean Photo without extra box */}
+      {/* Clean Photo — Uncropped in its natural proportion */}
       <div
         onClick={() => navigate(`/prints/${product.id}`)}
         className="relative overflow-hidden cursor-pointer"
@@ -21,7 +19,7 @@ export default function ProductCard({ product, onOpenZoom }) {
         <img
           src={product.image}
           alt={product.title}
-          className={`w-full ${aspectClass} object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]`}
+          className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           loading="lazy"
         />
 
